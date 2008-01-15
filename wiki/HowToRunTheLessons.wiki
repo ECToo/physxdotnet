@@ -1,0 +1,8 @@
+= Introduction =
+
+a) Download a Lesson from the SVN Trunk.
+b) Download either the debug or release version of PhysXCPP.dll from the respective debug/release folders.
+c) When compiling the lesson in Visual Studio, the PhysXCPP.dll will be missing in two locations, replace with the DLL you just downloaded in b).
+d) It should run...
+
+Leave an issue on the issues area if you're having issues, it's early days.
