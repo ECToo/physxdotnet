@@ -28,6 +28,7 @@ namespace PhysXCPP {
 
 		void UpdateScene(float deltaTime);
 		bool FetchResults(bool block);
+		void FlushCaches() { scene->flushCaches(); }
 		bool CheckResults(bool block);
 	};
 

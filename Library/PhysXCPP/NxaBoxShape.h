@@ -8,6 +8,8 @@ namespace PhysXCPP
 	{
 	public:
 		NxaBoxShape(NxShape* ptr);
+
+		Vector3 GetDimensions();
 	};
 
 }
