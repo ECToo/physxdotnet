@@ -6,6 +6,8 @@ using Microsoft.Xna.Framework;
 using PhysXCPP;
 using XnaPhysX.Input;
 using Microsoft.Xna.Framework.Input;
+using XNAPhysX;
+using XNAPhysX.Graphics.DebugRenderer;
 
 namespace Lesson101
 {
@@ -13,11 +15,12 @@ namespace Lesson101
     {
         const float forceStrength = 20000;
         const float deltaTime = 1f / 60f;
+        const float forceLineLength = 3;
 
         NxaActor groundPlane;
         NxaActor box;
 
-        NxaActor selectedActor;
+        Vector3 forceDirection = Vector3.Zero;
 
         public Lesson101Scene() : base()
         {
@@ -26,6 +29,8 @@ namespace Lesson101
 
             actors.Add(groundPlane);
             actors.Add(box);
+
+            selectedActor = box;
 
             Console.WriteLine("\n Flight Controls:\n ----------------\n w = forward, s = back\n a = strafe left, d = strafe right\n q = up, z = down");
             Console.WriteLine("\n Force Controls:\n ---------------\n i = +z, k = -z\n j = +x, l = -x\n u = +y, m = -y\n");
@@ -62,22 +67,38 @@ namespace Lesson101
             float f = (float)gameTime.ElapsedGameTime.TotalSeconds;
 
             if (input.Keyboard.NewState.IsKeyDown(Keys.I))
-                box.AddForce(Vector3.UnitZ * forceStrength * f);
-            if (input.Keyboard.NewState.IsKeyDown(Keys.K))
-                box.AddForce(-Vector3.UnitZ * forceStrength * f);
-            if (input.Keyboard.NewState.IsKeyDown(Keys.J))
-                box.AddForce(Vector3.UnitX * forceStrength * f);
-            if (input.Keyboard.NewState.IsKeyDown(Keys.L))
-                box.AddForce(-Vector3.UnitX * forceStrength * f);
-            if (input.Keyboard.NewState.IsKeyDown(Keys.U))
-                box.AddForce(Vector3.UnitY * forceStrength * f);
-            if (input.Keyboard.NewState.IsKeyDown(Keys.M))
-                box.AddForce(-Vector3.UnitY * forceStrength * f);
+                forceDirection = Vector3.UnitZ;
+            else if (input.Keyboard.NewState.IsKeyDown(Keys.K))
+                forceDirection = -Vector3.UnitZ;
+            else if (input.Keyboard.NewState.IsKeyDown(Keys.J))
+                forceDirection = Vector3.UnitX;
+            else if (input.Keyboard.NewState.IsKeyDown(Keys.L))
+                forceDirection = -Vector3.UnitX;
+            else if (input.Keyboard.NewState.IsKeyDown(Keys.U))
+                forceDirection = Vector3.UnitY;
+            else if (input.Keyboard.NewState.IsKeyDown(Keys.M))
+                forceDirection = -Vector3.UnitY;
+            else
+                forceDirection = Vector3.Zero;
+
+            if (forceDirection != Vector3.Zero)
+                box.AddForce(forceDirection * forceStrength * f);
 
             if (input.Keyboard.NewState.IsKeyDown(Keys.T))
             {
                 box.SetGlobalPosition(new Vector3(0, 5, 0));
                 scene.FlushCaches();
+            }
+        }
+
+        public override void Draw(DebugCamera camera, GameTime gameTime)
+        {
+            base.Draw(camera, gameTime);
+
+            if(forceDirection != Vector3.Zero)
+            {
+                Vector3 boxPos = box.GetGlobalPosition();
+                DebugRenderer.DrawLine(camera.ViewProjection, boxPos, boxPos + (forceDirection * forceLineLength));
             }
         }
     }

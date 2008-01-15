@@ -15,6 +15,9 @@ namespace XNAPhysX.Graphics.Shapes
         static GraphicsDevice device;
         static ContentManager content;
 
+        static Vector4 unselectedColour = Color.DarkGreen.ToVector4();
+        static Vector4 selectedColour = Color.Green.ToVector4();
+
         static private Effect effect;
         static private VertexBuffer vb;
         static private IndexBuffer ib;
@@ -61,7 +64,7 @@ namespace XNAPhysX.Graphics.Shapes
             ib.SetData<int>(indices);
         }
 
-        public static void Draw(NxaPlaneShape plane, Matrix viewProjection)
+        public static void Draw(NxaPlaneShape plane, Matrix viewProjection, bool isSelected)
         {
             device.RenderState.CullMode = CullMode.None;
             device.Indices = ib;
@@ -70,8 +73,12 @@ namespace XNAPhysX.Graphics.Shapes
 
             Matrix world = Matrix.CreateTranslation(plane.GetGlobalPosition()); ;
             Matrix wvp = world * viewProjection;
-            
-            effect.Parameters["colour"].SetValue(Color.Green.ToVector4());
+
+            if (isSelected)
+                effect.Parameters["colour"].SetValue(selectedColour);
+            else
+                effect.Parameters["colour"].SetValue(unselectedColour);
+
             effect.Parameters["lightColour"].SetValue(Color.White.ToVector4());
             effect.Parameters["lightPos1"].SetValue(new Vector3(0, 100, 0));
             effect.Parameters["World"].SetValue(world);

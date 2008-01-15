@@ -15,6 +15,7 @@ namespace XNAPhysX.Physics
         static PhysXEngine engine;
 
         protected NxaScene scene;
+        protected NxaActor selectedActor;
 
         static PhysXScene()
         {
@@ -54,13 +55,50 @@ namespace XNAPhysX.Physics
             scene.FetchResults(true);
         }
 
-        public void Draw(DebugCamera camera, GameTime gameTime)
+        protected void NextSelectedActor()
+        {
+            if (selectedActor == null)
+            {
+                if (actors.Count > 0)
+                    selectedActor = actors[0];
+            }
+            else
+            {
+                if (actors.Contains(selectedActor))
+                {
+                    int index = actors.IndexOf(selectedActor);
+                    index++;
+                    index %= actors.Count - 1;
+                }
+            }
+        }
+
+        protected void LastSelectedActor()
+        {
+            if (selectedActor == null)
+            {
+                if (actors.Count > 0)
+                    selectedActor = actors[0];
+            }
+            else
+            {
+                if (actors.Contains(selectedActor))
+                {
+                    int index = actors.IndexOf(selectedActor);
+                    index--;
+                    index += actors.Count;
+                    index %= actors.Count - 1;
+                }
+            }
+        }
+
+        public virtual void Draw(DebugCamera camera, GameTime gameTime)
         {
             Matrix vp = camera.ViewProjection;
 
             foreach (NxaActor actor in actors)
             {
-                DebugRenderer.DrawActor(vp, actor);
+                DebugRenderer.DrawActor(vp, actor, actor == selectedActor);
             }
         }
     }

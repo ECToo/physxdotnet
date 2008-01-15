@@ -56,6 +56,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Renderer\DebugLine.cs" />
     <Compile Include="Renderer\DebugBox.cs" />
     <Compile Include="Renderer\DebugCamera.cs" />
     <Compile Include="Input\GameInput.cs" />
