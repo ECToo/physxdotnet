@@ -19,12 +19,13 @@ namespace XNAPhysX.Graphics.DebugRenderer
             device = graphicsDevice;
             manager = contentManager;
 
+            DebugLine.LoadResources(device, manager);
             DebugBox.LoadResources(device, manager);
             DebugSphere.LoadResources(device, manager);
             DebugPlane.LoadResources(device, manager);
         }
 
-        public static void DrawActor(Matrix vp, NxaActor actor)
+        public static void DrawActor(Matrix vp, NxaActor actor, bool isSelected)
         {
             NxaShape[] shapes = actor.GetShapes();
 
@@ -32,17 +33,22 @@ namespace XNAPhysX.Graphics.DebugRenderer
             {
                 if (shape.IsSphere())
                 {
-                    DebugSphere.Draw(shape as NxaSphereShape, vp);
+                    DebugSphere.Draw(shape as NxaSphereShape, vp, isSelected);
                 }
                 else if (shape.IsBox())
                 {
-                    DebugBox.Draw(shape as NxaBoxShape, vp);
+                    DebugBox.Draw(shape as NxaBoxShape, vp, isSelected);
                 }
                 else if (shape.IsPlane())
                 {
-                    DebugPlane.Draw(shape as NxaPlaneShape, vp);
+                    DebugPlane.Draw(shape as NxaPlaneShape, vp, isSelected);
                 }
             }
+        }
+
+        public static void DrawLine(Matrix vp, Vector3 s, Vector3 d)
+        {
+            DebugLine.Draw(s, d, vp);
         }
     }
 }

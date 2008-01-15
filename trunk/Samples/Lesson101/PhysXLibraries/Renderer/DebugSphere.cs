@@ -96,7 +96,7 @@ namespace XNAPhysX.Graphics.Shapes
             ib.SetData<int>(indices);
         }
 
-        public static void Draw(NxaSphereShape sphere, Matrix viewProjection)
+        public static void Draw(NxaSphereShape sphere, Matrix viewProjection, bool isSelected)
         {
             device.RenderState.CullMode = CullMode.CullClockwiseFace;
             device.Indices = ib;
