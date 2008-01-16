@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 9.00
 # Visual C# Express 2005
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lesson101", "Lesson101\Lesson101.csproj", "{2FA84EB0-6FAA-45B8-A8B4-AB4E30A96389}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhysXLibraries", "PhysXLibraries\PhysXLibraries.csproj", "{71A3DFC5-EA0D-4269-B412-4A2B11EFEE16}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhysXLibraries", "..\..\PhysXLibraries\PhysXLibraries.csproj", "{71A3DFC5-EA0D-4269-B412-4A2B11EFEE16}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
