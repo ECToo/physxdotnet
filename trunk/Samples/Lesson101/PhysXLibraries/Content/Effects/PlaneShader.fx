@@ -42,7 +42,7 @@ void ps( in v2p IN,  out p2f OUT)
 void vs( in a2v IN, out v2p OUT )
 {      
 	OUT.position = mul(IN.position, WorldViewProjection);
-	OUT.normal = IN.normal;
+	OUT.normal = mul(IN.normal, World);
 	OUT.texCoord = IN.texCoord;
 	OUT.color = IN.color;
 	OUT.position3D = mul(IN.position, World);	
