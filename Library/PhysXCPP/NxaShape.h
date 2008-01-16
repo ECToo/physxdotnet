@@ -15,6 +15,9 @@ namespace PhysXCPP
 	public:
 		NxaShape(NxShape* ptr);
 
+		void SetFlag(NxaShapeFlag flag, bool value);
+		bool GetFlag(NxaShapeFlag flag);
+
 		//Is... Shape Type
 		bool Is(NxaShapeType type);
 		bool IsBox() { return nxShape->isBox(); }
