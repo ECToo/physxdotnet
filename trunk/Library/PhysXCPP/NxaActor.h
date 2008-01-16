@@ -24,6 +24,7 @@ namespace PhysXCPP
 		!NxaActor(void);
 
 		void AddForce(Vector3 force);
+		void AddTorque(Vector3 torque);
 
 		Vector3 GetGlobalPosition();
 

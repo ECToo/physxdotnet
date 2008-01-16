@@ -29,6 +29,16 @@ NxaShape^ NxaShape::CreateFromPointer(NxShape *ptr)
 	return nullptr;
 }
 
+void NxaShape::SetFlag(NxaShapeFlag flag, bool value)
+{
+	nxShape->setFlag((NxShapeFlag)flag, value);
+}
+
+bool NxaShape::GetFlag(NxaShapeFlag flag)
+{
+	return nxShape->getFlag((NxShapeFlag)flag);
+}
+
 bool NxaShape::Is(NxaShapeType type)
 {
 	switch(type)

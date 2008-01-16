@@ -22,7 +22,12 @@ NxaActor::NxaActor(NxActor* actor, NxaActorDescription^ actorDesc)
 
 void NxaActor::AddForce(Vector3 force)
 {
-	nxActor->addForce(NxVec3(force.X, force.Y, force.Z));
+	nxActor->addForce(NxaMath::Vector3XNAToPhysX(force));
+}
+
+void NxaActor::AddTorque(Vector3 torque)
+{
+	nxActor->addTorque(NxaMath::Vector3XNAToPhysX(torque));
 }
 
 NxaShape^ NxaActor::CreateShape(NxaShapeDescription^ shapeDesc)
