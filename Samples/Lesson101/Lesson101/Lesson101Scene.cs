@@ -8,6 +8,7 @@ using XnaPhysX.Input;
 using Microsoft.Xna.Framework.Input;
 using XNAPhysX;
 using XNAPhysX.Graphics.DebugRenderer;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace Lesson101
 {
@@ -98,7 +99,7 @@ namespace Lesson101
             if(forceDirection != Vector3.Zero)
             {
                 Vector3 boxPos = box.GetGlobalPosition();
-                DebugRenderer.DrawLine(camera.ViewProjection, boxPos, boxPos + (forceDirection * forceLineLength));
+                DebugRenderer.DrawLine(camera.ViewProjection, boxPos, boxPos + (forceDirection * forceLineLength), Color.Yellow);
             }
         }
     }
