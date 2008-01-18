@@ -1,11 +1,11 @@
 = Introduction =
 
-a) Download a Lesson from the SVN Trunk.
+a) Download either the entire repository via SVN (including Library, PhysXLibraries and Samples)...
 
-b) Download either the debug or release version of PhysXCPP.dll from the respective debug/release folders.
+or...
 
-c) When compiling the lesson in Visual Studio, the PhysXCPP.dll will be missing in two locations, replace with the DLL you just downloaded in b).
+b) Download the daily snapshot from the Downloads area.
 
-d) It should run...
+c) Compile away!
 
 Leave an issue on the issues area if you're having issues, it's early days.
