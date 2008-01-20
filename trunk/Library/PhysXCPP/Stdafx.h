@@ -5,7 +5,9 @@
 #pragma once
 
 using namespace System;
-using namespace Microsoft::Xna::Framework;
+using namespace System::Collections;
+using namespace System::Collections::Generic;
 
-#include "NxaMath.h"
-#include "NxPhysics.h"
+using namespace System::Runtime::InteropServices;
+
+using namespace Microsoft::Xna::Framework;

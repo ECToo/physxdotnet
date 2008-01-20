@@ -1,7 +1,9 @@
 #include "StdAfx.h"
 #include "NxaSphericalJointDescription.h"
 
-using namespace PhysXCPP;
+#include "NxSphericalJointDesc.h"
+
+
 
 NxaSphericalJointDescription::NxaSphericalJointDescription(void)
 {

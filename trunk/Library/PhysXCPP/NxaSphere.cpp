@@ -1,11 +1,11 @@
 #include "StdAfx.h"
 #include "NxaSphere.h"
 
-using namespace PhysXCPP;
+
 
 NxaSphere::NxaSphere()
 {
-	throw gcnew Exception("The method or operation is not implemented.");
+	//throw gcnew Exception("The method or operation is not implemented.");
 }
 
 NxaSphere::NxaSphere(Vector3 position, float radius)
@@ -31,8 +31,13 @@ bool NxaSphere::IsValid()
 
 bool NxaSphere::Contains(Vector3 point)
 {
-	throw gcnew Exception("The method or operation is not implemented.");
-	return false;
+	//throw gcnew Exception("The method or operation is not implemented.");
+	return true;
+}
+
+bool NxaSphere::Contains(Vector3% point)
+{
+	return true;
 }
 
 bool NxaSphere::Contains(NxaSphere ^sphere)
@@ -42,6 +47,12 @@ bool NxaSphere::Contains(NxaSphere ^sphere)
 }
 
 bool NxaSphere::Contains(Vector3 min, Vector3 max)
+{
+	throw gcnew Exception("The method or operation is not implemented.");
+	return false;
+}
+
+bool NxaSphere::Contains(Vector3% min, Vector3% max)
 {
 	throw gcnew Exception("The method or operation is not implemented.");
 	return false;

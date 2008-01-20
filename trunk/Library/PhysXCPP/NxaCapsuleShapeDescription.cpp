@@ -1,22 +1,16 @@
 #include "StdAfx.h"
-#include "NxPhysics.h"
 #include "NxaCapsuleShapeDescription.h"
 
-using namespace PhysXCPP;
+
 
 NxaCapsuleShapeDescription::NxaCapsuleShapeDescription(void)
 {
 	nxShapeDesc = new NxCapsuleShapeDesc();
 }
 
-NxaCapsuleShapeDescription::~NxaCapsuleShapeDescription(void)
+NxaCapsuleShapeDescription::NxaCapsuleShapeDescription(NxCapsuleShapeDesc* ptr)
 {
-
-}
-
-NxaCapsuleShapeDescription::!NxaCapsuleShapeDescription(void)
-{
-
+	nxShapeDesc = ptr;
 }
 
 void NxaCapsuleShapeDescription::Radius::set(float value)

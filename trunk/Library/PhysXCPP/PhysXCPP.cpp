@@ -1,10 +1,9 @@
-// This is the main DLL file.
-
-#include "stdafx.h"
-#include "NxaSceneDescription.h"
+#include "Stdafx.h"
 #include "PhysXCPP.h"
+#include "PhysXloader.h"
+#include "NxaScene.h"
 
-using namespace PhysXCPP;
+
 
 NxaScene^ PhysXEngine::CreateScene(NxaSceneDescription^ description)
 {
@@ -18,6 +17,3 @@ PhysXEngine::PhysXEngine()
 	if(!sdk) return;
 	sdk->setParameter(NX_SKIN_WIDTH, 0.001);
 }
-
-
-

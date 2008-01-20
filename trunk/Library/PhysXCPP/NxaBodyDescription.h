@@ -1,17 +1,14 @@
 #pragma once
 
-#include "NxPhysics.h"
+#include "NxBodyDesc.h"
 
-namespace PhysXCPP
+public ref class NxaBodyDescription
 {
-	public ref class NxaBodyDescription
-	{
-	public:
-		property NxBodyDesc* nxBodyDesc;
+internal:
+	NxBodyDesc* nxBodyDesc;
 
-	public:
-		NxaBodyDescription(void);
-		!NxaBodyDescription(void);
-	};
-
-}
+public:
+	NxaBodyDescription(void);
+	~NxaBodyDescription(void);
+	!NxaBodyDescription(void);
+};

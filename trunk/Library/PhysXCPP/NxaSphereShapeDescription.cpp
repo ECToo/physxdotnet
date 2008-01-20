@@ -1,9 +1,7 @@
 #include "StdAfx.h"
 #include "NxaSphereShapeDescription.h"
-#include "NxPhysics.h"
 
-using namespace PhysXCPP;
-using namespace Microsoft::Xna::Framework;
+
 
 NxaSphereShapeDescription::NxaSphereShapeDescription(void)
 {
@@ -13,10 +11,6 @@ NxaSphereShapeDescription::NxaSphereShapeDescription(void)
 NxaSphereShapeDescription::NxaSphereShapeDescription(NxSphereShapeDesc* ptr)
 {
 	nxShapeDesc = ptr;
-}
-
-NxaSphereShapeDescription::!NxaSphereShapeDescription(void)
-{
 }
 
 void NxaSphereShapeDescription::Radius::set(float radius)

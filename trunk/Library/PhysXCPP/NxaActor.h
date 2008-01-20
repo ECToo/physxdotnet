@@ -1,53 +1,50 @@
 #pragma once
 
+#include "Stdafx.h"
 #include "Nxap.h"
 #include "NxaActorDescription.h"
-#include "NxaShapeDescription.h"
-#include "NxPhysics.h"
-#include "NxaShape.h"
 
-using namespace Microsoft::Xna::Framework;
+class NxActor;
+ref class NxaShape;
+ref class NxaShapeDescription;
 
-namespace PhysXCPP
+public ref class NxaActor
 {
+internal:
+	NxActor* nxActor;
 
-	public ref class NxaActor
-	{
-	internal:
-		NxActor* nxActor;
-		NxaActorDescription^ nxaActorDesc;
+public:
+	NxaActor(NxActor* ptr);
 
-		NxaActor(NxActor* nxActor, NxaActorDescription^ nxaActorDesc);
+	void AddForce(Vector3 force);
+	void AddForce([In] Vector3% force);
+	void AddTorque(Vector3 torque);
+	void AddTorque([In] Vector3% torque);
 
-	public:
-		NxaActor(void);
-		!NxaActor(void);
+	Vector3 GetGlobalPosition();
+	void GetGlobalPosition([Out] Vector3% position);
 
-		void AddForce(Vector3 force);
-		void AddTorque(Vector3 torque);
+	Matrix GetGlobalOrientation();
+	void GetGlobalOrientation([Out] Matrix% m);
 
-		Vector3 GetGlobalPosition();
+	Quaternion GetGlobalOrientationQuaternion();
+	void GetGlobalOrientationQuaternion([Out] Quaternion% orientation);
 
-		Matrix GetGlobalOrientation();
-		Quaternion GetGlobalOrientationQuaternion();
+	NxaShape^ CreateShape(NxaShapeDescription^ shape);
 
-		NxaShape^ CreateShape(NxaShapeDescription^ shape);
+	array<NxaShape^>^ GetShapes();
 
-		array<NxaShape^>^ GetShapes();
+	void SetSleepAngularVelocity(float velocity);
+	void SetSleepLinearVelocity(float velocity);
+	void SetGlobalPose(Matrix matrix);
+	void SetGlobalPosition(Vector3 position);
 
-		void SetSleepAngularVelocity(float velocity);
-		void SetSleepLinearVelocity(float velocity);
-		void SetGlobalPose(Matrix matrix);
-		void SetGlobalPosition(Vector3 position);
+	void ClearActorFlag(NxaActorFlag flag);
+	void RaiseActorFlag(NxaActorFlag flag);
+	void ClearBodyFlag(NxaBodyFlag flag);
+	void RaiseBodyFlag(NxaBodyFlag flag);
 
-		void ClearActorFlag(NxaActorFlag flag);
-		void RaiseActorFlag(NxaActorFlag flag);
-		void ClearBodyFlag(NxaBodyFlag flag);
-		void RaiseBodyFlag(NxaBodyFlag flag);
+	void WakeUp(float timeout);
 
-		void WakeUp(float timeout);
-
-		void SetSolverIterationCount(int count);	
-	};
-
-}
+	void SetSolverIterationCount(int count);	
+};

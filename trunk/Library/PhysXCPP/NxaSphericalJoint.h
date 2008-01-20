@@ -1,15 +1,11 @@
 #pragma once
 
-#include "NxPhysics.h"
 #include "NxaJoint.h"
 
-namespace PhysXCPP
+#include "NxSphericalJointDesc.h"
+
+public ref class NxaSphericalJoint : public NxaJoint
 {
-
-	public ref class NxaSphericalJoint : public NxaJoint
-	{
-	public:
-		NxaSphericalJoint(NxSphericalJoint* nxSphericalJointDesc);
-	};
-
-}
+public:
+	NxaSphericalJoint(NxSphericalJoint* nxSphericalJointDesc);
+};

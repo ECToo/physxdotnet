@@ -1,7 +1,7 @@
 #include "StdAfx.h"
 #include "NxaMaterialDescription.h"
 
-using namespace PhysXCPP;
+
 
 NxaMaterialDescription::NxaMaterialDescription(void)
 {

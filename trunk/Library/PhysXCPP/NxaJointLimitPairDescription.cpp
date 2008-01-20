@@ -1,7 +1,7 @@
 #include "StdAfx.h"
 #include "NxaJointLimitPairDescription.h"
 
-using namespace PhysXCPP;
+
 
 NxaJointLimitPairDescription::NxaJointLimitPairDescription(void)
 {

@@ -1,33 +1,25 @@
 #pragma once
 
-#include "NxPhysics.h"
+#include "NxJointLimitDesc.h"
 
-namespace PhysXCPP
+public ref class NxaJointLimitDescription
 {
+internal:
+	NxJointLimitDesc* jointLimitDesc;
 
-	public ref class NxaJointLimitDescription
+public:
+	NxaJointLimitDescription(void);
+	!NxaJointLimitDescription(void);
+
+	property float Value
 	{
-	public:
-		NxaJointLimitDescription(void);
-		~NxaJointLimitDescription(void);
-		!NxaJointLimitDescription(void);
+		float get();
+		void set(float value);
+	}
 
-		property float Value
-		{
-			float get();
-			void set(float value);
-		}
-
-		property float Restitution
-		{
-			float get();
-			void set(float value);
-		}
-
-	private:
-		NxJointLimitDesc* jointLimitDesc;
-
-
-	};
-
-}
+	property float Restitution
+	{
+		float get();
+		void set(float value);
+	}
+};

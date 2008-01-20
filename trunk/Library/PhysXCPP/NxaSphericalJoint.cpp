@@ -1,7 +1,9 @@
 #include "StdAfx.h"
 #include "NxaSphericalJoint.h"
 
-PhysXCPP::NxaSphericalJoint::NxaSphericalJoint(NxSphericalJoint* joint)
+#include "NxSphericalJoint.h"
+
+NxaSphericalJoint::NxaSphericalJoint(NxSphericalJoint* joint)
 {
 	nxJoint = joint;
 }

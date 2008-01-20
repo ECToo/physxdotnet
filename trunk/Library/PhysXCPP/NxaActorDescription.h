@@ -1,45 +1,43 @@
 #pragma once
 
+//#include "NxActorDesc.h"
+class NxActorDesc;
+
 #include "NxaBodyDescription.h"
-#include "NxaBoxShapeDescription.h"
-#include "NxPhysics.h"
+#include "NxaShapeDescription.h"
 
-using namespace Microsoft::Xna::Framework;
-using namespace System::Collections::Generic;
-
-namespace PhysXCPP
+public ref class NxaActorDescription
 {
-	public ref class NxaActorDescription
+
+internal:
+	NxActorDesc* nxActorDesc;
+
+public:
+	NxaActorDescription(void);
+	~NxaActorDescription(void);
+	!NxaActorDescription(void);
+
+	void AddShape(NxaShapeDescription^ description);
+
+	property NxaBodyDescription^ Body
 	{
+		void set(NxaBodyDescription^ value);
+	}
 
-	internal:
-		NxActorDesc* nxActorDesc;
+	property float Density
+	{
+		//float get() { return nxActorDesc->density; }
+		float get() { return 1; }
+		void set(float value);
+	}
 	
-	public:
-		NxaActorDescription(void);
-		!NxaActorDescription(void);
+	property Matrix GlobalPose
+	{
+		void set(Matrix value);
+	}
 
-		void AddShape(NxaShapeDescription^ description);
-
-		property NxaBodyDescription^ Body
-		{
-			void set(NxaBodyDescription^ value);
-		}
-
-		property float Density
-		{
-			float get() { return nxActorDesc->density; }
-			void set(float value);
-		}
-		
-		property Matrix GlobalPose
-		{
-			void set(Matrix value);
-		}
-
-		property array<NxaShapeDescription^>^ Shapes
-		{
-			array<NxaShapeDescription^>^ get();
-		}
-	};
-}
+	property array<NxaShapeDescription^>^ Shapes
+	{
+		array<NxaShapeDescription^>^ get();
+	}
+};

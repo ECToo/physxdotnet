@@ -1,18 +1,14 @@
 #pragma once
 
 #include "NxaShapeDescription.h"
+#include "NxPlaneShapeDesc.h"
 
-namespace PhysXCPP
+public ref class NxaPlaneShapeDescription : public NxaShapeDescription
 {
+internal:
+	NxaPlaneShapeDescription(NxPlaneShapeDesc* ptr);
 
-	public ref class NxaPlaneShapeDescription : public NxaShapeDescription
-	{
-	internal:
-		NxaPlaneShapeDescription(NxPlaneShapeDesc* ptr);
-
-	public:
-		NxaPlaneShapeDescription(void);
-		!NxaPlaneShapeDescription(void);
-	};
-
-}
+public:
+	NxaPlaneShapeDescription(void);
+	!NxaPlaneShapeDescription(void);
+};

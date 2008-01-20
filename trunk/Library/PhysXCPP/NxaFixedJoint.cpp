@@ -1,7 +1,8 @@
 #include "StdAfx.h"
 #include "NxaFixedJoint.h"
 
-using namespace PhysXCPP;
+#include "NxJoint.h"
+#include "NxFixedJoint.h"
 
 NxaFixedJoint::NxaFixedJoint(NxFixedJoint* joint)
 {

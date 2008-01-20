@@ -1,23 +1,18 @@
 #include "StdAfx.h"
-#include "NxaActor.h"
 #include "Nxp.h"
-#include "NxaSphereShape.h"
+#include "NxaActor.h"
+#include "NxaMath.h"
+//#include "NxaSphereShape.h"
 
-using namespace PhysXCPP;
+#include "NxaShape.h"
 
-NxaActor::NxaActor()
+#include "NxActor.h"
+#include "NxShape.h"
+#include "NxMat33.h"
+
+NxaActor::NxaActor(NxActor* ptr)
 {
-}
-
-NxaActor::!NxaActor()
-{
-	delete nxaActorDesc;
-}
-
-NxaActor::NxaActor(NxActor* actor, NxaActorDescription^ actorDesc)
-{
-	nxActor = actor;
-	nxaActorDesc = actorDesc;
+	nxActor = ptr;
 }
 
 void NxaActor::AddForce(Vector3 force)
@@ -25,7 +20,17 @@ void NxaActor::AddForce(Vector3 force)
 	nxActor->addForce(NxaMath::Vector3XNAToPhysX(force));
 }
 
+void NxaActor::AddForce([In] Vector3% force)
+{
+	nxActor->addForce(NxaMath::Vector3XNAToPhysX(force));
+}
+
 void NxaActor::AddTorque(Vector3 torque)
+{
+	nxActor->addTorque(NxaMath::Vector3XNAToPhysX(torque));
+}
+
+void NxaActor::AddTorque([In] Vector3% torque)
 {
 	nxActor->addTorque(NxaMath::Vector3XNAToPhysX(torque));
 }
@@ -70,16 +75,46 @@ Matrix NxaActor::GetGlobalOrientation()
 	return Matrix(row1.x, row1.y, row1.z, 0, row2.x, row2.y, row2.z, 0, row3.x, row3.y, row3.z, 0, 0, 0, 0, 1);
 }
 
+void NxaActor::GetGlobalOrientation(Matrix %m)
+{
+	Quaternion q;
+	GetGlobalOrientationQuaternion(q);
+	Matrix::CreateFromQuaternion(q, m);
+
+	/*NxMat33 rot = nxActor->getGlobalOrientation();
+	NxVec3 row1 = rot.getColumn(0);
+	NxVec3 row2 = rot.getColumn(1);
+	NxVec3 row3 = rot.getColumn(2);
+
+	m.M11 = row1.x;		m.M12 = row1.y;		m.M13 = row1.z;		m.M14 = 0;
+	m.M21 = row2.x;		m.M22 = row2.y;		m.M23 = row2.z;		m.M24 = 0;
+	m.M31 = row3.x;		m.M32 = row3.y;		m.M33 = row3.z;		m.M34 = 0;
+	m.M41 = 0;			m.M42 = 0;			m.M43 = 0;			m.M44 = 1;*/
+}
+
+
 Quaternion NxaActor::GetGlobalOrientationQuaternion()
 {
 	NxQuat quat = nxActor->getGlobalOrientationQuat();
 	return Quaternion(quat.x, quat.y, quat.z, quat.w);
 }
 
+void NxaActor::GetGlobalOrientationQuaternion(Quaternion% orientation)
+{
+	NxQuat quat = nxActor->getGlobalOrientationQuat();
+	NxaMath::QuaternionPhysXToXNA(quat, orientation);
+}
+
 Vector3 NxaActor::GetGlobalPosition()
 {
 	NxVec3 pos = nxActor->getGlobalPosition();
 	return Vector3(pos.x, pos.y, pos.z);
+}
+
+void NxaActor::GetGlobalPosition([Out] Vector3% position)
+{
+	NxVec3 pos = nxActor->getGlobalPosition();
+	NxaMath::Vector3PhysXToXNA(pos, position);
 }
 
 void NxaActor::ClearActorFlag(NxaActorFlag flag)

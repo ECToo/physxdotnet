@@ -1,14 +1,14 @@
 #include "StdAfx.h"
 #include "NxaShapeDescription.h"
+#include "Nxp.h"
+
 #include "NxaBoxShapeDescription.h"
 #include "NxaPlaneShapeDescription.h"
 #include "NxaSphereShapeDescription.h"
 
-using namespace PhysXCPP;
-
-NxaShapeDescription::NxaShapeDescription()
+NxaShapeDescription::~NxaShapeDescription()
 {
-
+	this->!NxaShapeDescription();
 }
 
 NxaShapeDescription::!NxaShapeDescription()

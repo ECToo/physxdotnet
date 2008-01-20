@@ -2,28 +2,20 @@
 
 #include "NxaJointDescription.h"
 
-namespace PhysXCPP
+public ref class NxaSphericalJointDescription : public NxaJointDescription
 {
+public:
+	NxaSphericalJointDescription(void);
 
-	public ref class NxaSphericalJointDescription : public NxaJointDescription
+	property Vector3 SwingAxis
 	{
-	public:
-		NxaSphericalJointDescription(void);
+		Vector3 get();
+		void set(Vector3 axis);
+	}
 
-		property Vector3 SwingAxis
-		{
-			Vector3 get();
-			void set(Vector3 axis);
-		}
-
-		property float ProjectionDistance
-		{
-			float get();
-			void set(float dist);
-		}
-
-		
-
-	};
-
-}
+	property float ProjectionDistance
+	{
+		float get();
+		void set(float dist);
+	}
+};

@@ -1,15 +1,21 @@
 #pragma once
 #include "nxashape.h"
+#include "Nxabox.h"
+#include "NxaBoxShapeDescription.h"
 
-namespace PhysXCPP
+#include "NxShape.h"
+
+public ref class NxaBoxShape : public NxaShape
 {
+internal:
+	NxaBoxShape(NxShape* ptr);
 
-	public ref class NxaBoxShape : public NxaShape
-	{
-	public:
-		NxaBoxShape(NxShape* ptr);
+public:
+	void SetDimensions(Vector3 vec);
+	void SetDimensions(Vector3% vec);
 
-		Vector3 GetDimensions();
-	};
+	Vector3 GetDimensions();
 
-}
+	void GetWorldOrientedBoundingBox([Out] NxaBox^% obb);
+	void SaveToDesc([Out] NxaBoxShapeDescription^% desc);
+};
