@@ -1,9 +1,5 @@
 #include "StdAfx.h"
 #include "NxaBoxShapeDescription.h"
-#include "NxPhysics.h"
-
-using namespace PhysXCPP;
-using namespace Microsoft::Xna::Framework;
 
 NxaBoxShapeDescription::NxaBoxShapeDescription(void)
 {

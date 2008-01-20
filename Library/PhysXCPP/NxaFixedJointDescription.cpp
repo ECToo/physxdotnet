@@ -1,7 +1,9 @@
 #include "StdAfx.h"
 #include "NxaFixedJointDescription.h"
 
-using namespace PhysXCPP;
+#include "NxFixedJointDesc.h"
+
+
 
 NxaFixedJointDescription::NxaFixedJointDescription(void)
 {

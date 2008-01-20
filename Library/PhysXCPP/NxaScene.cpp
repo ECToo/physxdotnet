@@ -1,11 +1,17 @@
 #include "StdAfx.h"
-#include "NxaScene.h"
-#include "NxaSceneDescription.h"
-#include "PhysXCPP.h"
-#include <iostream>
-#include "NxaFixedJoint.h"
 
-using namespace PhysXCPP;
+#include "PhysXCPP.h"
+
+#include "NxaScene.h"
+#include "NxaActor.h"
+#include "NxaFixedJoint.h"
+#include "NxaActorDescription.h"
+#include "NxaJointDescription.h"
+
+#include "NxMaterial.h"
+#include "NxSceneDesc.h"
+#include "NxScene.h"
+#include "NxRemoteDebugger.h"
 
 NxaScene::NxaScene(NxaSceneDescription^ desc)
 {
@@ -44,7 +50,7 @@ NxaScene::!NxaScene(void)
 NxaActor^ NxaScene::CreateActor(NxaActorDescription^ actorDescription)
 {
 	NxActor* nxActor = scene->createActor(*(actorDescription->nxActorDesc));
-	return gcnew NxaActor(nxActor, actorDescription);
+	return gcnew NxaActor(nxActor);
 }
 
 NxaJoint^ NxaScene::CreateJoint(NxaJointDescription^ jointDescription)
@@ -81,4 +87,9 @@ bool NxaScene::FetchResults(bool block)
 bool NxaScene::CheckResults(bool block)
 {
 	return scene->checkResults(NX_RIGID_BODY_FINISHED, block);
+}
+
+void NxaScene::FlushCaches()
+{ 
+	scene->flushCaches(); 
 }

@@ -2,36 +2,37 @@
 
 #include "Nxap.h"
 
-namespace PhysXCPP
+#include "NxShape.h"
+//class NxaActor;
+
+public ref class NxaShape abstract
 {
+internal:
+	NxShape* nxShape;
+	NxaShape(NxShape* ptr);
 
-	public ref class NxaShape abstract
-	{
-	internal:
-		NxShape* nxShape;
+	static NxaShape^ CreateFromPointer(NxShape* ptr);
 
-		static NxaShape^ CreateFromPointer(NxShape* ptr);
+public:
+	//NxaActor^ GetActor();
+	//void SetGroup(NxaCollisionGroup collisionGroup) { nxShape->setGroup(collisionGroup); }
+	//NxaCollisionGroup GetGroup();
+	
+	void SetFlag(NxaShapeFlag flag, bool value);
+	bool GetFlag(NxaShapeFlag flag);
 
-	public:
-		NxaShape(NxShape* ptr);
-
-		void SetFlag(NxaShapeFlag flag, bool value);
-		bool GetFlag(NxaShapeFlag flag);
-
-		//Is... Shape Type
-		bool Is(NxaShapeType type);
-		bool IsBox() { return nxShape->isBox(); }
-		bool IsCapsule() { return nxShape->isCapsule(); }
-		bool IsConvexMesh() { return nxShape->isConvexMesh(); }
-		bool IsHeightField() { return nxShape->isHeightField(); }
-		bool IsPlane() { return nxShape->isPlane(); }
-		bool IsSphere() { return nxShape->isSphere(); }
-		bool IsTriangleMesh() { return nxShape->isTriangleMesh(); }
-		bool IsWheel() { return nxShape->isWheel(); }
-		
-		Vector3 GetGlobalPosition();
-		Matrix GetGlobalPose();
-		Matrix GetGlobalOrientation();
-	};
-
-}
+	//Is... Shape Type
+	bool Is(NxaShapeType type);
+	bool IsBox() { return (nxShape->isBox() != NULL); }
+	bool IsCapsule() { return (nxShape->isCapsule() != NULL); }
+	bool IsConvexMesh() { return (nxShape->isConvexMesh() != NULL); }
+	bool IsHeightField() { return (nxShape->isHeightField() != NULL); }
+	bool IsPlane() { return (nxShape->isPlane() != NULL); }
+	bool IsSphere() { return (nxShape->isSphere() != NULL); }
+	bool IsTriangleMesh() { return (nxShape->isTriangleMesh() != NULL); }
+	bool IsWheel() { return (nxShape->isWheel() != NULL); }
+	
+	Vector3 GetGlobalPosition();
+	Matrix GetGlobalPose();
+	Matrix GetGlobalOrientation();
+};

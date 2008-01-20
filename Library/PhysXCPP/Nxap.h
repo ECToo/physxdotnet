@@ -32,3 +32,9 @@ public enum class NxaShapeFlag : unsigned int
 
 public enum class NxaShapeType : unsigned int { Plane, Sphere, Box, Capsule, Wheel, Convex, Mesh, Heightfield };
 public enum class NxaSimulationType { Software, Hardware };
+
+public enum class NxaThreadPriority { High = 0, AboveNormal = 1, Normal = 2, BelowNormal = 3, Low = 4 };
+public enum class NxaTimeStepMethod { Fixed = 0, Variable = 1 };
+
+typedef unsigned short NxaCollisionGroup;
+typedef unsigned int NxaU32;

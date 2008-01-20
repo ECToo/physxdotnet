@@ -1,17 +1,12 @@
 #pragma once
 
-#include "NxPhysics.h"
 #include "NxaJoint.h"
+class NxFixedJoint;
 
-namespace PhysXCPP
+public ref class NxaFixedJoint : public NxaJoint
 {
-
-	public ref class NxaFixedJoint : public NxaJoint
-	{
-	public:
-		NxaFixedJoint(NxFixedJoint* nxFixedJoint);
-		~NxaFixedJoint(void);
-		!NxaFixedJoint(void);
-	};
-
-}
+public:
+	NxaFixedJoint(NxFixedJoint* nxFixedJoint);
+	~NxaFixedJoint(void);
+	!NxaFixedJoint(void);
+};

@@ -2,29 +2,26 @@
 
 #include "NxaShapeDescription.h"
 
-namespace PhysXCPP
+#include "NxCapsuleShapeDesc.h"
+
+public ref class NxaCapsuleShapeDescription : public NxaShapeDescription
 {
+internal:
+	NxaCapsuleShapeDescription(NxCapsuleShapeDesc* ptr);
 
-	public ref class NxaCapsuleShapeDescription : public NxaShapeDescription
+public:
+	NxaCapsuleShapeDescription(void);
+
+	property float Radius
 	{
-	public:
-		property float Radius
-		{
-			float get() { return ((NxCapsuleShapeDesc*)nxShapeDesc)->radius; }
-			void set(float value);
-		}
+		float get() { return ((NxCapsuleShapeDesc*)nxShapeDesc)->radius; }
+		void set(float value);
+	}
 
-		property float Height
-		{
-			float get() { return ((NxCapsuleShapeDesc*)nxShapeDesc)->height; }
-			void set(float value);
-		}
-
-
-	public:
-		NxaCapsuleShapeDescription(void);
-		~NxaCapsuleShapeDescription(void);
-		!NxaCapsuleShapeDescription(void);
-	};
-
-}
+	property float Height
+	{
+		float get() { return ((NxCapsuleShapeDesc*)nxShapeDesc)->height; }
+		void set(float value);
+	}
+	
+};

@@ -4,7 +4,7 @@
 #include "NxaPlaneShape.h"
 #include "NxaSphereShape.h"
 
-using namespace PhysXCPP;
+
 
 NxaShape::NxaShape(NxShape *ptr)
 {

@@ -1,19 +1,23 @@
 #include "StdAfx.h"
 #include "NxaActorDescription.h"
-#include "NxaBodyDescription.h"
-#include "NxaShapeDescription.h"
-#include "NxPhysics.h"
 
-using namespace PhysXCPP;
+#include "NxArray.h"
+#include "NxActorDesc.h"
+
 
 NxaActorDescription::NxaActorDescription(void)
 {
 	nxActorDesc = new NxActorDesc();
 }
 
+NxaActorDescription::~NxaActorDescription(void)
+{
+	this->!NxaActorDescription();
+}
+
 NxaActorDescription::!NxaActorDescription(void)
 {
-
+	delete nxActorDesc;
 }
 
 void NxaActorDescription::AddShape(NxaShapeDescription^ description)

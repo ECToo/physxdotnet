@@ -6,7 +6,6 @@
 	ProjectGUID="{F9EFD0E8-7DEE-4D4D-A7A8-CC8C4F591C14}"
 	RootNamespace="PhysXCPP"
 	Keyword="ManagedCProj"
-	AssemblyReferenceSearchPaths="&quot;.\Ageia\include&quot;"
 	>
 	<Platforms>
 		<Platform
@@ -44,7 +43,7 @@
 				Name="VCCLCompilerTool"
 				AdditionalOptions="/I &quot;../PhysXCPP/Ageia/Physics/include&quot; /I &quot;../PhysXCPP/Ageia/Foundation/include&quot; /I &quot;../PhysXCPP/Ageia/PhysXLoader/include&quot;"
 				Optimization="0"
-				AdditionalIncludeDirectories="&quot;T:\Program Files\AGEIA Technologies2\AGEIA PhysX SDK\v2.7.0\SDKs\Foundation\include&quot;;&quot;T:\Program Files\AGEIA Technologies2\AGEIA PhysX SDK\v2.7.0\SDKs\PhysXLoader\include&quot;;&quot;T:\Program Files\AGEIA Technologies2\AGEIA PhysX SDK\v2.7.0\SDKs\Physics\include&quot;;&quot;T:\Program Files\AGEIA Technologies2\AGEIA PhysX SDK\v2.7.0\SDKs\Cooking\include&quot;"
+				AdditionalIncludeDirectories="&quot;S:\Program Files\AGEIA Technologies\SDK\v2.7.3\SDKs\PhysXLoader\include&quot;;&quot;S:\Program Files\AGEIA Technologies\SDK\v2.7.3\SDKs\Cooking\Include&quot;;&quot;S:\Program Files\AGEIA Technologies\SDK\v2.7.3\SDKs\Physics\include&quot;;&quot;S:\Program Files\AGEIA Technologies\SDK\v2.7.3\SDKs\Foundation\include&quot;"
 				PreprocessorDefinitions="WIN32;_DEBUG"
 				RuntimeLibrary="3"
 				UsePrecompiledHeader="2"
@@ -120,7 +119,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalIncludeDirectories="&quot;T:\Program Files\AGEIA Technologies\AGEIA PhysX SDK\v2.7.0\SDKs\Foundation\include&quot;;&quot;T:\Program Files\AGEIA Technologies\AGEIA PhysX SDK\v2.7.0\SDKs\Physics\include&quot;;&quot;T:\Program Files\AGEIA Technologies\AGEIA PhysX SDK\v2.7.0\SDKs\Cooking\include&quot;;&quot;T:\Program Files\AGEIA Technologies\AGEIA PhysX SDK\v2.7.0\SDKs\PhysXLoader\include&quot;"
+				AdditionalIncludeDirectories="&quot;S:\Program Files\AGEIA Technologies\SDK\v2.7.3\SDKs\PhysXLoader\include&quot;;&quot;S:\Program Files\AGEIA Technologies\SDK\v2.7.3\SDKs\Cooking\Include&quot;;&quot;S:\Program Files\AGEIA Technologies\SDK\v2.7.3\SDKs\Physics\include&quot;;&quot;S:\Program Files\AGEIA Technologies\SDK\v2.7.3\SDKs\Foundation\include&quot;"
 				PreprocessorDefinitions="WIN32;NDEBUG"
 				RuntimeLibrary="2"
 				UsePrecompiledHeader="2"
@@ -242,14 +241,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\NxaCloth.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\NxaConvexForceFieldShape.cpp"
-				>
-			</File>
-			<File
 				RelativePath=".\NxaFixedJoint.cpp"
 				>
 			</File>
@@ -271,14 +262,6 @@
 			</File>
 			<File
 				RelativePath=".\NxaJointDescription.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\NxaJointLimitDescription.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\NxaJointLimitPairDescription.cpp"
 				>
 			</File>
 			<File
@@ -314,6 +297,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\NxaSegment.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\NxaShape.cpp"
 				>
 			</File>
@@ -343,10 +330,6 @@
 			</File>
 			<File
 				RelativePath=".\NxaSphericalJointDescription.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\NxaSpringDescription.cpp"
 				>
 			</File>
 			<File
@@ -424,14 +407,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\NxaCloth.h"
-				>
-			</File>
-			<File
-				RelativePath=".\NxaConvexForceFieldShape.h"
-				>
-			</File>
-			<File
 				RelativePath=".\NxaFixedJoint.h"
 				>
 			</File>
@@ -453,14 +428,6 @@
 			</File>
 			<File
 				RelativePath=".\NxaJointDescription.h"
-				>
-			</File>
-			<File
-				RelativePath=".\NxaJointLimitDescription.h"
-				>
-			</File>
-			<File
-				RelativePath=".\NxaJointLimitPairDescription.h"
 				>
 			</File>
 			<File
@@ -496,6 +463,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\NxaSegment.h"
+				>
+			</File>
+			<File
 				RelativePath=".\NxaShape.h"
 				>
 			</File>
@@ -525,10 +496,6 @@
 			</File>
 			<File
 				RelativePath=".\NxaSphericalJointDescription.h"
-				>
-			</File>
-			<File
-				RelativePath=".\NxaSpringDescription.h"
 				>
 			</File>
 			<File

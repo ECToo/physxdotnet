@@ -1,13 +1,8 @@
 #pragma once
 #include "nxashape.h"
 
-namespace PhysXCPP
+public ref class NxaPlaneShape : public NxaShape
 {
-
-	public ref class NxaPlaneShape : public NxaShape
-	{
-	internal:
-		NxaPlaneShape(NxShape* ptr);
-	};
-
-}
+internal:
+	NxaPlaneShape(NxShape* ptr);
+};

@@ -1,8 +1,5 @@
 #include "StdAfx.h"
 #include "NxaBox.h"
-#include "NxPhysics.h"
-
-using namespace PhysXCPP;
 
 NxaBox::NxaBox()
 {

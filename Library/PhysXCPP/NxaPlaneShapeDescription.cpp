@@ -1,8 +1,7 @@
 #include "StdAfx.h"
 #include "NxaPlaneShapeDescription.h"
-#include "NxPhysics.h"
 
-using namespace PhysXCPP;
+
 
 NxaPlaneShapeDescription::NxaPlaneShapeDescription(void)
 {

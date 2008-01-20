@@ -1,27 +1,16 @@
-// PhysXCPP.h
+#include "Stdafx.h"
+#include "NxaScene.h";
 
-#pragma once
+class NxPhysicsSDK;
+#include "NxaSceneDescription.h";
 
+public ref class PhysXEngine
+{
+internal:
+	static NxPhysicsSDK* sdk;
 
-#include "NxPhysics.h"
-#include "NxaSceneDescription.h"
-#include "NxaScene.h"
+public:
+	PhysXEngine();
 
-using namespace PhysXCPP;
-using namespace System;
-using namespace Microsoft::Xna::Framework;
-
-namespace PhysXCPP {
-
-	public ref class PhysXEngine
-	{
-
-	internal:
-		static NxPhysicsSDK* sdk = NULL;
-
-	public:
-		PhysXEngine();
-
-		NxaScene^ CreateScene(NxaSceneDescription^ description);			 
-	};
-}
+	NxaScene^ CreateScene(NxaSceneDescription^ description);			 
+};
