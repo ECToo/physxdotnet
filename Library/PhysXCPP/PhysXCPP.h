@@ -1,8 +1,9 @@
 #include "Stdafx.h"
-#include "NxaScene.h";
+#include "NxaScene.h"
+#include "NxaSceneDescription.h"
 
 class NxPhysicsSDK;
-#include "NxaSceneDescription.h";
+
 
 public ref class PhysXEngine
 {

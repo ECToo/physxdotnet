@@ -11,6 +11,11 @@ NxaBoxShapeDescription::NxaBoxShapeDescription(NxBoxShapeDesc* ptr)
 	nxShapeDesc = ptr;
 }
 
+NxaBoxShapeDescription::~NxaBoxShapeDescription(void)
+{
+	this->!NxaBoxShapeDescription();
+}
+
 NxaBoxShapeDescription::!NxaBoxShapeDescription(void)
 {
 

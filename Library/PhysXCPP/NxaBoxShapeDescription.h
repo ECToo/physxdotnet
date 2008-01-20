@@ -17,5 +17,6 @@ public:
 
 public:
 	NxaBoxShapeDescription(void);
+	~NxaBoxShapeDescription(void);
 	!NxaBoxShapeDescription(void);
 };

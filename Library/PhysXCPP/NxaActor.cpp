@@ -42,6 +42,8 @@ NxaShape^ NxaActor::CreateShape(NxaShapeDescription^ shapeDesc)
 
 	NxaShape^ newShape;
 
+	//TODO Fix!
+
 	/*switch(shapePtr->getType())
 	{
 		case NX_SHAPE_SPHERE : newShape = gcnew NxaSphereShape(shapePtr->isSphere()->getRadius());
@@ -119,18 +121,21 @@ void NxaActor::GetGlobalPosition([Out] Vector3% position)
 
 void NxaActor::ClearActorFlag(NxaActorFlag flag)
 {
+	//TODO Fix!
 	if((int)flag && (int)NxaActorFlag::Disable_Collision)
 		nxActor->clearActorFlag(NX_AF_DISABLE_COLLISION);
 }
 
 void NxaActor::RaiseActorFlag(NxaActorFlag flag)
 {
+	//TODO Fix!
 	if((int)flag && (int)NxaActorFlag::Disable_Collision)
 		nxActor->raiseActorFlag(NX_AF_DISABLE_COLLISION);
 }
 
 void NxaActor::ClearBodyFlag(NxaBodyFlag flag)
 {
+	//TODO Fix!
 	if((int)flag && (int)NxaBodyFlag::Disable_Gravity)
 		nxActor->clearBodyFlag(NX_BF_DISABLE_GRAVITY);
 	if ((int)flag && (int)NxaBodyFlag::Kinematic)
@@ -139,6 +144,7 @@ void NxaActor::ClearBodyFlag(NxaBodyFlag flag)
 
 void NxaActor::RaiseBodyFlag(NxaBodyFlag flag)
 {
+	//TODO Fix!
 	if((int)flag && (int)NxaBodyFlag::Disable_Gravity)
 		nxActor->raiseBodyFlag(NX_BF_DISABLE_GRAVITY);
 	if((int)flag && (int)NxaBodyFlag::Kinematic)

@@ -1,8 +1,8 @@
 #pragma once
 
 #include "Stdafx.h"
-#include "nxashape.h"
-#include "NxaCapsuleShapeDescription.h";
+#include "Nxashape.h"
+#include "NxaCapsuleShapeDescription.h"
 
 public ref class NxaCapsuleShape : 	public NxaShape
 {

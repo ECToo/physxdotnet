@@ -70,7 +70,7 @@ void NxaSceneDescription::SimulationType::set(NxaSimulationType value)
 
 bool NxaSceneDescription::GroundPlane::get()
 {
-	return nxSceneDesc->groundPlane;
+	return (nxSceneDesc->groundPlane == NX_TRUE);
 }
 
 void NxaSceneDescription::GroundPlane::set(bool value)
@@ -80,7 +80,7 @@ void NxaSceneDescription::GroundPlane::set(bool value)
 
 bool NxaSceneDescription::BoundsPlanes::get()
 {
-	return nxSceneDesc->boundsPlanes;
+	return (nxSceneDesc->boundsPlanes == NX_TRUE);
 }
 
 void NxaSceneDescription::BoundsPlanes::set(bool value)

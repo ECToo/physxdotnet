@@ -12,6 +12,7 @@ public ref class NxaBox
 	public:
 		NxaBox(void);
 		NxaBox(Vector3 center, Vector3 extents, Matrix rotation);
+		~NxaBox(void);
 		!NxaBox(void);
 
 		void SetEmpty();

@@ -20,8 +20,6 @@ public:
 	property NxaSimulationType SimulationType;
 
 public:
-	!NxaScene(void);
-
 	NxaActor^ CreateActor(NxaActorDescription^ actorDescription);
 	NxaJoint^ CreateJoint(NxaJointDescription^ jointDescription);
 	void ReleaseActor(NxaActor^ nxaActor);
