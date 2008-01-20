@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 
-namespace XnaPhysX.Input
+namespace XNAPhysX.Input
 {
     public enum MouseButtons : int { Left = 0, Right = 1, Middle = 2 }
 

@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using PhysXCPP;
 using XNAPhysX.Graphics.Shapes;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using PhysXCPP;
 using XNAPhysX.Graphics.Lighting;
 using Microsoft.Xna.Framework.Content;
 

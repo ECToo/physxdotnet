@@ -8,7 +8,6 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Net;
 using Microsoft.Xna.Framework.Storage;
-using PhysXCPP;
 using XNAPhysX.Physics;
 using XnaPhysX.Input;
 using XNAPhysX.Graphics.DebugRenderer;
@@ -31,7 +30,7 @@ namespace XNAPhysX
         NxaActor sphere;
         NxaActor plane;
 
-        const float everyMillis = 1000;
+        const float everyMillis = 100;
         float since = 0;
 
         int frames = 0;
@@ -107,7 +106,7 @@ namespace XNAPhysX
 
             if (millis >= 1000)
             {
-                Console.WriteLine(frames);
+                //Console.WriteLine(frames);
                 frames = 0;
                 millis = 0;
             }

@@ -4,7 +4,6 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
-using PhysXCPP;
 
 namespace XNAPhysX.Graphics.Shapes
 {
@@ -124,8 +123,11 @@ namespace XNAPhysX.Graphics.Shapes
             device.DrawIndexedPrimitives(PrimitiveType.TriangleList, 0, 0, (divisions + 1) * (divisions), 0, (divisions * divisions * 2));
             effect.CurrentTechnique.Passes[0].End();
             effect.End();
+
         }
     }
+
+    
 
     public struct VertexPositionNormalTextureColour
     {
