@@ -8,9 +8,8 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Net;
 using Microsoft.Xna.Framework.Storage;
-using PhysXCPP;
 using XNAPhysX.Physics;
-using XnaPhysX.Input;
+using XNAPhysX.Input;
 using XNAPhysX.Graphics.DebugRenderer;
 using Lesson101;
 

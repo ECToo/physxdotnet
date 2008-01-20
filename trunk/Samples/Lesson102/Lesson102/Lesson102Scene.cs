@@ -1,14 +1,17 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+
 using XNAPhysX.Physics;
-using Microsoft.Xna.Framework;
-using PhysXCPP;
-using XnaPhysX.Input;
-using Microsoft.Xna.Framework.Input;
+using XNAPhysX.Input;
 using XNAPhysX.Graphics.DebugRenderer;
 using XNAPhysX;
+
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
+
+using System.Diagnostics;
 
 namespace Lesson102
 {
@@ -48,7 +51,7 @@ namespace Lesson102
             NxaBodyDescription bodyDesc = new NxaBodyDescription();
 
             NxaSphereShapeDescription sphereDesc = new NxaSphereShapeDescription();
-            sphereDesc.Radius = 1;
+            sphereDesc.Radius = 1f;
             actorDesc.AddShape(sphereDesc);
 
             actorDesc.Body = bodyDesc;

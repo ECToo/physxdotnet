@@ -1,10 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using PhysXCPP;
 using Microsoft.Xna.Framework;
 using XNAPhysX.Graphics.DebugRenderer;
-using XnaPhysX.Input;
+using XNAPhysX.Input;
 
 namespace XNAPhysX.Physics
 {
@@ -28,7 +27,7 @@ namespace XNAPhysX.Physics
             description.SimulationType = NxaSimulationType.Hardware;
             description.Gravity = new Vector3(0, -9.81f, 0);
             description.EnableRemoteDebugger = false;
-
+            
             scene = engine.CreateScene(description);
         }
 

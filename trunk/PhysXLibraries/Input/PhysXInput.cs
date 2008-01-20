@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
-using XnaPhysX.Input;
+using XNAPhysX.Input;
 
-namespace XnaPhysX.Input
+namespace XNAPhysX.Input
 {
     public class PhysXInput
     {
