@@ -36,7 +36,7 @@ void NxaShape::SetFlag(NxaShapeFlag flag, bool value)
 
 bool NxaShape::GetFlag(NxaShapeFlag flag)
 {
-	return nxShape->getFlag((NxShapeFlag)flag);
+	return (nxShape->getFlag((NxShapeFlag)flag) == NX_TRUE);
 }
 
 bool NxaShape::Is(NxaShapeType type)

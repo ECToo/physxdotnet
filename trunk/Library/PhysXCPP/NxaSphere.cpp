@@ -5,7 +5,7 @@
 
 NxaSphere::NxaSphere()
 {
-	//throw gcnew Exception("The method or operation is not implemented.");
+	nxSphere = new NxSphere();
 }
 
 NxaSphere::NxaSphere(Vector3 position, float radius)
@@ -18,9 +18,14 @@ NxaSphere::NxaSphere(NxaSphere ^sphere)
 	throw gcnew Exception("The method or operation is not implemented.");
 }
 
+NxaSphere::~NxaSphere(void)
+{
+	this->!NxaSphere();
+}
+
 NxaSphere::!NxaSphere(void)
 {
-	throw gcnew Exception("The method or operation is not implemented.");
+	delete nxSphere;
 }
 
 bool NxaSphere::IsValid()

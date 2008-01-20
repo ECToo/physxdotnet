@@ -15,5 +15,5 @@ PhysXEngine::PhysXEngine()
 	sdk = NxCreatePhysicsSDK(NX_PHYSICS_SDK_VERSION);
 	
 	if(!sdk) return;
-	sdk->setParameter(NX_SKIN_WIDTH, 0.001);
+		sdk->setParameter(NX_SKIN_WIDTH, 0.001f);
 }

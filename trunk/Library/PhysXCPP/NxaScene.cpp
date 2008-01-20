@@ -42,11 +42,6 @@ NxaScene::NxaScene(NxaSceneDescription^ desc)
 	defaultMaterial->setDynamicFriction(0.5);
 }
 
-NxaScene::!NxaScene(void)
-{
-
-}
-
 NxaActor^ NxaScene::CreateActor(NxaActorDescription^ actorDescription)
 {
 	NxActor* nxActor = scene->createActor(*(actorDescription->nxActorDesc));
@@ -55,7 +50,7 @@ NxaActor^ NxaScene::CreateActor(NxaActorDescription^ actorDescription)
 
 NxaJoint^ NxaScene::CreateJoint(NxaJointDescription^ jointDescription)
 {
-	NxJoint* nxJoint = scene->createJoint(*(jointDescription->nxJointDesc));
+	/*NxJoint* nxJoint = scene->createJoint(*(jointDescription->nxJointDesc));
 
 	NxaJoint^ nxaJoint;
 
@@ -65,7 +60,8 @@ NxaJoint^ NxaScene::CreateJoint(NxaJointDescription^ jointDescription)
 	nxaJoint->actorA = jointDescription->Actor[0];
 	nxaJoint->actorB = jointDescription->Actor[1];
 
-	return nxaJoint;
+	return nxaJoint;*/
+	throw gcnew Exception("NOT IMPLEMENTED PROPERLY!");
 }
 
 void NxaScene::ReleaseActor(NxaActor^ nxaActor)

@@ -5,7 +5,6 @@
 
 public ref class NxaSphere
 {
-
 internal:
 	NxSphere* nxSphere;
 
@@ -13,6 +12,7 @@ public:
 	NxaSphere();
 	NxaSphere(Vector3 position, float radius);
 	NxaSphere(NxaSphere^ sphere);
+	~NxaSphere(void);
 	!NxaSphere(void);
 
 	bool IsValid();

@@ -10,5 +10,6 @@ internal:
 
 public:
 	NxaPlaneShapeDescription(void);
+	~NxaPlaneShapeDescription(void);
 	!NxaPlaneShapeDescription(void);
 };

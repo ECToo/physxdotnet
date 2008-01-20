@@ -13,9 +13,14 @@ NxaBox::NxaBox(Vector3 center, Vector3 extents, Matrix rotation)
 						NxaMath::MatrixRotXNAToPhysX(rotation));
 }
 
+NxaBox::~NxaBox(void)
+{
+	this->!NxaBox();
+}
+
 NxaBox::!NxaBox(void)
 {
-
+	delete nxBox;
 }
 
 void NxaBox::SetEmpty()
