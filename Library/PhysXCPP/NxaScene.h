@@ -14,6 +14,7 @@ public ref class NxaScene
 {
 internal:
 	NxScene* scene;
+	NxaScene(NxScene* pScene);
 	NxaScene(NxaSceneDescription^ description);
 
 public:

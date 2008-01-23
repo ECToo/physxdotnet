@@ -82,7 +82,7 @@ namespace Lesson101
                 forceDirection = Vector3.Zero;
 
             if (forceDirection != Vector3.Zero)
-                box.AddForce(forceDirection * forceStrength * f);
+                box.AddForce(forceDirection * forceStrength * f, NxaForceMode.Force, true);
 
             if (input.Keyboard.NewState.IsKeyDown(Keys.T))
             {
