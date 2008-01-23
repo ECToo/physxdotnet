@@ -13,6 +13,11 @@
 #include "NxScene.h"
 #include "NxRemoteDebugger.h"
 
+NxaScene::NxaScene(NxScene* pScene)
+{
+	scene = pScene;
+}
+
 NxaScene::NxaScene(NxaSceneDescription^ desc)
 {
 	NxSceneDesc sceneDesc;

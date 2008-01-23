@@ -30,7 +30,7 @@ namespace XNAPhysX
         NxaActor sphere;
         NxaActor plane;
 
-        const float everyMillis = 100;
+        const float everyMillis = 500;
         float since = 0;
 
         int frames = 0;

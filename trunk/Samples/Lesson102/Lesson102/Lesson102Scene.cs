@@ -134,9 +134,9 @@ namespace Lesson102
             if (forceDirection != Vector3.Zero)
             {
                 if (forceMode)
-                    selectedActor.AddForce(forceDirection * forceStrength * f);
+                    selectedActor.AddForce(forceDirection * forceStrength * f, NxaForceMode.Force, true);
                 else
-                    selectedActor.AddTorque(forceDirection * forceStrength * f);
+                    selectedActor.AddTorque(forceDirection * forceStrength * f, NxaForceMode.Force, true);
             }
 
             if (input.Keyboard.NewState.IsKeyDown(Keys.T))

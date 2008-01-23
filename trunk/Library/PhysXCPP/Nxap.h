@@ -1,7 +1,27 @@
 #pragma once
 
-public enum class NxaActorFlag : unsigned int { Disable_Collision = (1<<0) };
+public enum class NxaActorFlag : unsigned int 
+{ 
+	DisableCollision = (1<<0),
+	DisableResponse = (1<<1),
+	LockCentreOfMass = (1<<2),
+	FluidDisableCollision = (1<<3),
+	ContactModification = (1<<4),
+	ForceConeFriction = (1<<5),
+	UserActorPairFiltering = (1<<6)
+};
 public enum class NxaBodyFlag : unsigned int { Disable_Gravity = (1<<0), Kinematic = (1<<1) };
+
+public enum class NxaForceMode 
+{
+	Force = 0,
+	Impulse = 1,
+	VelocityChange = 2,
+	SmoothImpulse = 3,
+	SmoothVelocityChange = 4,
+	Acceleration = 5
+};
+
 public enum class NxaJointFlag : unsigned int { Collision_Enabled = (1<<0) };
 public enum class NxaMaterialFlag : unsigned int { Anisotropic = (1<<0), Disable_Friction = (1<<4), Disable_Strong_Friction = (1<<5) };
 
@@ -36,5 +56,8 @@ public enum class NxaSimulationType { Software, Hardware };
 public enum class NxaThreadPriority { High = 0, AboveNormal = 1, Normal = 2, BelowNormal = 3, Low = 4 };
 public enum class NxaTimeStepMethod { Fixed = 0, Variable = 1 };
 
+typedef unsigned short NxaActorGroup;
 typedef unsigned short NxaCollisionGroup;
+typedef unsigned short NxaDominanceGroup;
+typedef unsigned short NxaMaterialIndex;
 typedef unsigned int NxaU32;
