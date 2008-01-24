@@ -3,3 +3,5 @@
 * Some of the more important classes wrapped, still a far cry from the whole thing.
 
 * Included a small test application "XNAPhysX" to test the wrapper.
+
+* Recreated Lesson 101 and 102 from the PhysX SDK in XNA using a custom debug renderer.
