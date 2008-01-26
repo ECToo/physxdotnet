@@ -52,3 +52,13 @@ void NxaShapeDescription::LocalPose::set(Matrix m)
 
 	nxShapeDesc->localPose = pose;
 }
+
+NxaU32 NxaShapeDescription::ShapeFlags::get()
+{
+	return nxShapeDesc->shapeFlags;
+}
+
+void NxaShapeDescription::ShapeFlags::set(NxaU32 value)
+{
+	nxShapeDesc->shapeFlags = value;
+}

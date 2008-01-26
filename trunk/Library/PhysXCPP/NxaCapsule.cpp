@@ -20,3 +20,13 @@ NxaCapsule::!NxaCapsule(void)
 {
 	delete nxCapsule;
 }
+
+float NxaCapsule::Radius::get()
+{
+	return nxCapsule->radius;
+}
+
+void NxaCapsule::Radius::set(float value)
+{
+	nxCapsule->radius = value;
+}

@@ -1,8 +1,6 @@
 #include "StdAfx.h"
 #include "NxaCapsuleShape.h"
 
-
-
 NxaCapsuleShape::NxaCapsuleShape(NxShape* ptr) : NxaShape(ptr)
 {
 
@@ -41,6 +39,6 @@ float NxaCapsuleShape::GetHeight()
 void NxaCapsuleShape::SaveToDesc([Out] NxaCapsuleShapeDescription ^%desc)
 {
 	NxCapsuleShape* capsulePtr = (NxCapsuleShape*)nxShape;
-	desc->Height = capsulePtr->getHeight();
-	desc->Radius = capsulePtr->getRadius();
+	NxCapsuleShapeDesc* csDesc = (NxCapsuleShapeDesc*)desc->nxShapeDesc;
+	capsulePtr->saveToDesc(*csDesc);
 }

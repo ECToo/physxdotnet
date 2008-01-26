@@ -35,6 +35,8 @@ namespace XNAPhysX
 
         public PhysXGame()
         {
+            Window.Title = "Lesson 101: Box on a Plane";
+
             manager = Content;
             graphics = new GraphicsDeviceManager(this);
             graphics.PreferredBackBufferWidth = displayWidth;

@@ -42,6 +42,10 @@ namespace XNAPhysX.Graphics.DebugRenderer
                 {
                     DebugPlane.Draw(shape as NxaPlaneShape, vp, isSelected);
                 }
+                else if (shape.IsCapsule())
+                {
+                    //Not implemented, use the Ageia Visual Debugger!
+                }
             }
         }
 

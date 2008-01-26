@@ -26,7 +26,7 @@ namespace XNAPhysX.Physics
             NxaSceneDescription description = new NxaSceneDescription();
             description.SimulationType = NxaSimulationType.Hardware;
             description.Gravity = new Vector3(0, -9.81f, 0);
-            description.EnableRemoteDebugger = false;
+            description.EnableRemoteDebugger = true;
             
             scene = engine.CreateScene(description);
         }

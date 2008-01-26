@@ -15,7 +15,6 @@ public:
 	float GetRadius();
 	void SetHeight(float height);
 	float GetHeight();
-	//void GetWorldCapsule([OUT] NxaCapsule^ worldCapsule);
 	
 	void SaveToDesc([Out] NxaCapsuleShapeDescription^% desc);		
 };

@@ -34,5 +34,4 @@ public:
 		Vector3 get() { return NxaMath::Vector3PhysXToXNA(nxSegment->p1); }
 		void set(Vector3 value) { nxSegment->p1 = NxaMath::Vector3XNAToPhysX(value); }
 	}
-
 };

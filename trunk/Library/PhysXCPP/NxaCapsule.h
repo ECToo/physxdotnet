@@ -17,7 +17,7 @@ public:
 
 	property float Radius
 	{	
-		float get() { return nxCapsule->radius; }
-		void set(float value) { nxCapsule->radius = value; }
+		float get();
+		void set(float value);
 	}
 };

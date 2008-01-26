@@ -35,6 +35,8 @@ namespace XNAPhysX
 
         public PhysXGame()
         {
+            Window.Title = "Lesson 102: Sphere and Torque";
+
             manager = Content;
             graphics = new GraphicsDeviceManager(this);
             graphics.PreferredBackBufferWidth = displayWidth;

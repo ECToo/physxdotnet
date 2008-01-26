@@ -1,7 +1,7 @@
 #pragma once
 
 #include "StdAfx.h"
-
+#include "Nxap.h"
 #include "NxShapeDesc.h"
 
 public ref class NxaShapeDescription abstract
@@ -11,8 +11,11 @@ internal:
 	NxShapeDesc* nxShapeDesc;
 
 public:
-	~NxaShapeDescription();
+	virtual ~NxaShapeDescription();
 	!NxaShapeDescription();
+
+	virtual void SetToDefault() { nxShapeDesc->setToDefault(); }
+	virtual bool IsValid() { return nxShapeDesc->isValid(); }
 	
 	property Matrix LocalPose
 	{
@@ -20,9 +23,9 @@ public:
 		void set(Matrix value);
 	}
 
-	property unsigned int ShapeFlags
+	property NxaU32 ShapeFlags
 	{
-		unsigned int get() { return nxShapeDesc->shapeFlags; }
-		void set(unsigned int value) { nxShapeDesc->shapeFlags = value; }
+		NxaU32 get();// { return nxShapeDesc->shapeFlags; }
+		void set(NxaU32 value);// { nxShapeDesc->shapeFlags = value; }
 	}
 };
