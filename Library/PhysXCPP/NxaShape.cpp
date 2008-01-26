@@ -1,6 +1,7 @@
 #include "StdAfx.h"
 #include "NxaShape.h"
 #include "NxaBoxShape.h"
+#include "NxaCapsuleShape.h"
 #include "NxaPlaneShape.h"
 #include "NxaSphereShape.h"
 
@@ -23,6 +24,8 @@ NxaShape^ NxaShape::CreateFromPointer(NxShape *ptr)
 			return gcnew NxaBoxShape(ptr);
 		case NX_SHAPE_PLANE :
 			return gcnew NxaPlaneShape(ptr);
+		case NX_SHAPE_CAPSULE :
+			return gcnew NxaCapsuleShape(ptr);
 		}
 	}
 
