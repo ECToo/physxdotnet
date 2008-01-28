@@ -26,8 +26,7 @@ public:
 
 	property float Density
 	{
-		//float get() { return nxActorDesc->density; }
-		float get() { return 1; }
+		float get();
 		void set(float value);
 	}
 	
