@@ -7,15 +7,16 @@
 #include "NxaFixedJoint.h"
 #include "NxaActorDescription.h"
 #include "NxaJointDescription.h"
+#include "NxaMaterial.h"
 
 #include "NxMaterial.h"
 #include "NxSceneDesc.h"
 #include "NxScene.h"
 #include "NxRemoteDebugger.h"
 
-NxaScene::NxaScene(NxScene* pScene)
+NxaScene::NxaScene(NxScene* ptr)
 {
-	scene = pScene;
+	nxScene = ptr;
 }
 
 NxaScene::NxaScene(NxaSceneDescription^ desc)
@@ -27,21 +28,21 @@ NxaScene::NxaScene(NxaSceneDescription^ desc)
 	{
 		SimulationType = NxaSimulationType::Hardware;
 		sceneDesc.simType = NX_SIMULATION_HW;
-		scene = PhysXEngine::sdk->createScene(sceneDesc);
+		nxScene = PhysXEngine::sdk->createScene(sceneDesc);
 	}
 
-	if(!scene)
+	if(!nxScene)
 	{
 		SimulationType = NxaSimulationType::Software;
 		sceneDesc.simType = NX_SIMULATION_SW;
-		scene = PhysXEngine::sdk->createScene(sceneDesc);
-		if(!scene) return;
+		nxScene = PhysXEngine::sdk->createScene(sceneDesc);
+		if(!nxScene) return;
 	}
 
 	if(desc->EnableRemoteDebugger)
 		PhysXEngine::sdk->getFoundationSDK().getRemoteDebugger()->connect("localhost", 5425);
 
-	NxMaterial* defaultMaterial = scene->getMaterialFromIndex(0);
+	NxMaterial* defaultMaterial = nxScene->getMaterialFromIndex(0);
 	defaultMaterial->setRestitution(0.5);
 	defaultMaterial->setStaticFriction(0.5);
 	defaultMaterial->setDynamicFriction(0.5);
@@ -49,7 +50,7 @@ NxaScene::NxaScene(NxaSceneDescription^ desc)
 
 NxaActor^ NxaScene::CreateActor(NxaActorDescription^ actorDescription)
 {
-	NxActor* nxActor = scene->createActor(*(actorDescription->nxActorDesc));
+	NxActor* nxActor = nxScene->createActor(*(actorDescription->nxActorDesc));
 	return gcnew NxaActor(nxActor);
 }
 
@@ -71,26 +72,32 @@ NxaJoint^ NxaScene::CreateJoint(NxaJointDescription^ jointDescription)
 
 void NxaScene::ReleaseActor(NxaActor^ nxaActor)
 {
-	scene->releaseActor(*(nxaActor->nxActor));
+	nxScene->releaseActor(*(nxaActor->nxActor));
 }
 
 void NxaScene::UpdateScene(float deltaTime)
 {
-	scene->simulate(deltaTime);
-	scene->flushStream();
+	nxScene->simulate(deltaTime);
+	nxScene->flushStream();
 }
 
 bool NxaScene::FetchResults(bool block)
 {
-	return scene->fetchResults(NX_RIGID_BODY_FINISHED, block);
+	return nxScene->fetchResults(NX_RIGID_BODY_FINISHED, block);
 }
 
 bool NxaScene::CheckResults(bool block)
 {
-	return scene->checkResults(NX_RIGID_BODY_FINISHED, block);
+	return nxScene->checkResults(NX_RIGID_BODY_FINISHED, block);
 }
 
 void NxaScene::FlushCaches()
 { 
-	scene->flushCaches(); 
+	nxScene->flushCaches(); 
+}
+
+NxaMaterial^ NxaScene::GetMaterialFromIndex(NxaMaterialIndex matIndex)
+{
+	NxMaterial* ptr = nxScene->getMaterialFromIndex(matIndex);
+	return NxaMaterial::CreateFromPointer(ptr);
 }

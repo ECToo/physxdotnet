@@ -62,7 +62,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="&quot;PhysXLoader.lib $(NOINHERIT)"
+				AdditionalDependencies="PhysXLoader.lib NxCooking.lib $(NOINHERIT)"
 				LinkIncremental="2"
 				GenerateDebugInformation="true"
 				AssemblyDebug="1"
@@ -137,7 +137,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="PhysXLoader.lib $(NOINHERIT)"
+				AdditionalDependencies="PhysXLoader.lib NxCooking.lib $(NOINHERIT)"
 				LinkIncremental="1"
 				GenerateDebugInformation="true"
 				TargetMachine="1"
@@ -183,7 +183,7 @@
 		/>
 		<AssemblyReference
 			RelativePath="Microsoft.Xna.Framework.dll"
-			AssemblyName="Microsoft.Xna.Framework, Version=1.0.0.0, PublicKeyToken=6d5c3888ef60e27d, processorArchitecture=x86"
+			AssemblyName="Microsoft.Xna.Framework, Version=2.0.0.0, PublicKeyToken=6d5c3888ef60e27d, processorArchitecture=x86"
 		/>
 	</References>
 	<Files>
@@ -238,6 +238,22 @@
 			</File>
 			<File
 				RelativePath=".\NxaCapsuleShapeDescription.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\NxaConvexMesh.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\NxaConvexMeshDescription.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\NxaConvexShapeDescription.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\NxaCooking.cpp"
 				>
 			</File>
 			<File
@@ -404,6 +420,22 @@
 			</File>
 			<File
 				RelativePath=".\NxaCapsuleShapeDescription.h"
+				>
+			</File>
+			<File
+				RelativePath=".\NxaConvexMesh.h"
+				>
+			</File>
+			<File
+				RelativePath=".\NxaConvexMeshDescription.h"
+				>
+			</File>
+			<File
+				RelativePath=".\NxaConvexShapeDescription.h"
+				>
+			</File>
+			<File
+				RelativePath=".\NxaCooking.h"
 				>
 			</File>
 			<File

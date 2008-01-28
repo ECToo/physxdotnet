@@ -9,7 +9,5 @@ internal:
 	NxaPlaneShapeDescription(NxPlaneShapeDesc* ptr);
 
 public:
-	NxaPlaneShapeDescription(void);
-	~NxaPlaneShapeDescription(void);
-	!NxaPlaneShapeDescription(void);
+	NxaPlaneShapeDescription();
 };
