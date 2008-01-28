@@ -4,6 +4,8 @@
 #include "Nxashape.h"
 #include "NxaCapsuleShapeDescription.h"
 
+ref class NxaCapsule;
+
 public ref class NxaCapsuleShape : 	public NxaShape
 {
 internal:
@@ -15,6 +17,6 @@ public:
 	float GetRadius();
 	void SetHeight(float height);
 	float GetHeight();
-	
+	void GetWorldCapsule([Out] NxaCapsule^% worldCapsule);
 	void SaveToDesc([Out] NxaCapsuleShapeDescription^% desc);		
 };

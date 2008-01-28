@@ -13,8 +13,6 @@ namespace XNAPhysX.Graphics.Shapes
         static ContentManager content;
 
         static private Effect effect;
-        static private VertexBuffer vb;
-        static private IndexBuffer ib;
         static private VertexDeclaration vd;
 
         public static void LoadResources(GraphicsDevice d, ContentManager c)

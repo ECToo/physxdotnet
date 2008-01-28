@@ -28,4 +28,6 @@ public:
 		NxaU32 get();// { return nxShapeDesc->shapeFlags; }
 		void set(NxaU32 value);// { nxShapeDesc->shapeFlags = value; }
 	}
+
+	property Object^ UserData;
 };

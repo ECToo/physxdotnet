@@ -10,7 +10,7 @@ internal:
 	NxaCapsuleShapeDescription(NxCapsuleShapeDesc* ptr);
 
 public:
-	NxaCapsuleShapeDescription(void);
+	NxaCapsuleShapeDescription();
 
 	property float Radius
 	{
@@ -23,5 +23,4 @@ public:
 		float get() { return ((NxCapsuleShapeDesc*)nxShapeDesc)->height; }
 		void set(float value);
 	}
-	
 };

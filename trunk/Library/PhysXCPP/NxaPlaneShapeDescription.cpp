@@ -1,7 +1,7 @@
 #include "StdAfx.h"
 #include "NxaPlaneShapeDescription.h"
 
-NxaPlaneShapeDescription::NxaPlaneShapeDescription(void)
+NxaPlaneShapeDescription::NxaPlaneShapeDescription()
 {
 	nxShapeDesc = new NxPlaneShapeDesc();
 }
@@ -9,14 +9,4 @@ NxaPlaneShapeDescription::NxaPlaneShapeDescription(void)
 NxaPlaneShapeDescription::NxaPlaneShapeDescription(NxPlaneShapeDesc *ptr)
 {
 	nxShapeDesc = ptr;
-}
-
-NxaPlaneShapeDescription::~NxaPlaneShapeDescription()
-{
-	this->!NxaPlaneShapeDescription();
-}
-
-NxaPlaneShapeDescription::!NxaPlaneShapeDescription()
-{
-
 }
