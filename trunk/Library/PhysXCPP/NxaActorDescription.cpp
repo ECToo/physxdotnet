@@ -39,6 +39,11 @@ void NxaActorDescription::GlobalPose::set(Matrix m)
 	nxActorDesc->globalPose.t.set(NxVec3(m.M41, m.M42, m.M43));
 }
 
+float NxaActorDescription::Density::get()
+{
+   return nxActorDesc->density;
+}
+
 void NxaActorDescription::Density::set(float density)
 {
 	nxActorDesc->density = density;
