@@ -3,8 +3,10 @@
 #include "NxaMath.h"
 #include "NxaScene.h"
 #include "Nxap.h"
+#include "NxaActor.h"
 
 #include "NxJoint.h"
+#include "NxActor.h"
 
 public ref class NxaJoint abstract
 {
@@ -15,6 +17,8 @@ internal:
 	static NxaJoint^ CreateFromPointer(NxJoint* ptr);
 		
 public:
+
+	void GetActors([Out] NxaActor^% actor1, [Out] NxaActor^% actor2);
 
 	void SetGlobalAnchor(Vector3 vec);
 	void SetGlobalAxis(Vector3 vec);
