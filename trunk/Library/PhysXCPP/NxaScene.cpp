@@ -56,18 +56,21 @@ NxaActor^ NxaScene::CreateActor(NxaActorDescription^ actorDescription)
 
 NxaJoint^ NxaScene::CreateJoint(NxaJointDescription^ jointDescription)
 {
-	/*NxJoint* nxJoint = scene->createJoint(*(jointDescription->nxJointDesc));
+	NxJoint* jointPtr = nxScene->createJoint(*(jointDescription->nxJointDesc));
+	return NxaJoint::CreateFromPointer(jointPtr);
 
-	NxaJoint^ nxaJoint;
+	///*NxJoint* nxJoint = scene->createJoint(*(jointDescription->nxJointDesc));
 
-	if(nxJoint->isFixedJoint())
-		nxaJoint = gcnew NxaFixedJoint((NxFixedJoint*)nxJoint);
-	
-	nxaJoint->actorA = jointDescription->Actor[0];
-	nxaJoint->actorB = jointDescription->Actor[1];
+	//NxaJoint^ nxaJoint;
 
-	return nxaJoint;*/
-	throw gcnew Exception("NOT IMPLEMENTED PROPERLY!");
+	//if(nxJoint->isFixedJoint())
+	//	nxaJoint = gcnew NxaFixedJoint((NxFixedJoint*)nxJoint);
+	//
+	//nxaJoint->actorA = jointDescription->Actor[0];
+	//nxaJoint->actorB = jointDescription->Actor[1];
+
+	//return nxaJoint;*/
+	//throw gcnew Exception("NOT IMPLEMENTED PROPERLY!");
 }
 
 void NxaScene::ReleaseActor(NxaActor^ nxaActor)
