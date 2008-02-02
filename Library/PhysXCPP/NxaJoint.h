@@ -23,7 +23,7 @@ public:
 
 	NxaJointState GetState();
 	void SetBreakable(float maxForce, float maxTorque);
-	void GetBreakable([Out] float maxForce,[Out] float maxTorque); //<-- doesn't work yet for floats
+	void GetBreakable([Out] float% maxForce,[Out] float% maxTorque); //<-- doesn't work yet for floats
 
 	/********Limits**********/
 

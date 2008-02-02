@@ -70,9 +70,12 @@ void NxaJoint::SetBreakable(float maxForce, float maxTorque)
 	nxJoint->setBreakable(maxForce, maxTorque);
 }
 
-void NxaJoint::GetBreakable([Out] float maxForce, [Out] float maxTorque)
+void NxaJoint::GetBreakable([Out] float% maxForce, [Out] float% maxTorque)
 {
-	nxJoint->getBreakable(maxForce, maxTorque);
+	float F, T;
+	nxJoint->getBreakable(F, T);
+	maxForce = F;
+	maxTorque = T;
 }
 
 /********Limits**********/
