@@ -1,5 +1,6 @@
 #include "StdAfx.h"
 #include "NxaJoint.h"
+#include "NxaPointOnLineJoint.h"
 
 NxaJoint^ NxaJoint::CreateFromPointer(NxJoint* ptr)
 {
@@ -17,8 +18,7 @@ NxaJoint^ NxaJoint::CreateFromPointer(NxJoint* ptr)
 			return nullptr;
 			//return gcnew NxaSphericalJoint(ptr); <-- Temporarily out of service
 		case NX_JOINT_POINT_ON_LINE :
-			throw gcnew Exception("NOT IMPLEMENTED PROPERLY!");
-			return nullptr;
+			return gcnew NxaPointOnLineJoint((NxPointOnLineJoint*)ptr);
 		case NX_JOINT_POINT_IN_PLANE :
 			throw gcnew Exception("NOT IMPLEMENTED PROPERLY!");
 			return nullptr;
