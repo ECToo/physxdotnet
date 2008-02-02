@@ -7,14 +7,12 @@
 #include "NxJointDesc.h"
 
 #include "NxaActor.h"
+#include "NxaMath.h"
 
 public ref class NxaJointDescription abstract
 {
 internal:
 	NxJointDesc* nxJointDesc;
-
-private:
-	//array<NxaActor^>^ actors;
 
 public:
 	NxaJointDescription(void);
@@ -28,14 +26,8 @@ public:
 
 	property NxaActor^ Actor[int]
 	{
-		NxaActor^ get(int x) 
-		{ 
-			return gcnew NxaActor(nxJointDesc->actor[x]); 
-		}
-		void set(int x, NxaActor^ value) 
-		{ 
-			nxJointDesc->actor[x] = value->nxActor;
-		}
+		NxaActor^ get(int x);
+		void set(int x, NxaActor^ value);
 	}
 
 	property Vector3 LocalAnchor[int]
@@ -58,13 +50,13 @@ public:
 
 	property float MaxForce
 	{
-		float get() { return nxJointDesc->maxForce; }
-		void set(float max) { nxJointDesc->maxForce = max; }
+		float get();
+		void set(float max);
 	}
 
 	property float MaxTorque
 	{
-		float get() { return nxJointDesc->maxTorque; }
-		void set(float max) { nxJointDesc->maxTorque = max; }
+		float get();
+		void set(float max);
 	}
 };

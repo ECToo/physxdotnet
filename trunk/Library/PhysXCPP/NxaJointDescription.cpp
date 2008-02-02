@@ -4,9 +4,7 @@
 
 
 NxaJointDescription::NxaJointDescription(void)
-{
-	//actors = gcnew array<NxaActor^>(2);
-}
+{ }
 
 NxaJointDescription::~NxaJointDescription(void)
 {
@@ -18,47 +16,57 @@ NxaJointDescription::!NxaJointDescription(void)
 	delete nxJointDesc;
 }
 
+NxaActor^ NxaJointDescription::Actor::get(int x)
+{
+	return gcnew NxaActor(nxJointDesc->actor[x]); 
+}
+
+void NxaJointDescription::Actor::set(int x, NxaActor^ value)
+{
+	nxJointDesc->actor[x] = value->nxActor;
+}
+
 Vector3 NxaJointDescription::LocalAnchor::get(int x)
 {
 	NxVec3 vec = nxJointDesc->localAnchor[x];
-	return Vector3(vec.x, vec.y, vec.z);
+	return NxaMath::Vector3PhysXToXNA(vec);
 }
 
 void NxaJointDescription::LocalAnchor::set(int x, Vector3 value)
 {
-	nxJointDesc->localAnchor[x] = NxVec3(value.X, value.Y, value.Z);
+	nxJointDesc->localAnchor[x] = NxaMath::Vector3XNAToPhysX(value);
 }
 
 Vector3 NxaJointDescription::LocalAxis::get(int x)
 {
 	NxVec3 vec = nxJointDesc->localAxis[x];
-	return Vector3(vec.x, vec.y, vec.z);
+	return NxaMath::Vector3PhysXToXNA(vec);
 }
 
 void NxaJointDescription::LocalAxis::set(int x, Vector3 value)
 {
-	nxJointDesc->localAxis[x] = NxVec3(value.X, value.Y, value.Z);
+	nxJointDesc->localAxis[x] = NxaMath::Vector3XNAToPhysX(value);
 }
 
 Vector3 NxaJointDescription::LocalNormal::get(int x)
 {
 	NxVec3 vec = nxJointDesc->localNormal[x];
-	return Vector3(vec.x, vec.y, vec.z);
+	return NxaMath::Vector3PhysXToXNA(vec);
 }
 
 void NxaJointDescription::LocalNormal::set(int x, Vector3 value)
 {
-	nxJointDesc->localNormal[x] = NxVec3(value.X, value.Y, value.Z);
+	nxJointDesc->localNormal[x] = NxaMath::Vector3XNAToPhysX(value);
 }
 
 void NxaJointDescription::SetGlobalAnchor(Vector3 anchor)
 {
-	nxJointDesc->setGlobalAnchor(NxVec3(anchor.X, anchor.Y, anchor.Z));
+	nxJointDesc->setGlobalAnchor(NxaMath::Vector3XNAToPhysX(anchor));
 }
 
-void NxaJointDescription::SetGlobalAxis(Microsoft::Xna::Framework::Vector3 axis)
+void NxaJointDescription::SetGlobalAxis(Vector3 axis)
 {
-	nxJointDesc->setGlobalAxis(NxVec3(axis.X, axis.Y, axis.Z));
+	nxJointDesc->setGlobalAxis(NxaMath::Vector3XNAToPhysX(axis));
 }
 
 void NxaJointDescription::RaiseJointFlag(NxaJointFlag flag)
@@ -71,6 +79,26 @@ void NxaJointDescription::ClearJointFlag(NxaJointFlag flag)
 {
 	if((int)flag && (int)NxaJointFlag::Collision_Enabled)
 		nxJointDesc->jointFlags = nxJointDesc->jointFlags & ~NX_JF_COLLISION_ENABLED;
+}
+
+float NxaJointDescription::MaxForce::get()
+{
+	return nxJointDesc->maxForce;
+}
+
+void NxaJointDescription::MaxForce::set(float max)
+{
+	nxJointDesc->maxForce = max;
+}
+
+float NxaJointDescription::MaxTorque::get()
+{
+	return nxJointDesc->maxTorque;
+}
+
+void NxaJointDescription::MaxTorque::set(float max)
+{
+	nxJointDesc->maxTorque = max;
 }
 
 	
