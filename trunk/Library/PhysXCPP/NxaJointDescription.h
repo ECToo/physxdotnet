@@ -14,6 +14,8 @@ public ref class NxaJointDescription abstract
 internal:
 	NxJointDesc* nxJointDesc;
 
+	NxaJointDescription(NxJointDesc* ptr);
+
 public:
 	NxaJointDescription(void);
 	~NxaJointDescription(void);

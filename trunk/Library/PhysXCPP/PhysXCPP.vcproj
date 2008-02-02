@@ -309,6 +309,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\NxaPointOnLineJoint.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\NxaPointOnLineJointDescription.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\NxaScene.cpp"
 				>
 			</File>
@@ -488,6 +496,14 @@
 			</File>
 			<File
 				RelativePath=".\NxaPlaneShapeDescription.h"
+				>
+			</File>
+			<File
+				RelativePath=".\NxaPointOnLineJoint.h"
+				>
+			</File>
+			<File
+				RelativePath=".\NxaPointOnLineJointDescription.h"
 				>
 			</File>
 			<File

@@ -40,6 +40,15 @@ NxaJoint^ NxaJoint::CreateFromPointer(NxJoint* ptr)
 	return nullptr;
 }
 
+void NxaJoint::GetActors([Out] NxaActor^% actor1, [Out] NxaActor^% actor2)
+{
+	NxActor* a1;
+	NxActor* a2;
+	nxJoint->getActors(&a1, &a2);
+	actor1 = gcnew NxaActor(a1);
+	actor2 = gcnew NxaActor(a2);
+}
+
 void NxaJoint::SetGlobalAnchor(Vector3 vec)
 {
 	nxJoint->setGlobalAnchor(NxaMath::Vector3XNAToPhysX(vec));
