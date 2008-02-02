@@ -317,6 +317,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\NxaPrismaticJoint.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\NxaPrismaticJointDescription.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\NxaScene.cpp"
 				>
 			</File>
@@ -504,6 +512,14 @@
 			</File>
 			<File
 				RelativePath=".\NxaPointOnLineJointDescription.h"
+				>
+			</File>
+			<File
+				RelativePath=".\NxaPrismaticJoint.h"
+				>
+			</File>
+			<File
+				RelativePath=".\NxaPrismaticJointDescription.h"
 				>
 			</File>
 			<File
