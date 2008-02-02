@@ -5,7 +5,7 @@
 
 NxaJointDescription::NxaJointDescription(void)
 {
-	actors = gcnew array<NxaActor^>(2);
+	//actors = gcnew array<NxaActor^>(2);
 }
 
 NxaJointDescription::~NxaJointDescription(void)
