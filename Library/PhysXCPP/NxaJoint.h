@@ -11,8 +11,6 @@ public ref class NxaJoint abstract
 internal:
 	NxJoint* nxJoint;
 	String^ jointName;
-
-	NxaJoint(NxJoint* ptr);
 	
 	static NxaJoint^ CreateFromPointer(NxJoint* ptr);
 		

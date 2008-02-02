@@ -1,12 +1,6 @@
 #include "StdAfx.h"
 #include "NxaJoint.h"
 
-
-NxaJoint::NxaJoint(NxJoint* ptr)
-{
-	nxJoint = ptr;
-}
-
 NxaJoint^ NxaJoint::CreateFromPointer(NxJoint* ptr)
 {
 	if(ptr != NULL)
@@ -20,6 +14,7 @@ NxaJoint^ NxaJoint::CreateFromPointer(NxJoint* ptr)
 			throw gcnew Exception("NOT IMPLEMENTED PROPERLY!");
 			return nullptr;
 		case NX_JOINT_SPHERICAL :
+			return nullptr;
 			//return gcnew NxaSphericalJoint(ptr); <-- Temporarily out of service
 		case NX_JOINT_POINT_ON_LINE :
 			throw gcnew Exception("NOT IMPLEMENTED PROPERLY!");
@@ -34,6 +29,7 @@ NxaJoint^ NxaJoint::CreateFromPointer(NxJoint* ptr)
 			throw gcnew Exception("NOT IMPLEMENTED PROPERLY!");
 			return nullptr;
 		case NX_JOINT_FIXED :
+			return nullptr;
 			//return gcnew NxaFixedJoint(ptr); <-- Temporarily out of service
 		case NX_JOINT_D6 :
 			throw gcnew Exception("NOT IMPLEMENTED PROPERLY!");

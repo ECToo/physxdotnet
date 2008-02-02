@@ -8,13 +8,3 @@ NxaFixedJoint::NxaFixedJoint(NxFixedJoint* joint)
 {
 	nxJoint = joint;
 }
-
-NxaFixedJoint::~NxaFixedJoint(void)
-{
-
-}
-
-NxaFixedJoint::!NxaFixedJoint(void)
-{
-
-}
