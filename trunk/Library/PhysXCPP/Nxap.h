@@ -49,6 +49,27 @@ public enum class NxaForceMode
 public enum class NxaInternalArray { Triangles, Vertices, Normals, HullVertices, HullPolygons };
 public enum class NxaInternalFormat { NoData, Float, Byte, Short, Int };
 
+public enum class NxaJointType {
+	Prismatic,
+	Revolute,
+	Cylindrical,
+	Spherical,
+	PointOnLine,
+	PointInPlane,
+	Distance,
+	Pulley,
+	Fixed,
+	D6,
+	Count,
+	ForceDWord = 0x7fffffff
+};
+
+public enum class NxaJointState {
+	Unbound,
+	Simulating,
+	Broken
+};
+
 public enum class NxaJointFlag : NxaU32 { Collision_Enabled = (1<<0) };
 public enum class NxaMaterialFlag : NxaU32 { Anisotropic = (1<<0), Disable_Friction = (1<<4), Disable_Strong_Friction = (1<<5) };
 
