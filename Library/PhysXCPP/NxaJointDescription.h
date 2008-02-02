@@ -14,7 +14,7 @@ internal:
 	NxJointDesc* nxJointDesc;
 
 private:
-	array<NxaActor^>^ actors;
+	//array<NxaActor^>^ actors;
 
 public:
 	NxaJointDescription(void);
@@ -28,10 +28,12 @@ public:
 
 	property NxaActor^ Actor[int]
 	{
-		NxaActor^ get(int x) { return actors[x]; }
+		NxaActor^ get(int x) 
+		{ 
+			return gcnew NxaActor(nxJointDesc->actor[x]); 
+		}
 		void set(int x, NxaActor^ value) 
 		{ 
-			actors[x] = value; 
 			nxJointDesc->actor[x] = value->nxActor;
 		}
 	}
