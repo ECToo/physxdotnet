@@ -8,6 +8,7 @@ public ref class NxaJointLimitPairDescription
 {
 internal:
 	NxJointLimitPairDesc* nxJointLimitPairDesc;
+	NxaJointLimitPairDescription(NxJointLimitPairDesc* ptr);
 
 public:
 	NxaJointLimitPairDescription();

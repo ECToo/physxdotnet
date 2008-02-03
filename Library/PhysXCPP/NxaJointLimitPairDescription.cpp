@@ -10,6 +10,11 @@ NxaJointLimitPairDescription::NxaJointLimitPairDescription(void)
 	nxJointLimitPairDesc = new NxJointLimitPairDesc();
 }
 
+NxaJointLimitPairDescription::NxaJointLimitPairDescription(NxJointLimitPairDesc *ptr)
+{
+	nxJointLimitPairDesc = ptr;
+}
+
 NxaJointLimitPairDescription::~NxaJointLimitPairDescription(void)
 {
 	this->!NxaJointLimitPairDescription();
