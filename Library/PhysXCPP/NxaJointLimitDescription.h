@@ -7,6 +7,7 @@ public ref class NxaJointLimitDescription
 {
 internal:
 	NxJointLimitDesc* nxJointLimitDesc;
+	NxaJointLimitDescription(NxJointLimitDesc* ptr);
 
 public:
 	NxaJointLimitDescription();

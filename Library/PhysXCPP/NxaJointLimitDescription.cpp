@@ -5,6 +5,11 @@
 
 #include "NxaJointLimitDescription.h"
 
+NxaJointLimitDescription::NxaJointLimitDescription(NxJointLimitDesc* ptr)
+{
+	nxJointLimitDesc = ptr;
+}
+
 NxaJointLimitDescription::NxaJointLimitDescription(void)
 {
 	nxJointLimitDesc = new NxJointLimitDesc();
