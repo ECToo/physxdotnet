@@ -1,13 +1,15 @@
 #include "StdAfx.h"
 #include "NxaJointDescription.h"
 
+NxaJointDescription::NxaJointDescription()
+{
+
+}
+
 NxaJointDescription::NxaJointDescription(NxJointDesc *ptr)
 {
 	nxJointDesc = ptr;
 }
-
-NxaJointDescription::NxaJointDescription(void)
-{ }
 
 NxaJointDescription::~NxaJointDescription(void)
 {

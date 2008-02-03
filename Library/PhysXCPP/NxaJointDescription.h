@@ -13,11 +13,10 @@ public ref class NxaJointDescription abstract
 {
 internal:
 	NxJointDesc* nxJointDesc;
-
+	NxaJointDescription();
 	NxaJointDescription(NxJointDesc* ptr);
 
 public:
-	NxaJointDescription(void);
 	~NxaJointDescription(void);
 	!NxaJointDescription(void);
 	

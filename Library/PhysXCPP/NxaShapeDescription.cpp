@@ -16,6 +16,16 @@ NxaShapeDescription::!NxaShapeDescription()
 	delete nxShapeDesc;
 }
 
+void NxaShapeDescription::SetToDefault()
+{
+	nxShapeDesc->setToDefault();
+}
+
+bool NxaShapeDescription::IsValid()
+{
+	return nxShapeDesc->isValid();
+}
+
 NxaShapeDescription^ NxaShapeDescription::CreateFromPointer(NxShapeDesc *ptr)
 {
 	switch(ptr->getType())

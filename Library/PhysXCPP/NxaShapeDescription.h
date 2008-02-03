@@ -2,7 +2,8 @@
 
 #include "StdAfx.h"
 #include "Nxap.h"
-#include "NxShapeDesc.h"
+
+class NxShapeDesc;
 
 public ref class NxaShapeDescription abstract
 {
@@ -14,8 +15,8 @@ public:
 	virtual ~NxaShapeDescription();
 	!NxaShapeDescription();
 
-	virtual void SetToDefault() { nxShapeDesc->setToDefault(); }
-	virtual bool IsValid() { return nxShapeDesc->isValid(); }
+	virtual void SetToDefault();
+	virtual bool IsValid();
 	
 	property Matrix LocalPose
 	{
@@ -25,8 +26,8 @@ public:
 
 	property NxaU32 ShapeFlags
 	{
-		NxaU32 get();// { return nxShapeDesc->shapeFlags; }
-		void set(NxaU32 value);// { nxShapeDesc->shapeFlags = value; }
+		NxaU32 get();
+		void set(NxaU32 value);
 	}
 
 	property Object^ UserData;

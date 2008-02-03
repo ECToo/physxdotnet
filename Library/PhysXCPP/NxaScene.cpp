@@ -26,14 +26,12 @@ NxaScene::NxaScene(NxaSceneDescription^ desc)
 
 	if(desc->SimulationType == NxaSimulationType::Hardware)
 	{
-		SimulationType = NxaSimulationType::Hardware;
 		sceneDesc.simType = NX_SIMULATION_HW;
 		nxScene = PhysXEngine::sdk->createScene(sceneDesc);
 	}
 
 	if(!nxScene)
 	{
-		SimulationType = NxaSimulationType::Software;
 		sceneDesc.simType = NX_SIMULATION_SW;
 		nxScene = PhysXEngine::sdk->createScene(sceneDesc);
 		if(!nxScene) return;

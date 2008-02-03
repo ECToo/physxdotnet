@@ -19,9 +19,6 @@ internal:
 	NxaScene(NxaSceneDescription^ description);
 
 public:
-	property NxaSimulationType SimulationType;
-
-public:
 	NxaActor^ CreateActor(NxaActorDescription^ actorDescription);
 	NxaJoint^ CreateJoint(NxaJointDescription^ jointDescription);
 	void ReleaseActor(NxaActor^ nxaActor);

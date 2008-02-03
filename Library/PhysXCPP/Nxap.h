@@ -49,7 +49,8 @@ public enum class NxaForceMode
 public enum class NxaInternalArray { Triangles, Vertices, Normals, HullVertices, HullPolygons };
 public enum class NxaInternalFormat { NoData, Float, Byte, Short, Int };
 
-public enum class NxaJointType {
+public enum class NxaJointType 
+{
 	Prismatic,
 	Revolute,
 	Cylindrical,
@@ -59,9 +60,7 @@ public enum class NxaJointType {
 	Distance,
 	Pulley,
 	Fixed,
-	D6,
-	Count,
-	ForceDWord = 0x7fffffff
+	D6
 };
 
 public enum class NxaJointState {

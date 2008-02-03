@@ -7,6 +7,9 @@ public ref class NxaSphericalJointDescription : public NxaJointDescription
 public:
 	NxaSphericalJointDescription(void);
 
+	virtual void SetToDefault();
+	virtual bool IsValid();
+
 	property Vector3 SwingAxis
 	{
 		Vector3 get();
@@ -17,5 +20,11 @@ public:
 	{
 		float get();
 		void set(float dist);
+	}
+
+	property NxaU32 Flags
+	{
+		NxaU32 get();
+		void set(NxaU32 flags);
 	}
 };
