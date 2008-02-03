@@ -1,15 +1,17 @@
 #pragma once
 
-#include "NxJointLimitDesc.h"
+//#include "NxJointLimitDesc.h"
+class NxJointLimitDesc;
 
 public ref class NxaJointLimitDescription
 {
 internal:
-	NxJointLimitDesc* jointLimitDesc;
+	NxJointLimitDesc* nxJointLimitDesc;
 
 public:
-	NxaJointLimitDescription(void);
-	!NxaJointLimitDescription(void);
+	NxaJointLimitDescription();
+	~NxaJointLimitDescription();
+	!NxaJointLimitDescription();
 
 	property float Value
 	{
@@ -18,6 +20,12 @@ public:
 	}
 
 	property float Restitution
+	{
+		float get();
+		void set(float value);
+	}
+
+	property float Hardness
 	{
 		float get();
 		void set(float value);

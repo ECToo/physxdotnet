@@ -1,38 +1,51 @@
 #include "StdAfx.h"
 
+#include "Nxp.h" //Included because NxJointLimitDesc.h doesn't appear to do it itself.
+#include "NxJointLimitDesc.h"
+
 #include "NxaJointLimitDescription.h"
-
-
 
 NxaJointLimitDescription::NxaJointLimitDescription(void)
 {
-	//jointLimitDesc = new NxJointLimitDesc();
+	nxJointLimitDesc = new NxJointLimitDesc();
+}
+
+NxaJointLimitDescription::~NxaJointLimitDescription(void)
+{
+	this->!NxaJointLimitDescription();
 }
 
 NxaJointLimitDescription::!NxaJointLimitDescription(void)
 {
-
+	delete nxJointLimitDesc;
 }
 
 float NxaJointLimitDescription::Value::get()
 {
-	return 1;
-	//return jointLimitDesc->value;
+	return nxJointLimitDesc->value;
 }
 
 void NxaJointLimitDescription::Value::set(float value)
 {
-
-	//jointLimitDesc->value = value;
+	nxJointLimitDesc->value = value;
 }
 
 float NxaJointLimitDescription::Restitution::get()
 {
-	return 1;
-	//return jointLimitDesc->restitution;
+	return nxJointLimitDesc->restitution;
 }
 
 void NxaJointLimitDescription::Restitution::set(float value)
 {
-	//jointLimitDesc->restitution = value;
+	nxJointLimitDesc->restitution = value;
+}
+
+float NxaJointLimitDescription::Hardness::get()
+{
+	return nxJointLimitDesc->hardness;
+}
+
+void NxaJointLimitDescription::Hardness::set(float value)
+{
+	nxJointLimitDesc->hardness = value;
 }

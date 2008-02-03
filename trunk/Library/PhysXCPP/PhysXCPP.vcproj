@@ -285,6 +285,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\NxaJointLimitDescription.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\NxaMaterial.cpp"
 				>
 			</File>
@@ -480,6 +484,10 @@
 			</File>
 			<File
 				RelativePath=".\NxaJointDescription.h"
+				>
+			</File>
+			<File
+				RelativePath=".\NxaJointLimitDescription.h"
 				>
 			</File>
 			<File
