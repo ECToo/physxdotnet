@@ -4,7 +4,7 @@
 
 ref class NxaJointLimitDescription;
 ref class NxaJointLimitPairDescription;
-
+ref class NxaSpringDescription;
 
 public ref class NxaSphericalJointDescription : public NxaJointDescription
 {
@@ -26,7 +26,7 @@ public:
 		void set(float dist);
 	}
 
-	/*property NxaJointLimitPairDescription^ TwistLimit
+	property NxaJointLimitPairDescription^ TwistLimit
 	{
 		NxaJointLimitPairDescription^ get();
 		void set(NxaJointLimitPairDescription^ twistLimit);
@@ -36,25 +36,25 @@ public:
 	{
 		NxaJointLimitDescription^ get();
 		void set(NxaJointLimitDescription^ swingLimit);
-	}*/
+	}
 
-	//property NxaSpringDescription^ TwistSpring
-	//{
-	//	NxaSwingDescription^ get();
-	//	void set(NxaSwingDescription^ twistSpring);
-	//}
+	property NxaSpringDescription^ TwistSpring
+	{
+		NxaSpringDescription^ get();
+		void set(NxaSpringDescription^ twistSpring);
+	}
 
-	//property NxaSpringDescription^ SwingSpring
-	//{
-	//	NxaSpringDescription^ get();
-	//	void set(NxaSpringDescription^ swingSpring);
-	//}
+	property NxaSpringDescription^ SwingSpring
+	{
+		NxaSpringDescription^ get();
+		void set(NxaSpringDescription^ swingSpring);
+	}
 
-	//property NxaSpringDescription^ JointSpring
-	//{
-	//	NxaSpringDescription^ get();
-	//	void set(NxaSpringDescription^ jointSpring);
-	//}
+	property NxaSpringDescription^ JointSpring
+	{
+		NxaSpringDescription^ get();
+		void set(NxaSpringDescription^ jointSpring);
+	}
 
 	property NxaU32 Flags
 	{
@@ -62,9 +62,9 @@ public:
 		void set(NxaU32 flags);
 	}
 
-	/*property NxaJointProjectionMode ProjectionMode
+	property NxaJointProjectionMode ProjectionMode
 	{
 		NxaJointProjectionMode get();
 		void set(NxaJointProjectionMode projectionMode);
-	}*/
+	}
 };
