@@ -3,6 +3,7 @@
 
 #include "NxaPrismaticJoint.h"
 #include "NxaPointOnLineJoint.h"
+#include "NxaRevoluteJoint.h"
 
 NxaJoint^ NxaJoint::CreateFromPointer(NxJoint* ptr)
 {
@@ -13,8 +14,7 @@ NxaJoint^ NxaJoint::CreateFromPointer(NxJoint* ptr)
 		case NX_JOINT_PRISMATIC :
 			return gcnew NxaPrismaticJoint((NxPrismaticJoint*)ptr);
 		case NX_JOINT_REVOLUTE :
-			throw gcnew Exception("NOT IMPLEMENTED PROPERLY!");
-			return nullptr;
+			return gcnew NxaRevoluteJoint((NxRevoluteJoint*)ptr);
 		case NX_JOINT_SPHERICAL :
 			return nullptr;
 			//return gcnew NxaSphericalJoint(ptr); <-- Temporarily out of service
