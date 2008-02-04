@@ -70,6 +70,21 @@ public enum class NxaJointState {
 };
 
 public enum class NxaJointFlag : NxaU32 { Collision_Enabled = (1<<0) };
+
+public enum class NxaJointProjectionMode
+{
+	None,
+	PointMinimumDistance,
+	LinearMinimumDistance
+};
+
+public enum class NxaRevoluteJointFlag : NxaU32
+{
+	LimitEnabled = (1<<0),
+	MotorEnabled = (1<<1),
+	SpringEnabled = (1<<2)
+};
+
 public enum class NxaMaterialFlag : NxaU32 { Anisotropic = (1<<0), Disable_Friction = (1<<4), Disable_Strong_Friction = (1<<5) };
 
 public enum class NxaShapeFlag : NxaU32

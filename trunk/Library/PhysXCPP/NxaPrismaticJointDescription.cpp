@@ -15,10 +15,10 @@ NxaPrismaticJointDescription::NxaPrismaticJointDescription(void)
 
 void NxaPrismaticJointDescription::SetToDefault()
 {
-	nxJointDesc->setToDefault();
+	((NxPrismaticJointDesc*)nxJointDesc)->setToDefault();
 }
 
 bool NxaPrismaticJointDescription::IsValid()
 {
-	return nxJointDesc->isValid();
+	return ((NxPrismaticJointDesc*)nxJointDesc)->isValid();
 }

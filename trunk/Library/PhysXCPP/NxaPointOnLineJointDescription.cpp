@@ -15,10 +15,10 @@ NxaPointOnLineJointDescription::NxaPointOnLineJointDescription(void)
 
 void NxaPointOnLineJointDescription::SetToDefault()
 {
-	nxJointDesc->setToDefault();
+	((NxPointOnLineJointDesc*)nxJointDesc)->setToDefault();
 }
 
 bool NxaPointOnLineJointDescription::IsValid()
 {
-	return nxJointDesc->isValid();
+	return ((NxPointOnLineJointDesc*)nxJointDesc)->isValid();
 }
