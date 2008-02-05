@@ -51,6 +51,11 @@ public:
 		void set(NxaRevoluteJointFlag value);
 	}
 
+	property NxaJointProjectionMode ProjectionMode
+	{
+		NxaJointProjectionMode get();
+		void set(NxaJointProjectionMode value);
+	}
 	void SetToDefault();
 	bool IsValid();
 };

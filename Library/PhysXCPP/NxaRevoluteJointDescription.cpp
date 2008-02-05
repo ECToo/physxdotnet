@@ -73,6 +73,16 @@ void NxaRevoluteJointDescription::Flags::set(NxaRevoluteJointFlag value)
 	((NxRevoluteJointDesc*)nxJointDesc)->flags = (NxRevoluteJointFlag)value;
 }
 
+NxaJointProjectionMode NxaRevoluteJointDescription::ProjectionMode::get()
+{
+	return (NxaJointProjectionMode)(((NxRevoluteJointDesc*)nxJointDesc)->projectionMode);
+}
+
+void NxaRevoluteJointDescription::ProjectionMode::set(NxaJointProjectionMode value)
+{
+	((NxRevoluteJointDesc*)nxJointDesc)->projectionMode = (NxJointProjectionMode)value;
+}
+
 void NxaRevoluteJointDescription::SetToDefault()
 {
 	((NxRevoluteJointDesc*)nxJointDesc)->setToDefault();
