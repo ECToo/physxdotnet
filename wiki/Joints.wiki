@@ -9,5 +9,5 @@ This is the current state of 'joints' in the wrapper:
  * *Point On Line Joint:* Complete.
  * *Prismatic Joint:* Complete.
  * *Pulley Joint:* Not Started.
- * *Revolute Joint:* Functional, almost complete.
+ * *Revolute Joint:* Complete.
  * *Spherical Joint:* Functional, almost complete.
