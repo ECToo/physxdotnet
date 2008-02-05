@@ -1,0 +1,13 @@
+#labels Phase-Requirements
+This is the current state of 'joints' in the wrapper:
+
+ * *Cylindrical Joint:* Not Started.
+ * *D6 Joint:* Not Started.
+ * *Distance Joint:* Not Started.
+ * *Fixed Joint:* Functional, not yet complete.
+ * *Point In Plane Joint:* Not Started.
+ * *Point On Line Joint:* Complete.
+ * *Prismatic Joint:* Complete.
+ * *Pulley Joint:* Not Started.
+ * *Revolute Joint:* Functional, almost complete.
+ * *Spherical Joint:* Functional, almost complete.
