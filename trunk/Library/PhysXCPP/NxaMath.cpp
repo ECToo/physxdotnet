@@ -3,7 +3,7 @@
 
 NxMat33 NxaMath::MatrixRotXNAToPhysX([In] Matrix% m)
 {
-	return NxMat33(NxVec3(m.M11, m.M12, m.M13), NxVec3(m.M21, m.M22, m.M23), NxVec3(m.M31, m.M32, m.M33));
+	return NxMat33(NxVec3(m.M11, m.M21, m.M31), NxVec3(m.M12, m.M22, m.M32), NxVec3(m.M13, m.M23, m.M33));
 }
 
 NxMat34 NxaMath::MatrixRotPosXNAToPhysX([In] Matrix% m)

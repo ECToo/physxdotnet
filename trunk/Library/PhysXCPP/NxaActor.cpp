@@ -82,7 +82,7 @@ float NxaActor::ComputeKineticEnergy()
 
 void NxaActor::RaiseBodyFlag(NxaBodyFlag flag)
 {
-	nxActor->clearBodyFlag((NxBodyFlag)flag);
+	nxActor->raiseBodyFlag((NxBodyFlag)flag);
 }
 
 void NxaActor::ClearBodyFlag(NxaBodyFlag flag)
