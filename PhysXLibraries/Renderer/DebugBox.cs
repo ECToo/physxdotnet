@@ -106,7 +106,7 @@ namespace XNAPhysX.Graphics.Shapes
 
             Vector3 extents = box.GetDimensions();
 
-            Matrix world =  Matrix.CreateScale(extents * 2) * box.GetGlobalOrientation() * Matrix.CreateTranslation(box.GetGlobalPosition());
+            Matrix world =  Matrix.CreateScale(extents * 2) * box.GetGlobalPose();
             Matrix wvp = world * viewProjection;
             
             if(isSelected)
