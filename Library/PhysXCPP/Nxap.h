@@ -22,7 +22,24 @@ public enum class NxaActorFlag : NxaU32
 	ForceConeFriction = (1<<5),
 	UserActorPairFiltering = (1<<6)
 };
-public enum class NxaBodyFlag : NxaU32 { Disable_Gravity = (1<<0), Kinematic = (1<<1) };
+public enum class NxaBodyFlag : NxaU32 
+{ 
+	DisableGravity = (1<<0),
+	FrozenPositionX = (1<<1),
+	FrozenPositionY = (1<<2),
+	FrozenPositionZ = (1<<3),
+	FrozenRotationX = (1<<4),
+	FrozenRotationY = (1<<5),
+	FrozenRotationZ = (1<<6),
+	FrozenPosition = FrozenPositionX | FrozenPositionY | FrozenPositionZ,
+	FrozenRotation = FrozenRotationX | FrozenRotationY | FrozenRotationZ,
+	Frozen = FrozenPosition | FrozenRotation,
+	Kinematic = (1<<7),
+	Visualization = (1<<8),
+	PoseSleepTest = (1<<9),
+	FilterSleepVelocities = (1<<10),
+	EnergySleepTest = (1<<11)
+};
 
 public enum class NxaCombineMode { Average, Minimum, Multiply, Maximum };
 
