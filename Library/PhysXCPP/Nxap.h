@@ -53,6 +53,13 @@ public enum class NxaConvexFlags
 	UseUncompressedNormals = (1<<5)
 };
 
+public enum class NxaD6JointMotion
+{
+	Locked,
+	Limited,
+	Free
+};
+
 public enum class NxaForceMode 
 {
 	Force = 0,
