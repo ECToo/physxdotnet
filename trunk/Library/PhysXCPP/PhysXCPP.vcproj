@@ -261,6 +261,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\NxaD6Joint.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\NxaD6JointDescription.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\NxaFixedJoint.cpp"
 				>
 			</File>
@@ -480,6 +488,14 @@
 			</File>
 			<File
 				RelativePath=".\NxaCooking.h"
+				>
+			</File>
+			<File
+				RelativePath=".\NxaD6Joint.h"
+				>
+			</File>
+			<File
+				RelativePath=".\NxaD6JointDescription.h"
 				>
 			</File>
 			<File

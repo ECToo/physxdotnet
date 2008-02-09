@@ -21,20 +21,17 @@ NxaScene::NxaScene(NxScene* ptr)
 
 NxaScene::NxaScene(NxaSceneDescription^ desc)
 {
-	NxSceneDesc sceneDesc;
-	sceneDesc.gravity = NxVec3(desc->Gravity.X, desc->Gravity.Y, desc->Gravity.Z);
-
-	if(desc->SimulationType == NxaSimulationType::Hardware)
-	{
-		sceneDesc.simType = NX_SIMULATION_HW;
-		nxScene = PhysXEngine::sdk->createScene(sceneDesc);
-	}
+	nxScene = PhysXEngine::sdk->createScene(*(desc->nxSceneDesc));
 
 	if(!nxScene)
 	{
-		sceneDesc.simType = NX_SIMULATION_SW;
-		nxScene = PhysXEngine::sdk->createScene(sceneDesc);
-		if(!nxScene) return;
+		desc->SimulationType = NxaSimulationType::Software;
+		nxScene = PhysXEngine::sdk->createScene(*(desc->nxSceneDesc));
+
+		if(!nxScene)
+		{
+			return;
+		}
 	}
 
 	if(desc->EnableRemoteDebugger)
