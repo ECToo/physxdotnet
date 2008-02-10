@@ -1,8 +1,12 @@
 #pragma once
 
 #include "Nxap.h"
-
 #include "NxaJointDescription.h"
+
+ref class NxaJointLimitSoftDescription;
+ref class NxaJointLimitSoftPairDescription;
+ref class NxaJointDriveDescription;
+
 
 public ref class NxaD6JointDescription : NxaJointDescription
 {
@@ -30,7 +34,7 @@ public:
 		void set(NxaD6JointMotion value);
 	}
 
-	/*property NxaD6JointMotion Swing1Motion
+	property NxaD6JointMotion Swing1Motion
 	{
 		NxaD6JointMotion get();
 		void set(NxaD6JointMotion value);
@@ -46,63 +50,69 @@ public:
 	{
 		NxaD6JointMotion get();
 		void set(NxaD6JointMotion value);
-	}*/
-
-	/*property NxaJointLimitSoftDescription LinearLimit
-	{
-		NxaJointLimitSoftDescription get();
-		void set(NxaJointLimitSoftDescription value);
 	}
 
-	property NxaJointLimitSoftDescription Swing1Limit
+	property NxaJointLimitSoftDescription^ LinearLimit
 	{
-		NxaJointLimitSoftDescription get();
-		void set(NxaJointLimitSoftDescription value);
+		NxaJointLimitSoftDescription^ get();
+		void set(NxaJointLimitSoftDescription^ value);
 	}
 
-	property NxaJointLimitSoftDescription Swing2Limit
+	property NxaJointLimitSoftDescription^ Swing1Limit
 	{
-		NxaJointLimitSoftDescription get();
-		void set(NxaJointLimitSoftDescription value);
+		NxaJointLimitSoftDescription^ get();
+		void set(NxaJointLimitSoftDescription^ value);
 	}
 
-	property NxaJointDriveDescription XDrive
+	property NxaJointLimitSoftDescription^ Swing2Limit
 	{
-		NxaJointDriveDescription get();
-		void set(NxaJointDriveDescription value);
+		NxaJointLimitSoftDescription^ get();
+		void set(NxaJointLimitSoftDescription^ value);
 	}
 
-	property NxaJointDriveDescription YDrive
+	property NxaJointLimitSoftPairDescription^ TwistLimit
 	{
-		NxaJointDriveDescription get();
-		void set(NxaJointDriveDescription value);
+		NxaJointLimitSoftPairDescription^ get();
+		void set(NxaJointLimitSoftPairDescription^ value);
 	}
 
-	property NxaJointDriveDescription ZDrive
+	property NxaJointDriveDescription^ XDrive
 	{
-		NxaJointDriveDescription get();
-		void set(NxaJointDriveDescription value);
+		NxaJointDriveDescription^ get();
+		void set(NxaJointDriveDescription^ value);
 	}
 
-	property NxaJointDriveDescription SwingDrive
+	property NxaJointDriveDescription^ YDrive
 	{
-		NxaJointDriveDescription get();
-		void set(NxaJointDriveDescription value);
+		NxaJointDriveDescription^ get();
+		void set(NxaJointDriveDescription^ value);
 	}
 
-	property NxaJointDriveDescription TwistDrive
+	property NxaJointDriveDescription^ ZDrive
 	{
-		NxaJointDriveDescription get();
-		void set(NxaJointDriveDescription value);
+		NxaJointDriveDescription^ get();
+		void set(NxaJointDriveDescription^ value);
 	}
 
-	property NxaJointDriveDescription SlerpDrive
+	property NxaJointDriveDescription^ SwingDrive
 	{
-		NxaJointDriveDescription get();
-		void set(NxaJointDriveDescription value);
-	}*/
+		NxaJointDriveDescription^ get();
+		void set(NxaJointDriveDescription^ value);
+	}
 
-	/*property Vector3 DrivePosition
+	property NxaJointDriveDescription^ TwistDrive
+	{
+		NxaJointDriveDescription^ get();
+		void set(NxaJointDriveDescription^ value);
+	}
+
+	property NxaJointDriveDescription^ SlerpDrive
+	{
+		NxaJointDriveDescription^ get();
+		void set(NxaJointDriveDescription^ value);
+	}
+
+	property Vector3 DrivePosition
 	{
 		Vector3 get();
 		void set(Vector3 value);
@@ -154,5 +164,5 @@ public:
 	{
 		NxaU32 get();
 		void set(NxaU32 value);
-	}*/
+	}
 };

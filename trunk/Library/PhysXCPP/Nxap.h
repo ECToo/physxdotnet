@@ -41,9 +41,15 @@ public enum class NxaBodyFlag : NxaU32
 	EnergySleepTest = (1<<11)
 };
 
-public enum class NxaCombineMode { Average, Minimum, Multiply, Maximum };
+public enum class NxaCombineMode 
+{ 
+	Average, 
+	Minimum, 
+	Multiply, 
+	Maximum 
+};
 
-public enum class NxaConvexFlags 
+public enum class NxaConvexFlags  : NxaU32
 { 
 	FlipNormals = (1<<0),
 	SixteenBitIndices = (1<<1),
@@ -51,6 +57,12 @@ public enum class NxaConvexFlags
 	InflateConvex = (1<<3),
 	UseLegacyCooker = (1<<4),
 	UseUncompressedNormals = (1<<5)
+};
+
+public enum class NxaD6JointDriveType : NxaU32
+{
+	DrivePosition = (1<<0),
+	DriveVelocity = (1<<1)
 };
 
 public enum class NxaD6JointMotion
@@ -70,8 +82,23 @@ public enum class NxaForceMode
 	Acceleration = 5
 };
 
-public enum class NxaInternalArray { Triangles, Vertices, Normals, HullVertices, HullPolygons };
-public enum class NxaInternalFormat { NoData, Float, Byte, Short, Int };
+public enum class NxaInternalArray 
+{ 
+	Triangles, 
+	Vertices, 
+	Normals, 
+	HullVertices, 
+	HullPolygons 
+};
+
+public enum class NxaInternalFormat 
+{ 
+	NoData, 
+	Float, 
+	Byte, 
+	Short, 
+	Int 
+};
 
 public enum class NxaJointType 
 {
@@ -87,13 +114,17 @@ public enum class NxaJointType
 	D6
 };
 
-public enum class NxaJointState {
+public enum class NxaJointState 
+{
 	Unbound,
 	Simulating,
 	Broken
 };
 
-public enum class NxaJointFlag : NxaU32 { Collision_Enabled = (1<<0) };
+public enum class NxaJointFlag : NxaU32 
+{ 
+	Collision_Enabled = (1<<0) 
+};
 
 public enum class NxaJointProjectionMode
 {
@@ -109,7 +140,12 @@ public enum class NxaRevoluteJointFlag : NxaU32
 	SpringEnabled = (1<<2)
 };
 
-public enum class NxaMaterialFlag : NxaU32 { Anisotropic = (1<<0), Disable_Friction = (1<<4), Disable_Strong_Friction = (1<<5) };
+public enum class NxaMaterialFlag : NxaU32 
+{ 
+	Anisotropic = (1<<0), 
+	Disable_Friction = (1<<4), 
+	Disable_Strong_Friction = (1<<5) 
+};
 
 public enum class NxaShapeFlag : NxaU32
 { 
@@ -136,8 +172,16 @@ public enum class NxaShapeFlag : NxaU32
 	SoftBodyTwoWay = (1<<20)
 };
 
-public enum class NxaShapeType : NxaU32 { Plane, Sphere, Box, Capsule, Wheel, Convex, Mesh, Heightfield };
-public enum class NxaSimulationType { Software, Hardware };
+public enum class NxaShapeType : NxaU32 
+{ 
+	Plane, 
+	Sphere, 
+	Box, 
+	Capsule, 
+	Wheel, 
+	Convex, 
+	Mesh, 
+	Heightfield 
+};
 
 public enum class NxaThreadPriority { High = 0, AboveNormal = 1, Normal = 2, BelowNormal = 3, Low = 4 };
-public enum class NxaTimeStepMethod { Fixed = 0, Variable = 1 };

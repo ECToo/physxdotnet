@@ -4,6 +4,7 @@
 #include "NxaPrismaticJoint.h"
 #include "NxaPointOnLineJoint.h"
 #include "NxaRevoluteJoint.h"
+#include "NxaD6Joint.h"
 
 NxaJoint^ NxaJoint::CreateFromPointer(NxJoint* ptr)
 {
@@ -33,8 +34,7 @@ NxaJoint^ NxaJoint::CreateFromPointer(NxJoint* ptr)
 			return nullptr;
 			//return gcnew NxaFixedJoint(ptr); <-- Temporarily out of service
 		case NX_JOINT_D6 :
-			throw gcnew Exception("NOT IMPLEMENTED PROPERLY!");
-			return nullptr;
+			return gcnew NxaD6Joint((NxD6Joint*)ptr);
 		}
 	}
 

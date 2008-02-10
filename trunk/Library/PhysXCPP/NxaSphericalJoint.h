@@ -7,5 +7,5 @@
 public ref class NxaSphericalJoint : public NxaJoint
 {
 internal:
-	NxaSphericalJoint(NxSphericalJoint* nxSphericalJointDesc);
+	NxaSphericalJoint(NxSphericalJoint* nxSphericalJoint);
 };

@@ -207,3 +207,23 @@ void NxaSceneDescription::SubdivisionLevel::set(NxaU32 value)
 {
 	nxSceneDesc->subdivisionLevel = value;
 }
+
+NxaPruningStructure NxaSceneDescription::StaticStructure::get()
+{
+	return (NxaPruningStructure)nxSceneDesc->staticStructure;
+}
+
+void NxaSceneDescription::StaticStructure::set(NxaPruningStructure value)
+{
+	nxSceneDesc->staticStructure = (NxPruningStructure)value;
+}
+
+NxaPruningStructure NxaSceneDescription::DynamicStructure::get()
+{
+	return (NxaPruningStructure)nxSceneDesc->dynamicStructure;
+}
+
+void NxaSceneDescription::DynamicStructure::set(NxaPruningStructure value)
+{
+	nxSceneDesc->dynamicStructure = (NxPruningStructure)value;
+}

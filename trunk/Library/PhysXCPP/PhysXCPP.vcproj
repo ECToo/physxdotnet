@@ -48,7 +48,7 @@
 				RuntimeLibrary="3"
 				UsePrecompiledHeader="2"
 				GenerateXMLDocumentationFiles="false"
-				WarningLevel="3"
+				WarningLevel="2"
 				DebugInformationFormat="3"
 				CompileAs="2"
 			/>
@@ -293,11 +293,23 @@
 				>
 			</File>
 			<File
+				RelativePath=".\NxaJointDriveDescription.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\NxaJointLimitDescription.cpp"
 				>
 			</File>
 			<File
 				RelativePath=".\NxaJointLimitPairDescription.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\NxaJointLimitSoftDescription.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\NxaJointLimitSoftPairDescription.cpp"
 				>
 			</File>
 			<File
@@ -523,11 +535,23 @@
 				>
 			</File>
 			<File
+				RelativePath=".\NxaJointDriveDescription.h"
+				>
+			</File>
+			<File
 				RelativePath=".\NxaJointLimitDescription.h"
 				>
 			</File>
 			<File
 				RelativePath=".\NxaJointLimitPairDescription.h"
+				>
+			</File>
+			<File
+				RelativePath=".\NxaJointLimitSoftDescription.h"
+				>
+			</File>
+			<File
+				RelativePath=".\NxaJointLimitSoftPairDescription.h"
 				>
 			</File>
 			<File
