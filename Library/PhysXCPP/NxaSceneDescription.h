@@ -3,12 +3,52 @@
 #include "Nxap.h"
 class NxSceneDesc;
 
+public enum class NxaTimeStepMethod 
+{ 
+	Fixed, 
+	Variable,
+	Inherit
+};
+
+public enum class NxaSimulationType 
+{ 
+	Software = 0,
+	Hardware = 1,
+};
+
+public enum class NxaPruningStructure
+{
+	None,
+	Octree,
+	Quadtree,
+	DynamicAABBTree,
+	StaticAABBTree
+};
+
+public enum class NxaSceneFlags
+{
+	DisableSSE = (1<<0),
+	DisableCollisions = (1<<1),
+	SimulateSeparateThread = (1<<2),
+	EnableMultithread = (1<<3),
+	EnableActiveTransforms = (1<<4),
+	RestrictedScene = (1<<5),
+	DisableSceneMutex = (1<<6),
+	ForceConeFriction = (1<<7),
+	SequentialPrimary = (1<<8),
+	FluidPerformanceHint = (1<<9)
+};
+
 public ref class NxaSceneDescription
 {
 internal:
 	NxSceneDesc* nxSceneDesc;
 
 public:
+	NxaSceneDescription();
+	~NxaSceneDescription();
+	!NxaSceneDescription();
+
 	property Vector3 Gravity
 	{
 		Vector3 get();
@@ -135,13 +175,18 @@ public:
 		void set(NxaU32 value);
 	}
 
-	//TODO staticStructure
-	//TODO dynamicStructure
+	property NxaPruningStructure StaticStructure
+	{
+		NxaPruningStructure get();
+		void set(NxaPruningStructure value);
+	}
+
+	property NxaPruningStructure DynamicStructure
+	{
+		NxaPruningStructure get();
+		void set(NxaPruningStructure value);
+	}
 
 	property Object^ UserData;
 	property bool EnableRemoteDebugger;
-	
-	NxaSceneDescription(void);
-	~NxaSceneDescription(void);
-	!NxaSceneDescription(void);
 };
