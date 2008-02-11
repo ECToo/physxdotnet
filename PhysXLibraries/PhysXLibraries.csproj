@@ -47,7 +47,7 @@
     <Reference Include="mscorlib">
       <Private>False</Private>
     </Reference>
-    <Reference Include="PhysXCPP, Version=1.0.2937.41817, Culture=neutral, processorArchitecture=x86">
+    <Reference Include="PhysXCPP, Version=1.0.2962.41704, Culture=neutral, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Library\release\PhysXCPP.dll</HintPath>
     </Reference>
