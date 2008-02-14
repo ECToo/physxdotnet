@@ -43,6 +43,15 @@
 
 ==Chapter 3 - User Reports==
 
+|| *Lesson #* || *Lesson Title* || *Lesson Status* || *Functionality Status* ||
+|| 201 || Debug Renderer || Not Started || N/A ||
+|| 202 || Memory Allocator || Not Started || To Be Investigated ||
+|| 203 || Contact Report || Not Started || Not Started ||
+|| 204 || Trigger Report || Not Started || Not Started ||
+|| 205 || Raycast Report || Not Started || Not Started ||
+|| 206 || Entity || Not Started || Not Started ||
+|| 207 || Visual Remote Debugger || Not Started || Partially Implemented ||
+
 ==Chapter 4 - Large Scale Physics Effects==
 
 ==Chapter 5 - Tools==
