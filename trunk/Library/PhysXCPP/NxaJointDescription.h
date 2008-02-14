@@ -22,8 +22,6 @@ public:
 	
 	void SetGlobalAnchor(Vector3 anchor);
 	void SetGlobalAxis(Vector3 axis);
-	void ClearJointFlag(NxaJointFlag flag);
-	void RaiseJointFlag(NxaJointFlag flag);
 
 	property NxaActor^ Actor[int]
 	{
@@ -59,5 +57,14 @@ public:
 	{
 		float get();
 		void set(float max);
+	}
+
+	property Object^ UserData;
+	property String^ Name;
+
+	property NxaJointFlag JointFlags
+	{
+		NxaJointFlag get();
+		void set(NxaJointFlag value);
 	}
 };
