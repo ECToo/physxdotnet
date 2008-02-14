@@ -1,24 +1,25 @@
 #labels CurrentState
 ==Chapter 1 - Rigid Bodies==
 
-*Lesson 101 - Box on a Plane:* Complete
-*Lesson 102 - Sphere and Torque:* Complete
-
-*Lesson 103 - Capsule, LocalPose, and Center of Mass:* Complete
-
-*Lesson 104 - Convex Shapes and Anisotropic Friction:* Started, not commited.
-
-*Lesson 105 - Materials:* Not Started
-
-*Lesson 106 - Putting Actors to Sleep and Skin Width:* Not Started
-
-*Lesson 107 - Static and Kinematic Actors:* Not Started
-
-*Lesson 108 - Freeze flags and damping:* Not Started
-
-*Lesson 109 - Collision groups:* Not Started
-
-*Lesson 110 - Multi-shape actors:* Not Started
+|| *Lesson #* || *Lesson Status* || *Functionality Status* ||
+|| 101 || Complete || *Complete* ||
+|| 102 || Complete || *Complete* ||
+|| 103 || Complete || *Complete* ||
+|| 104 || Pending || Pending ||
+|| 105 || Not Started || Probably Complete ||
+|| 106 || Not Started || Mostly Complete ||
+|| 107 || Not Started || Probably Complete ||
+|| 108 || Not Started || Probably Complete ||
+|| 109 || Not Started || Probably Complete ||
+|| 110 || Not Started || Probably Complete ||
+|| 111 || Not Started || Probably Complete ||
+|| 112 || Not Started || Probably Complete ||
+|| 113 || Not Started || Pending ||
+|| 114 || Not Started || Not Started ||
+|| 115 || Not Started || Not Started ||
+|| 116 || Not Started || Mostly Complete ||
+|| 117 || Not Started || Not Started ||
+|| 118 || Not Started || Partly Complete ||
 
 ==Chapter 2 - Joints==
 
