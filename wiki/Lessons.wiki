@@ -1,25 +1,25 @@
 #labels CurrentState
 ==Chapter 1 - Rigid Bodies==
 
-|| *Lesson #* || *Lesson Status* || *Functionality Status* ||
-|| 101 || Complete || *Complete* ||
-|| 102 || Complete || *Complete* ||
-|| 103 || Complete || *Complete* ||
-|| 104 || Pending || Pending ||
-|| 105 || Not Started || Probably Complete ||
-|| 106 || Not Started || Mostly Complete ||
-|| 107 || Not Started || Probably Complete ||
-|| 108 || Not Started || Probably Complete ||
-|| 109 || Not Started || Probably Complete ||
-|| 110 || Not Started || Probably Complete ||
-|| 111 || Not Started || Probably Complete ||
-|| 112 || Not Started || Probably Complete ||
-|| 113 || Not Started || Pending ||
-|| 114 || Not Started || Not Started ||
-|| 115 || Not Started || Not Started ||
-|| 116 || Not Started || Mostly Complete ||
-|| 117 || Not Started || Not Started ||
-|| 118 || Not Started || Partly Complete ||
+|| *Lesson #* || Lesson Title || *Lesson Status* || *Functionality Status* ||
+|| 101 || || Complete || *Complete* ||
+|| 102 || || Complete || *Complete* ||
+|| 103 || || Complete || *Complete* ||
+|| 104 || || Pending || Pending ||
+|| 105 || || Not Started || Probably Complete ||
+|| 106 || || Not Started || Mostly Complete ||
+|| 107 || || Not Started || Probably Complete ||
+|| 108 || || Not Started || Probably Complete ||
+|| 109 || || Not Started || Probably Complete ||
+|| 110 || || Not Started || Probably Complete ||
+|| 111 || || Not Started || Probably Complete ||
+|| 112 || || Not Started || Probably Complete ||
+|| 113 || || Not Started || Pending ||
+|| 114 || || Not Started || Not Started ||
+|| 115 || || Not Started || Not Started ||
+|| 116 || || Not Started || Mostly Complete ||
+|| 117 || || Not Started || Not Started ||
+|| 118 || || Not Started || Partly Complete ||
 
 ==Chapter 2 - Joints==
 
