@@ -74,18 +74,6 @@ void NxaJointDescription::SetGlobalAxis(Vector3 axis)
 	nxJointDesc->setGlobalAxis(NxaMath::Vector3XNAToPhysX(axis));
 }
 
-void NxaJointDescription::RaiseJointFlag(NxaJointFlag flag)
-{
-	if((int)flag && (int)NxaJointFlag::Collision_Enabled)
-		nxJointDesc->jointFlags = nxJointDesc->jointFlags | NX_JF_COLLISION_ENABLED;
-}
-
-void NxaJointDescription::ClearJointFlag(NxaJointFlag flag)
-{
-	if((int)flag && (int)NxaJointFlag::Collision_Enabled)
-		nxJointDesc->jointFlags = nxJointDesc->jointFlags & ~NX_JF_COLLISION_ENABLED;
-}
-
 float NxaJointDescription::MaxForce::get()
 {
 	return nxJointDesc->maxForce;
@@ -106,4 +94,12 @@ void NxaJointDescription::MaxTorque::set(float max)
 	nxJointDesc->maxTorque = max;
 }
 
-	
+NxaJointFlag NxaJointDescription::JointFlags::get()
+{
+	return (NxaJointFlag)nxJointDesc->jointFlags;
+}
+
+void NxaJointDescription::JointFlags::set(NxaJointFlag value)
+{
+	nxJointDesc->jointFlags = (NxU32)value;
+}

@@ -123,7 +123,8 @@ public enum class NxaJointState
 
 public enum class NxaJointFlag : NxaU32 
 { 
-	Collision_Enabled = (1<<0) 
+	CollisionEnabled = (1<<0),
+	Visualization = (1<<1)
 };
 
 public enum class NxaJointProjectionMode
