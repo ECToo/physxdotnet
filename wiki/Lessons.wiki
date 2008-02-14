@@ -2,7 +2,6 @@
 ==Chapter 1 - Rigid Bodies==
 
 *Lesson 101 - Box on a Plane:* Complete
-
 *Lesson 102 - Sphere and Torque:* Complete
 
 *Lesson 103 - Capsule, LocalPose, and Center of Mass:* Complete
