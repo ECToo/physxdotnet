@@ -1,6 +1,5 @@
 #pragma once
 
-//#include "NxJointLimitDesc.h"
 class NxJointLimitDesc;
 
 public ref class NxaJointLimitDescription
@@ -11,8 +10,6 @@ internal:
 
 public:
 	NxaJointLimitDescription();
-	~NxaJointLimitDescription();
-	!NxaJointLimitDescription();
 
 	property float Value
 	{
