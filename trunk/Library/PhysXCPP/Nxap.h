@@ -141,6 +141,19 @@ public enum class NxaRevoluteJointFlag : NxaU32
 	SpringEnabled = (1<<2)
 };
 
+public enum class NxaDistanceJointFlag : NxaU32
+{
+	MaxDistanceEnabled = 1 << 0,
+	MinDistanceEnabled = 1 << 1,
+	SpringEnabled = 1 << 2
+};
+
+public enum class NxaPulleyJointFlag : NxaU32
+{
+	IsRigid = 1 << 0,
+	MotorEnabled = 1 << 1
+};
+
 public enum class NxaMaterialFlag : NxaU32 
 { 
 	Anisotropic = (1<<0), 

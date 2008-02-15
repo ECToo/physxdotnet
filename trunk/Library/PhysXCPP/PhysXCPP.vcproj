@@ -269,6 +269,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\NxaDistanceJoint.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\NxaDistanceJointDescription.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\NxaFixedJoint.cpp"
 				>
 			</File>
@@ -508,6 +516,14 @@
 			</File>
 			<File
 				RelativePath=".\NxaD6JointDescription.h"
+				>
+			</File>
+			<File
+				RelativePath=".\NxaDistanceJoint.h"
+				>
+			</File>
+			<File
+				RelativePath=".\NxaDistanceJointDescription.h"
 				>
 			</File>
 			<File
