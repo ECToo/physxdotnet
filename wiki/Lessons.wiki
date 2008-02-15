@@ -50,7 +50,7 @@
 || 304 || Trigger Report || Not Started || Not Started ||
 || 305 || Raycast Report || Not Started || Not Started ||
 || 306 || Entity || Not Started || Not Started ||
-|| 307 || Visual Remote Debugger || Not Started || Partially Implemented ||
+|| 307 || Visual Remote Debugger || Not Started || Partially Complete ||
 
 ==Chapter 4 - Large Scale Physics Effects==
 
@@ -69,12 +69,51 @@
 
 ==Chapter 5 - Tools==
 
+|| *Lesson #* || *Lesson Title* || *Lesson Status* || *Functionality Status* ||
+|| 501 || Core Dump || Not Started || Not Started ||
+|| 502 || Loading PML Files || Not Started || Not Started ||
+|| 503 || Switching Coordinate Systems || Not Started || Partially Complete ||
+|| 504 || Scene Export || Not Started || Not Started ||
+|| 505 || Asset Export || Not Started || Not Started ||
+
 ==Chapter 6 - Gameplay Physics==
+
+|| *Lesson #* || *Lesson Title* || *Lesson Status* || *Functionality Status* ||
+|| 601 || Heightfields || Not Started || Not Started ||
+|| 602 || Loading PML Files || Not Started || Not Started ||
+|| 605 || Switching Coordinate Systems || Not Started || Not Started ||
 
 ==Chapter 7 - Vehicles==
 
+|| *Lesson #* || *Lesson Title* || *Lesson Status* || *Functionality Status* ||
+|| 701 || Wheel Shapes || Not Started || Not Started ||
+|| 702 || Suspension and Torque || Not Started || Not Started ||
+|| 703 || Switching Coordinate Systems || Not Started || Not Started ||
+|| 704 || All Wheel Drive || Not Started || Not Started ||
+
 ==Chapter 8 - Integration==
+
+|| *Lesson #* || *Lesson Title* || *Lesson Status* || *Functionality Status* ||
+|| 801 || Running on hardware || Not Started || Probably Complete ||
+|| 802 || Multiple Scenes || Not Started || Probably Complete ||
+|| 803 || PhysX FX Integration || Not Started || Probably Complete ||
+|| 804 || Mesh Paging || Not Started || Not Started ||
+|| 805 || User Controlled Threads || Not Started || Not Started ||
 
 ==Chapter 9 - Fluids==
 
+|| *Lesson #* || *Lesson Title* || *Lesson Status* || *Functionality Status* ||
+|| 901 || Fluids || Not Started || Not Started ||
+|| 902 || Fluid Emitters || Not Started || Not Started ||
+|| 903 || Fluids and Mesh Files || Not Started || Not Started ||
+
 ==Chapter 10 - Cloth==
+
+|| *Lesson #* || *Lesson Title* || *Lesson Status* || *Functionality Status* ||
+|| 1001 || Cloth || Not Started || Not Started ||
+|| 1002 || External Forces || Not Started || Not Started ||
+|| 1003 || Damping || Not Started || Not Started ||
+|| 1004 || Pipe || Not Started || Not Started ||
+|| 1005 || Attachment || Not Started || Not Started ||
+|| 1006 || Tearing || Not Started || Not Started ||
+|| 1007 || Pressure || Not Started || Not Started ||
