@@ -25,7 +25,7 @@
 
 || *Lesson #* || *Lesson Title* || *Lesson Status* || *Functionality Status* ||
 || 201 || Joints || *Complete* || *Complete* ||
-|| 202 || Joint Limit Values || Not Started || Probably Complete ||
+|| 202 || Joint Limit Values || *Complete* || *Complete* ||
 || 203 || Joint Limit Planes || Not Started || Probably Complete ||
 || 204 || Joint Springs || Not Started || Probably Complete ||
 || 205 || Joint Motors || Not Started || Probably Complete ||
