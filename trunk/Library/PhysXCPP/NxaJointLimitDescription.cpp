@@ -15,16 +15,6 @@ NxaJointLimitDescription::NxaJointLimitDescription(void)
 	nxJointLimitDesc = new NxJointLimitDesc();
 }
 
-NxaJointLimitDescription::~NxaJointLimitDescription(void)
-{
-	this->!NxaJointLimitDescription();
-}
-
-NxaJointLimitDescription::!NxaJointLimitDescription(void)
-{
-	delete nxJointLimitDesc;
-}
-
 float NxaJointLimitDescription::Value::get()
 {
 	return nxJointLimitDesc->value;

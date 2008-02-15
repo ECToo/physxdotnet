@@ -15,6 +15,9 @@ internal:
 public:
 	NxaRevoluteJointDescription(void);
 
+	void SetToDefault();
+	bool IsValid();
+
 	property NxaJointLimitPairDescription^ Limit
 	{
 		NxaJointLimitPairDescription^ get();
@@ -56,6 +59,4 @@ public:
 		NxaJointProjectionMode get();
 		void set(NxaJointProjectionMode value);
 	}
-	void SetToDefault();
-	bool IsValid();
 };
