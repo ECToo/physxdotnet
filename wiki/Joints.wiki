@@ -3,7 +3,7 @@ This is the current state of 'joints' in the wrapper:
 
  * *Cylindrical Joint:* Not Started.
  * *D6 Joint:* Complete.
- * *Distance Joint:* Not Started.
+ * *Distance Joint:* Complete (not tested).
  * *Fixed Joint:* Functional, not yet complete.
  * *Point In Plane Joint:* Not Started.
  * *Point On Line Joint:* Complete.
