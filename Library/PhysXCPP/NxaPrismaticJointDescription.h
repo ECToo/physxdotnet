@@ -2,16 +2,19 @@
 
 #include "NxaJointDescription.h"
 
-#include "NxPrismaticJointDesc.h"
+class NxScene;
+class NxPrismaticJointDesc;
 
 public ref class NxaPrismaticJointDescription : public NxaJointDescription
 {
 internal:
-	NxaPrismaticJointDescription(NxPrismaticJointDesc* ptr);
+	virtual void LoadFromNative(NxPrismaticJointDesc& desc);
+	virtual NxPrismaticJointDesc ConvertToNative();
+	virtual NxaJoint^ CreateJoint(NxScene* scenePtr) override;
 
 public:
-	NxaPrismaticJointDescription(void);
+	NxaPrismaticJointDescription();
 
-	void SetToDefault();
-	bool IsValid();
+	virtual void SetToDefault() override;
+	virtual bool IsValid() override;
 };

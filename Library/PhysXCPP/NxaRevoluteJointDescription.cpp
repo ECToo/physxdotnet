@@ -1,94 +1,68 @@
 #include "StdAfx.h"
 #include "NxaRevoluteJointDescription.h"
-
+#include "NxaJoint.h"
+#include "NxScene.h"
 #include "NxRevoluteJointDesc.h"
 
-NxaRevoluteJointDescription::NxaRevoluteJointDescription(NxRevoluteJointDesc *ptr)
+void NxaRevoluteJointDescription::LoadFromNative(NxRevoluteJointDesc& desc)
 {
-	nxJointDesc = ptr;
+	NxaJointDescription::LoadFromNative(desc);
 }
 
-NxaRevoluteJointDescription::NxaRevoluteJointDescription(void)
+NxRevoluteJointDesc NxaRevoluteJointDescription::ConvertToNative()
 {
-	nxJointDesc = new NxRevoluteJointDesc();
+	NxRevoluteJointDesc revoluteDesc;
+
+	NxaJointDescription::ConvertToNative(revoluteDesc);
+
+	//RevoluteJointDescription Stuff
+	revoluteDesc.limit = Limit.ConvertToNative();
+	revoluteDesc.motor = Motor.ConvertToNative();
+	revoluteDesc.spring = Spring.ConvertToNative();
+	revoluteDesc.projectionDistance = ProjectionDistance;
+	revoluteDesc.projectionAngle = ProjectionAngle;
+	revoluteDesc.flags = (NxU32)Flags;
+	revoluteDesc.projectionMode = (NxJointProjectionMode)ProjectionMode;
+
+	return revoluteDesc;
 }
 
-NxaJointLimitPairDescription^ NxaRevoluteJointDescription::Limit::get()
+NxaJoint^ NxaRevoluteJointDescription::CreateJoint(NxScene* scenePtr)
 {
-	return gcnew NxaJointLimitPairDescription(&(((NxRevoluteJointDesc*)nxJointDesc)->limit));
+	NxRevoluteJointDesc revoluteDesc = ConvertToNative();	
+
+	NxJoint* jointPtr = scenePtr->createJoint(revoluteDesc);
+	return NxaJoint::CreateFromPointer(jointPtr);
 }
 
-void NxaRevoluteJointDescription::Limit::set(NxaJointLimitPairDescription^ value)
+NxaRevoluteJointDescription::NxaRevoluteJointDescription() : NxaJointDescription(NxaJointType::Revolute)
 {
-	((NxRevoluteJointDesc*)nxJointDesc)->limit = *(value->nxJointLimitPairDesc);
-}
-
-NxaMotorDescription^ NxaRevoluteJointDescription::Motor::get()
-{
-	return gcnew NxaMotorDescription(&(((NxRevoluteJointDesc*)nxJointDesc)->motor));
-}
-
-void NxaRevoluteJointDescription::Motor::set(NxaMotorDescription^ value)
-{
-	((NxRevoluteJointDesc*)nxJointDesc)->motor = *(value->nxMotorDesc);
-}
-
-NxaSpringDescription^ NxaRevoluteJointDescription::Spring::get()
-{
-	return gcnew NxaSpringDescription(&(((NxRevoluteJointDesc*)nxJointDesc)->spring));
-}
-
-void NxaRevoluteJointDescription::Spring::set(NxaSpringDescription^ value)
-{
-	((NxRevoluteJointDesc*)nxJointDesc)->spring = *(value->nxSpringDesc);
-}
-
-float NxaRevoluteJointDescription::ProjectionDistance::get()
-{
-	return ((NxRevoluteJointDesc*)nxJointDesc)->projectionDistance;
-}
-
-void NxaRevoluteJointDescription::ProjectionDistance::set(float value)
-{
-	((NxRevoluteJointDesc*)nxJointDesc)->projectionDistance = value;
-}
-
-float NxaRevoluteJointDescription::ProjectionAngle::get()
-{
-	return ((NxRevoluteJointDesc*)nxJointDesc)->projectionAngle;
-}
-
-void NxaRevoluteJointDescription::ProjectionAngle::set(float value)
-{
-	((NxRevoluteJointDesc*)nxJointDesc)->projectionAngle = value;
-}
-
-NxaRevoluteJointFlag NxaRevoluteJointDescription::Flags::get()
-{
-	return (NxaRevoluteJointFlag)(((NxRevoluteJointDesc*)nxJointDesc)->flags);
-}
-
-void NxaRevoluteJointDescription::Flags::set(NxaRevoluteJointFlag value)
-{
-	((NxRevoluteJointDesc*)nxJointDesc)->flags = (NxRevoluteJointFlag)value;
-}
-
-NxaJointProjectionMode NxaRevoluteJointDescription::ProjectionMode::get()
-{
-	return (NxaJointProjectionMode)(((NxRevoluteJointDesc*)nxJointDesc)->projectionMode);
-}
-
-void NxaRevoluteJointDescription::ProjectionMode::set(NxaJointProjectionMode value)
-{
-	((NxRevoluteJointDesc*)nxJointDesc)->projectionMode = (NxJointProjectionMode)value;
+	SetToDefault();
 }
 
 void NxaRevoluteJointDescription::SetToDefault()
 {
-	((NxRevoluteJointDesc*)nxJointDesc)->setToDefault();
+	NxaJointDescription::SetToDefault();
+	
+	ProjectionDistance = 1.0f;
+	ProjectionAngle = 0.0872f; //about 5 degrees in radians.
+
+	Limit.SetToDefault();
+	Motor.SetToDefault();
+	Spring.SetToDefault();
+
+	Flags = (NxaRevoluteJointFlag)0;
+	ProjectionMode = NxaJointProjectionMode::None;
 }
 
 bool NxaRevoluteJointDescription::IsValid()
 {
-	return ((NxRevoluteJointDesc*)nxJointDesc)->isValid();
+	if(ProjectionDistance < 0.0f) return false;
+	if(ProjectionAngle < 0.02f) return false;
+
+	if(!Limit.IsValid()) return false;
+	if(!Motor.IsValid()) return false;
+	if(!Spring.IsValid()) return false;
+
+	return NxaJointDescription::IsValid();
 }

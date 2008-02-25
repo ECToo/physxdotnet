@@ -3,6 +3,7 @@
 #include "NxaDistanceJointDescription.h"
 
 #include "NxDistanceJoint.h"
+#include "NxDistanceJointDesc.h"
 
 
 NxaDistanceJoint::NxaDistanceJoint(NxDistanceJoint* nxDistanceJoint)
@@ -12,12 +13,17 @@ NxaDistanceJoint::NxaDistanceJoint(NxDistanceJoint* nxDistanceJoint)
 
 void NxaDistanceJoint::LoadFromDescription(NxaDistanceJointDescription ^desc)
 {
-	NxDistanceJointDesc* nxDesc = (NxDistanceJointDesc*)(desc->nxJointDesc);
-	((NxDistanceJoint*)nxJoint)->loadFromDesc(*nxDesc);
+	NxDistanceJoint* ptr = (NxDistanceJoint*)nxJoint;
+	NxDistanceJointDesc distanceDesc = desc->ConvertToNative();
+	ptr->loadFromDesc(distanceDesc);
 }
 
 void NxaDistanceJoint::SaveToDescription([Out] NxaDistanceJointDescription^% desc)
 {
-	NxDistanceJointDesc* ptr = (NxDistanceJointDesc*)desc->nxJointDesc;
-	((NxDistanceJoint*)nxJoint)->saveToDesc(*ptr);
+	NxDistanceJoint* ptr = (NxDistanceJoint*)nxJoint;
+
+	NxDistanceJointDesc distanceDesc;
+	ptr->saveToDesc(distanceDesc);
+
+	desc->LoadFromNative(distanceDesc);
 }

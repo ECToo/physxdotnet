@@ -1,66 +1,63 @@
 #include "StdAfx.h"
 #include "NxaDistanceJointDescription.h"
-
 #include "NxDistanceJointDesc.h"
+#include "NxScene.h"
+#include "NxaJoint.h"
 
-NxaDistanceJointDescription::NxaDistanceJointDescription(NxDistanceJointDesc *ptr)
+void NxaDistanceJointDescription::LoadFromNative(NxDistanceJointDesc& desc)
 {
-	nxJointDesc = ptr;
+	NxaJointDescription::LoadFromNative(desc);
+
+	MaxDistance = desc.maxDistance;
+	MinDistance = desc.minDistance;
+	Flags = (NxaDistanceJointFlag)desc.flags;
+	Spring.LoadFromNative(desc.spring);
 }
 
-NxaDistanceJointDescription::NxaDistanceJointDescription(void)
+NxDistanceJointDesc NxaDistanceJointDescription::ConvertToNative()
 {
-	nxJointDesc = new NxDistanceJointDesc();
+	NxDistanceJointDesc distanceDesc;
+
+	NxaJointDescription::ConvertToNative(distanceDesc);
+
+	//DistanceJointDescription Stuff
+	distanceDesc.maxDistance = MaxDistance;
+	distanceDesc.minDistance = MinDistance;
+	distanceDesc.flags = (NxU32)Flags;
+	distanceDesc.spring = Spring.ConvertToNative();
+
+	return distanceDesc;
 }
 
-float NxaDistanceJointDescription::MaxDistance::get()
+NxaJoint^ NxaDistanceJointDescription::CreateJoint(NxScene* scenePtr)
 {
-	return ((NxDistanceJointDesc*)nxJointDesc)->maxDistance;
+	NxDistanceJointDesc distanceDesc = ConvertToNative();	
+
+	NxJoint* jointPtr = scenePtr->createJoint(distanceDesc);
+	return NxaJoint::CreateFromPointer(jointPtr);
 }
 
-void NxaDistanceJointDescription::MaxDistance::set(float value)
+NxaDistanceJointDescription::NxaDistanceJointDescription() : NxaJointDescription(NxaJointType::Distance)
 {
-	((NxDistanceJointDesc*)nxJointDesc)->maxDistance = value;
+	SetToDefault();
 }
-
-float NxaDistanceJointDescription::MinDistance::get()
-{
-	return ((NxDistanceJointDesc*)nxJointDesc)->minDistance;
-}
-
-void NxaDistanceJointDescription::MinDistance::set(float value)
-{
-	((NxDistanceJointDesc*)nxJointDesc)->minDistance = value;
-}
-
-NxaSpringDescription^ NxaDistanceJointDescription::Spring::get()
-{
-	return gcnew NxaSpringDescription(&(((NxDistanceJointDesc*)nxJointDesc)->spring));
-}
-
-void NxaDistanceJointDescription::Spring::set(NxaSpringDescription^ value)
-{
-	((NxDistanceJointDesc*)nxJointDesc)->spring = *(value->nxSpringDesc);
-}
-
-NxaDistanceJointFlag NxaDistanceJointDescription::Flags::get()
-{
-	return (NxaDistanceJointFlag)(((NxDistanceJointDesc*)nxJointDesc)->flags);
-}
-
-void NxaDistanceJointDescription::Flags::set(NxaDistanceJointFlag value)
-{
-	((NxDistanceJointDesc*)nxJointDesc)->flags = (NxDistanceJointFlag)value;
-}
-
-
 
 void NxaDistanceJointDescription::SetToDefault()
 {
-	((NxDistanceJointDesc*)nxJointDesc)->setToDefault();
+	NxaJointDescription::SetToDefault();
+
+	MaxDistance = 0.0f;
+	MinDistance = 0.0f;
+	Flags = (NxaDistanceJointFlag)0;
 }
 
 bool NxaDistanceJointDescription::IsValid()
 {
-	return ((NxDistanceJointDesc*)nxJointDesc)->isValid();
+	if(MaxDistance < 0) return false;
+	if(MinDistance < 0) return false;
+
+	if((MinDistance > MaxDistance) && (Flags == (NxaDistanceJointFlag::MinDistanceEnabled | NxaDistanceJointFlag::MaxDistanceEnabled))) return false;
+	if(!Spring.IsValid()) return false;
+
+	return NxaJointDescription::IsValid();
 }

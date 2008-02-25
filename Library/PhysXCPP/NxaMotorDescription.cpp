@@ -1,81 +1,51 @@
 #include "StdAfx.h"
-
-#include "Nxp.h"
+#include "NxaMotorDescription.h"
 #include "NxMotorDesc.h"
 
-#include "NxaMotorDescription.h"
-
-NxaMotorDescription::NxaMotorDescription(NxMotorDesc *ptr)
+void NxaMotorDescription::LoadFromNative(NxMotorDesc& desc)
 {
-	nxMotorDesc = ptr;
+	VelocityTarget = desc.velTarget;
+	MaxForce = desc.maxForce;
+	FreeSpin = (desc.freeSpin == NX_TRUE);
+}
+
+NxMotorDesc NxaMotorDescription::ConvertToNative()
+{
+	NxMotorDesc desc(VelocityTarget, MaxForce, FreeSpin);
+	return desc;
 }
 
 NxaMotorDescription::NxaMotorDescription()
 {
-	nxMotorDesc = new NxMotorDesc();
+	SetToDefault();
 }
 
-NxaMotorDescription::NxaMotorDescription(float targetVelocity, float maxForce, bool freeSpin)
+NxaMotorDescription::NxaMotorDescription(float velocityTarget, float maxForce, bool freeSpin)
 {
-	nxMotorDesc = new NxMotorDesc(targetVelocity, maxForce, freeSpin);
+	VelocityTarget = velocityTarget;
+	MaxForce = maxForce;
+	FreeSpin = freeSpin;
 }
 
-NxaMotorDescription::NxaMotorDescription(float targetVelocity, float maxForce)
+NxaMotorDescription::NxaMotorDescription(float velocityTarget, float maxForce)
 {
-	nxMotorDesc = new NxMotorDesc(targetVelocity, maxForce);
+	VelocityTarget = velocityTarget;
+	MaxForce = maxForce;
 }
 
-NxaMotorDescription::NxaMotorDescription(float targetVelocity)
+NxaMotorDescription::NxaMotorDescription(float velocityTarget)
 {
-	nxMotorDesc = new NxMotorDesc(targetVelocity);
-}
-
-NxaMotorDescription::~NxaMotorDescription()
-{
-	this->!NxaMotorDescription();
-}
-
-NxaMotorDescription::!NxaMotorDescription()
-{
-	delete nxMotorDesc;
-}
-
-float NxaMotorDescription::TargetVelocity::get()
-{
-	return nxMotorDesc->velTarget;
-}
-
-void NxaMotorDescription::TargetVelocity::set(float value)
-{
-	nxMotorDesc->velTarget = value;
-}
-
-float NxaMotorDescription::MaxForce::get()
-{
-	return nxMotorDesc->maxForce;
-}
-
-void NxaMotorDescription::MaxForce::set(float value)
-{
-	nxMotorDesc->maxForce = value;
-}
-
-bool NxaMotorDescription::FreeSpin::get()
-{
-	return nxMotorDesc->freeSpin;
-}
-
-void NxaMotorDescription::FreeSpin::set(bool value)
-{
-	nxMotorDesc->freeSpin = value;
+	VelocityTarget = velocityTarget;
 }
 
 void NxaMotorDescription::SetToDefault()
 {
-	nxMotorDesc->setToDefault();
+	VelocityTarget = float::MaxValue;
+	MaxForce = 0;
+	FreeSpin = 0;
 }
 
 bool NxaMotorDescription::IsValid()
 {
-	return nxMotorDesc->isValid();
+	return MaxForce >= 0;
 }

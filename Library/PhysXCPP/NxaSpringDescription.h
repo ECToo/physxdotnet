@@ -1,38 +1,22 @@
 #pragma once
 
-#include "NxSpringDesc.h"
+class NxSpringDesc;
 
 public ref class NxaSpringDescription
 {
 internal:
-	NxSpringDesc* nxSpringDesc;
-	NxaSpringDescription(NxSpringDesc* ptr);
+	void LoadFromNative(NxSpringDesc& desc);
+	NxSpringDesc ConvertToNative();
 
 public:
 	NxaSpringDescription(float spring, float damper, float targetValue);
 	NxaSpringDescription(float spring, float damper);
 	NxaSpringDescription(float spring);
-	NxaSpringDescription(void);
-	~NxaSpringDescription(void);
-	!NxaSpringDescription(void);
+	NxaSpringDescription();
 
-	property float Spring
-	{
-		float get();
-		void set(float value);
-	}
-
-	property float Damper
-	{
-		float get();
-		void set(float value);
-	}
-
-	property float TargetValue
-	{
-		float get();
-		void set(float value);
-	}
+	float Spring;
+	float Damper;
+	float TargetValue;
 
 	void SetToDefault();
 	bool IsValid();

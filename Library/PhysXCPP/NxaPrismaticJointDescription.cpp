@@ -1,24 +1,42 @@
 #include "StdAfx.h"
 #include "NxaPrismaticJointDescription.h"
-
+#include "NxaJoint.h"
 #include "NxPrismaticJointDesc.h"
+#include "NxScene.h"
 
-NxaPrismaticJointDescription::NxaPrismaticJointDescription(NxPrismaticJointDesc *ptr)
+void NxaPrismaticJointDescription::LoadFromNative(NxPrismaticJointDesc& desc)
 {
-	nxJointDesc = ptr;
+	NxaJointDescription::LoadFromNative(desc);
 }
 
-NxaPrismaticJointDescription::NxaPrismaticJointDescription(void)
+NxPrismaticJointDesc NxaPrismaticJointDescription::ConvertToNative()
 {
-	nxJointDesc = new NxPrismaticJointDesc();
+	NxPrismaticJointDesc prismaticDesc;
+
+	NxaJointDescription::ConvertToNative(prismaticDesc);
+
+	return prismaticDesc;
+}
+
+NxaJoint^ NxaPrismaticJointDescription::CreateJoint(NxScene* scenePtr)
+{
+	NxPrismaticJointDesc prismaticDesc = ConvertToNative();	
+
+	NxJoint* jointPtr = scenePtr->createJoint(prismaticDesc);
+	return NxaJoint::CreateFromPointer(jointPtr);
+}
+
+NxaPrismaticJointDescription::NxaPrismaticJointDescription() : NxaJointDescription(NxaJointType::Prismatic)
+{
+	SetToDefault();
 }
 
 void NxaPrismaticJointDescription::SetToDefault()
 {
-	((NxPrismaticJointDesc*)nxJointDesc)->setToDefault();
+	NxaJointDescription::SetToDefault();
 }
 
 bool NxaPrismaticJointDescription::IsValid()
 {
-	return ((NxPrismaticJointDesc*)nxJointDesc)->isValid();
+	return NxaJointDescription::IsValid();
 }

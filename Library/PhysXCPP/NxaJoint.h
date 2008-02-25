@@ -8,6 +8,8 @@
 #include "NxJoint.h"
 #include "NxActor.h"
 
+//TODO Check all necessary headers and move code to cpp
+
 public ref class NxaJoint abstract
 {
 internal:

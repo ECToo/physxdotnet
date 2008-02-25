@@ -5,35 +5,19 @@ class NxMotorDesc;
 public ref class NxaMotorDescription
 {
 internal:
-	NxMotorDesc* nxMotorDesc;
-	NxaMotorDescription(NxMotorDesc* ptr);
+	void LoadFromNative(NxMotorDesc& desc);
+	NxMotorDesc ConvertToNative();
 
 public:
 	NxaMotorDescription();
-	NxaMotorDescription(float targetVelocity, float maxForce, bool freeSpin);
-	NxaMotorDescription(float targetVelocity, float maxForce);
-	NxaMotorDescription(float targetVelocity);
-	~NxaMotorDescription();
-	!NxaMotorDescription();
-
-	property float TargetVelocity
-	{
-		float get();
-		void set(float value);
-	}
-
-	property float MaxForce
-	{
-		float get();
-		void set(float value);
-	}
-
-	property bool FreeSpin
-	{
-		bool get();
-		void set(bool value);
-	}
+	NxaMotorDescription(float velocityTarget, float maxForce, bool freeSpin);
+	NxaMotorDescription(float velocityTarget, float maxForce);
+	NxaMotorDescription(float velocityTarget);
 
 	void SetToDefault();
 	bool IsValid();	
+
+	float VelocityTarget;
+	float MaxForce;
+	bool FreeSpin;
 };

@@ -11,3 +11,5 @@ using namespace System::Collections::Generic;
 using namespace System::Runtime::InteropServices;
 
 using namespace Microsoft::Xna::Framework;
+
+#include "NxaMath.h"

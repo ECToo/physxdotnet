@@ -198,7 +198,7 @@ array<NxaShape^>^ NxaActor::GetShapes()
 
 	NxShape* const* ptr = nxActor->getShapes();
 
-	for(int p = 0; p < numShapes; p++)
+	for(NxU32 p = 0; p < numShapes; p++)
 		shapeArray[p] = NxaShape::CreateFromPointer(ptr[p]);
 
 	return shapeArray;

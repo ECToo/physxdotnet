@@ -1,105 +1,133 @@
 #include "StdAfx.h"
 #include "NxaJointDescription.h"
+#include "NxJointDesc.h"
 
-NxaJointDescription::NxaJointDescription()
+void NxaJointDescription::LoadFromNative(NxJointDesc& desc)
 {
-
+	for(int i = 0; i < 2; i++)
+	{
+		Actor[i] = gcnew NxaActor(desc.actor[i]);
+		LocalAnchor[i] = NxaMath::Vector3PhysXToXNA(desc.localAnchor[i]);
+		LocalAxis[i] = NxaMath::Vector3PhysXToXNA(desc.localAxis[i]);
+		LocalNormal[i] = NxaMath::Vector3PhysXToXNA(desc.localNormal[i]);
+	}
+	
+	MaxForce = desc.maxForce;
+	MaxTorque = desc.maxTorque;
+	JointFlags = (NxaJointFlag)desc.jointFlags;
 }
 
-NxaJointDescription::NxaJointDescription(NxJointDesc *ptr)
+void NxaJointDescription::ConvertToNative(NxJointDesc& desc)
 {
-	nxJointDesc = ptr;
+	desc.actor[0] = Actor[0]->nxActor;
+	desc.actor[1] = Actor[1]->nxActor;
+	desc.localAnchor[0] = NxaMath::Vector3XNAToPhysX(LocalAnchor[0]);
+	desc.localAnchor[1] = NxaMath::Vector3XNAToPhysX(LocalAnchor[1]);
+	desc.localAxis[0] = NxaMath::Vector3XNAToPhysX(LocalAxis[0]);
+	desc.localAxis[1] = NxaMath::Vector3XNAToPhysX(LocalAxis[1]);
+	desc.localNormal[0] = NxaMath::Vector3XNAToPhysX(LocalNormal[0]);
+	desc.localNormal[1] = NxaMath::Vector3XNAToPhysX(LocalNormal[1]);
+	desc.maxForce = MaxForce;
+	desc.maxTorque = MaxTorque;
+	desc.jointFlags = (NxU32)JointFlags;
 }
 
-NxaJointDescription::~NxaJointDescription(void)
+NxaJointDescription::NxaJointDescription(NxaJointType type)
 {
-	this->!NxaJointDescription();
+	jointType = type;
+
+	Actor = gcnew array<NxaActor^>(2);
+	LocalAnchor = gcnew array<Vector3>(2);
+	LocalAxis = gcnew array<Vector3>(2);
+	LocalNormal = gcnew array<Vector3>(2);
 }
 
-NxaJointDescription::!NxaJointDescription(void)
+void NxaJointDescription::SetToDefault()
 {
-	delete nxJointDesc;
+	for(int i = 0; i < 2; i++)
+	{
+		Actor[i] = nullptr;
+		LocalAnchor[i] = Vector3::Zero;
+		LocalAxis[i] = Vector3::UnitZ;
+		LocalNormal[i] = Vector3::UnitX;
+	}
+
+	MaxForce = float::MaxValue;
+	MaxTorque = float::MaxValue;
+	UserData = nullptr;
+	Name = nullptr;
+	JointFlags = NxaJointFlag::Visualization;
 }
 
-NxaActor^ NxaJointDescription::Actor::get(int x)
+bool NxaJointDescription::IsValid()
 {
-	return gcnew NxaActor(nxJointDesc->actor[x]); 
+	if(Actor[0]->nxActor == Actor[1]->nxActor)
+		return false;
+	if(!(Actor[0]->nxActor || Actor[1]->nxActor))
+		return false;
+
+	if(Actor[0]->nxActor && !Actor[0]->IsDynamic())
+		return false;
+	if(Actor[1]->nxActor && !Actor[1]->IsDynamic())
+		return false;
+
+	//Should be no need for JointType check given it is typed.
+
+	for(int i = 0; i < 2; i++)
+	{
+		if(Math::Abs(LocalAxis[i].LengthSquared() - 1.0f) > 0.1f)
+			return false;
+		if(Math::Abs(LocalNormal[i].LengthSquared() - 1.0f) > 0.1f)
+			return false;
+
+		if(Math::Abs(Vector3::Dot(LocalAxis[i], LocalNormal[i])) > 0.1f)
+			return false;
+	}
+
+	if(MaxForce <= 0)
+		return false;
+	if(MaxTorque <= 0)
+		return false;
+
+	return true;
 }
 
-void NxaJointDescription::Actor::set(int x, NxaActor^ value)
+NxaJointType NxaJointDescription::GetType()
 {
-	nxJointDesc->actor[x] = value->nxActor;
-}
-
-Vector3 NxaJointDescription::LocalAnchor::get(int x)
-{
-	NxVec3 vec = nxJointDesc->localAnchor[x];
-	return NxaMath::Vector3PhysXToXNA(vec);
-}
-
-void NxaJointDescription::LocalAnchor::set(int x, Vector3 value)
-{
-	nxJointDesc->localAnchor[x] = NxaMath::Vector3XNAToPhysX(value);
-}
-
-Vector3 NxaJointDescription::LocalAxis::get(int x)
-{
-	NxVec3 vec = nxJointDesc->localAxis[x];
-	return NxaMath::Vector3PhysXToXNA(vec);
-}
-
-void NxaJointDescription::LocalAxis::set(int x, Vector3 value)
-{
-	nxJointDesc->localAxis[x] = NxaMath::Vector3XNAToPhysX(value);
-}
-
-Vector3 NxaJointDescription::LocalNormal::get(int x)
-{
-	NxVec3 vec = nxJointDesc->localNormal[x];
-	return NxaMath::Vector3PhysXToXNA(vec);
-}
-
-void NxaJointDescription::LocalNormal::set(int x, Vector3 value)
-{
-	nxJointDesc->localNormal[x] = NxaMath::Vector3XNAToPhysX(value);
+	return jointType;
 }
 
 void NxaJointDescription::SetGlobalAnchor(Vector3 anchor)
 {
-	nxJointDesc->setGlobalAnchor(NxaMath::Vector3XNAToPhysX(anchor));
+	SetGlobalAnchor(0, anchor);
+	SetGlobalAnchor(1, anchor);
 }
 
 void NxaJointDescription::SetGlobalAxis(Vector3 axis)
 {
-	nxJointDesc->setGlobalAxis(NxaMath::Vector3XNAToPhysX(axis));
+	SetGlobalAxis(0, axis);
+	SetGlobalAxis(1, axis);
 }
 
-float NxaJointDescription::MaxForce::get()
+void NxaJointDescription::SetGlobalAnchor(int index, Vector3 worldAnchor)
 {
-	return nxJointDesc->maxForce;
-}
+	if(index < 0 || index > 1)
+		throw gcnew IndexOutOfRangeException("Index = " + index + ". 0 or 1 allowed.");
+	if(Actor[index] == nullptr)
+		throw gcnew NullReferenceException("Actor " + index + " is null.");
 
-void NxaJointDescription::MaxForce::set(float max)
-{
-	nxJointDesc->maxForce = max;
+	LocalAnchor[index] = Vector3::Transform(worldAnchor - Actor[index]->GetGlobalPosition(), Actor[index]->GetGlobalOrientation());
 }
-
-float NxaJointDescription::MaxTorque::get()
+	
+void NxaJointDescription::SetGlobalAxis(int index, Vector3 worldAxis)
 {
-	return nxJointDesc->maxTorque;
-}
+	if(index < 0 || index > 1)
+		throw gcnew IndexOutOfRangeException("Index = " + index + ". 0 or 1 allowed.");
+	if(Actor[index] == nullptr)
+		throw gcnew NullReferenceException("Actor " + index + " is null.");
 
-void NxaJointDescription::MaxTorque::set(float max)
-{
-	nxJointDesc->maxTorque = max;
-}
+	worldAxis.Normalize();
 
-NxaJointFlag NxaJointDescription::JointFlags::get()
-{
-	return (NxaJointFlag)nxJointDesc->jointFlags;
-}
-
-void NxaJointDescription::JointFlags::set(NxaJointFlag value)
-{
-	nxJointDesc->jointFlags = (NxU32)value;
+	LocalAxis[index] = NxaMath::TransformWorldNormalToLocal(Actor[index]->GetGlobalOrientation(), worldAxis);
+	LocalNormal[index] = NxaMath::GetPerpendicularVector(LocalAxis[index]);
 }

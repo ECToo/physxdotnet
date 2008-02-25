@@ -5,38 +5,17 @@ class NxJointLimitSoftDesc;
 public ref class NxaJointLimitSoftDescription
 {
 internal:
-	NxJointLimitSoftDesc* nxDesc;
-	NxaJointLimitSoftDescription(NxJointLimitSoftDesc* ptr);
+	void LoadFromNative(NxJointLimitSoftDesc& desc);
+	NxJointLimitSoftDesc ConvertToNative();
 
 public:
 	NxaJointLimitSoftDescription();
-	~NxaJointLimitSoftDescription();
-	!NxaJointLimitSoftDescription();
 
 	void SetToDefault();
 	bool IsValid();
 
-	property float Value
-	{
-		float get();
-		void set(float value);
-	}
-
-	property float Restitution
-	{
-		float get();
-		void set(float value);
-	}
-
-	property float Spring
-	{
-		float get();
-		void set(float value);
-	}
-
-	property float Damping
-	{
-		float get();
-		void set(float value);
-	}
+	float Value;
+	float Restitution;
+	float Spring;
+	float Damping;
 };

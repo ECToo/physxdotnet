@@ -2,6 +2,7 @@
 
 #include "NxaJoint.h"
 
+class NxD6Joint;
 ref class NxaD6JointDescription;
 
 public ref class NxaD6Joint : NxaJoint

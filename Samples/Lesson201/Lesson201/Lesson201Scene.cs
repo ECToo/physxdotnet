@@ -60,8 +60,8 @@ namespace Lesson201
         {
             NxaFixedJointDescription fixedDesc = new NxaFixedJointDescription();
 
-            fixedDesc.set_Actor(0, box1);
-            fixedDesc.set_Actor(1, box2);
+            fixedDesc.Actor[0] = box1;
+            fixedDesc.Actor[1] = box2;
             fixedDesc.SetGlobalAnchor(globalAnchor);
             fixedDesc.SetGlobalAxis(globalAxis);
 
@@ -71,8 +71,8 @@ namespace Lesson201
         private NxaRevoluteJoint CreateRevoluteJoint(NxaActor box1, NxaActor box2, Vector3 globalAnchor, Vector3 globalAxis)
         {
             NxaRevoluteJointDescription revDesc = new NxaRevoluteJointDescription();
-            revDesc.set_Actor(0, box1);
-            revDesc.set_Actor(1, box2);
+            revDesc.Actor[0] = box1;
+            revDesc.Actor[1] = box2;
             revDesc.SetGlobalAnchor(globalAnchor);
             revDesc.SetGlobalAxis(globalAxis);
 
@@ -81,6 +81,8 @@ namespace Lesson201
             revDesc.ProjectionMode = NxaJointProjectionMode.PointMinimumDistance;
             revDesc.ProjectionDistance = 1.0f;
             revDesc.ProjectionAngle = 0.0872f; // about 5 degrees in radians.
+
+            bool isValid = revDesc.IsValid();
 
             return (NxaRevoluteJoint)scene.CreateJoint(revDesc);
         }

@@ -65,6 +65,12 @@ public enum class NxaD6JointDriveType : NxaU32
 	DriveVelocity = (1<<1)
 };
 
+public enum class NxaD6JointFlag : NxaU32
+{
+	SlerpDrive = (1<<0),
+	GearEnabled = (1<<1)
+};
+
 public enum class NxaD6JointMotion
 {
 	Locked,
@@ -198,4 +204,20 @@ public enum class NxaShapeType : NxaU32
 	Heightfield 
 };
 
-public enum class NxaThreadPriority { High = 0, AboveNormal = 1, Normal = 2, BelowNormal = 3, Low = 4 };
+public enum class NxaSphericalJointFlag : NxaU32
+{
+	TwistLimitEnabled = (1<<0),
+	SwingLimitEnabled = (1<<1),
+	TwistSpringEnabled = (1<<2),
+	SwingSpringEnabled = (1<<3),
+	JointSpringEnabled = (1<<4)
+};
+
+public enum class NxaThreadPriority
+{	
+	High = 0, 
+	AboveNormal = 1, 
+	Normal = 2, 
+	BelowNormal = 3, 
+	Low = 4 
+};

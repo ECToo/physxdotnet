@@ -1,7 +1,9 @@
 #include "StdAfx.h"
 #include "NxaPointOnLineJoint.h"
+#include "NxaPointOnLineJointDescription.h"
 
 #include "NxPointOnLineJoint.h"
+#include "NxPointOnLineJointDesc.h"
 
 NxaPointOnLineJoint::NxaPointOnLineJoint(NxPointOnLineJoint* ptr)
 {
@@ -10,13 +12,17 @@ NxaPointOnLineJoint::NxaPointOnLineJoint(NxPointOnLineJoint* ptr)
 
 void NxaPointOnLineJoint::LoadFromDescription(NxaPointOnLineJointDescription ^desc)
 {
-	NxPointOnLineJointDesc* nxDesc = (NxPointOnLineJointDesc*)(desc->nxJointDesc);
-	((NxPointOnLineJoint*)nxJoint)->loadFromDesc(*nxDesc);
+	NxPointOnLineJoint* ptr = (NxPointOnLineJoint*)nxJoint;
+	NxPointOnLineJointDesc pointOnLineDesc = desc->ConvertToNative();
+	ptr->loadFromDesc(pointOnLineDesc);
 }
 
 void NxaPointOnLineJoint::SaveToDescription([Out] NxaPointOnLineJointDescription^% desc)
 {
-	NxPointOnLineJointDesc nxDesc;
-	((NxPointOnLineJoint*)nxJoint)->saveToDesc(nxDesc);
-	desc = gcnew NxaPointOnLineJointDescription(&nxDesc);
+	NxPointOnLineJoint* ptr = (NxPointOnLineJoint*)nxJoint;
+
+	NxPointOnLineJointDesc pointOnLineDesc;
+	ptr->saveToDesc(pointOnLineDesc);
+
+	desc->LoadFromNative(pointOnLineDesc);
 }

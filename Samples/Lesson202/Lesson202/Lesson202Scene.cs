@@ -24,10 +24,8 @@ namespace Lesson202
         NxaActor groundPlane;
         NxaActor box1, box2;
 
-        NxaFixedJoint fixedJoint;
         NxaRevoluteJoint revJoint;
         
-
         Vector3 forceDirection = Vector3.Zero;
         bool forceMode = true;
 
@@ -58,15 +56,15 @@ namespace Lesson202
         private NxaRevoluteJoint CreateRevoluteJoint(NxaActor box1, NxaActor box2, Vector3 globalAnchor, Vector3 globalAxis)
         {
             NxaRevoluteJointDescription revDesc = new NxaRevoluteJointDescription();
-            revDesc.set_Actor(0, box1);
-            revDesc.set_Actor(1, box2);
+            revDesc.Actor[0] = box1;
+            revDesc.Actor[1] = box2;
             revDesc.SetGlobalAnchor(globalAnchor);
             revDesc.SetGlobalAxis(globalAxis);
 
             revDesc.JointFlags |= NxaJointFlag.CollisionEnabled;
-
             revDesc.Flags = NxaRevoluteJointFlag.LimitEnabled;
-            revDesc.Limit.High.Value = 0.25f * (float)Math.PI;
+
+            revDesc.Limit.High.Value = (float)(0.25 * Math.PI);
             revDesc.Limit.High.Restitution = 1;
             revDesc.Limit.Low.Value = 0;
             revDesc.Limit.Low.Restitution = 1;

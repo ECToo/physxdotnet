@@ -1,9 +1,10 @@
 #pragma once
 
 #include "NxaJoint.h"
-#include "NxaPointOnLineJointDescription.h"
 
-#include "NxPointOnLineJointDesc.h"
+class NxPointOnLineJoint;
+ref class NxaPointOnLineJointDescription;
+
 
 public ref class NxaPointOnLineJoint : public NxaJoint
 {

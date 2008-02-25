@@ -1,56 +1,32 @@
 #include "StdAfx.h"
-
-#include "Nxp.h"
-#include "NxJointLimitPairDesc.h"
-
 #include "NxaJointLimitPairDescription.h"
 
-NxaJointLimitPairDescription::NxaJointLimitPairDescription(void)
+#include "NxJointLimitPairDesc.h"
+
+NxJointLimitPairDesc NxaJointLimitPairDescription::ConvertToNative()
 {
-	nxJointLimitPairDesc = new NxJointLimitPairDesc();
+	NxJointLimitPairDesc desc;
+	desc.low = Low.ConvertToNative();
+	desc.high = High.ConvertToNative();
+	return desc;
 }
 
-NxaJointLimitPairDescription::NxaJointLimitPairDescription(NxJointLimitPairDesc *ptr)
+NxaJointLimitPairDescription NxaJointLimitPairDescription::Default::get()
 {
-	nxJointLimitPairDesc = ptr;
-}
-
-NxaJointLimitPairDescription::~NxaJointLimitPairDescription(void)
-{
-	this->!NxaJointLimitPairDescription();
-}
-
-NxaJointLimitPairDescription::!NxaJointLimitPairDescription(void)
-{
-	delete nxJointLimitPairDesc;
-}
-
-NxaJointLimitDescription^ NxaJointLimitPairDescription::Low::get()
-{
-	return gcnew NxaJointLimitDescription(&(nxJointLimitPairDesc->low));
-}
-
-void NxaJointLimitPairDescription::Low::set(NxaJointLimitDescription^ value)
-{
-	nxJointLimitPairDesc->low = *(value->nxJointLimitDesc);
-}
-
-NxaJointLimitDescription^ NxaJointLimitPairDescription::High::get()
-{
-	return gcnew NxaJointLimitDescription(&(nxJointLimitPairDesc->high));
-}
-
-void NxaJointLimitPairDescription::High::set(NxaJointLimitDescription^ value)
-{
-	nxJointLimitPairDesc->high = *(value->nxJointLimitDesc);
+	NxaJointLimitPairDescription desc;
+	desc.SetToDefault();
+	return desc;
 }
 
 void NxaJointLimitPairDescription::SetToDefault()
 {
-	nxJointLimitPairDesc->setToDefault();
+	Low = NxaJointLimitDescription();
+	High = NxaJointLimitDescription();
+	Low.SetToDefault();
+	High.SetToDefault();
 }
 
 bool NxaJointLimitPairDescription::IsValid()
 {
-	return nxJointLimitPairDesc->isValid();
+	return (Low.IsValid() && High.IsValid() && Low.Value <= High.Value);
 }

@@ -2,30 +2,22 @@
 
 class NxJointLimitDesc;
 
-public ref class NxaJointLimitDescription
+public value class NxaJointLimitDescription
 {
 internal:
-	NxJointLimitDesc* nxJointLimitDesc;
-	NxaJointLimitDescription(NxJointLimitDesc* ptr);
+	NxJointLimitDesc ConvertToNative();
 
 public:
-	NxaJointLimitDescription();
 
-	property float Value
+	void SetToDefault();
+	bool IsValid();
+
+	static property NxaJointLimitDescription Default
 	{
-		float get();
-		void set(float value);
+		NxaJointLimitDescription get();
 	}
 
-	property float Restitution
-	{
-		float get();
-		void set(float value);
-	}
-
-	property float Hardness
-	{
-		float get();
-		void set(float value);
-	}
+	float Value;
+	float Restitution;
+	float Hardness;
 };

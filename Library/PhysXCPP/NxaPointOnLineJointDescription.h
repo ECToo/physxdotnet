@@ -2,16 +2,19 @@
 
 #include "NxaJointDescription.h"
 
-#include "NxPointOnLineJointDesc.h"
+class NxScene;
+class NxPointOnLineJointDesc;
 
 public ref class NxaPointOnLineJointDescription : public NxaJointDescription
 {
 internal:
-	NxaPointOnLineJointDescription(NxPointOnLineJointDesc* ptr);
+	virtual void LoadFromNative(NxPointOnLineJointDesc& desc);
+	virtual NxPointOnLineJointDesc ConvertToNative();
+	virtual NxaJoint^ CreateJoint(NxScene* scenePtr) override;
 
 public:
-	NxaPointOnLineJointDescription(void);
+	NxaPointOnLineJointDescription();
 
-	void SetToDefault();
-	bool IsValid();
+	virtual void SetToDefault() override;
+	virtual bool IsValid() override;
 };
