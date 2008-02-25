@@ -11,7 +11,7 @@ void NxaDistanceJointDescription::LoadFromNative(NxDistanceJointDesc& desc)
 	MaxDistance = desc.maxDistance;
 	MinDistance = desc.minDistance;
 	Flags = (NxaDistanceJointFlag)desc.flags;
-	Spring.LoadFromNative(desc.spring);
+	Spring->LoadFromNative(desc.spring);
 }
 
 NxDistanceJointDesc NxaDistanceJointDescription::ConvertToNative()
@@ -24,7 +24,7 @@ NxDistanceJointDesc NxaDistanceJointDescription::ConvertToNative()
 	distanceDesc.maxDistance = MaxDistance;
 	distanceDesc.minDistance = MinDistance;
 	distanceDesc.flags = (NxU32)Flags;
-	distanceDesc.spring = Spring.ConvertToNative();
+	distanceDesc.spring = Spring->ConvertToNative();
 
 	return distanceDesc;
 }
@@ -39,6 +39,7 @@ NxaJoint^ NxaDistanceJointDescription::CreateJoint(NxScene* scenePtr)
 
 NxaDistanceJointDescription::NxaDistanceJointDescription() : NxaJointDescription(NxaJointType::Distance)
 {
+	Spring = gcnew NxaSpringDescription();
 	SetToDefault();
 }
 
@@ -49,6 +50,7 @@ void NxaDistanceJointDescription::SetToDefault()
 	MaxDistance = 0.0f;
 	MinDistance = 0.0f;
 	Flags = (NxaDistanceJointFlag)0;
+	Spring->SetToDefault();
 }
 
 bool NxaDistanceJointDescription::IsValid()
@@ -57,7 +59,7 @@ bool NxaDistanceJointDescription::IsValid()
 	if(MinDistance < 0) return false;
 
 	if((MinDistance > MaxDistance) && (Flags == (NxaDistanceJointFlag::MinDistanceEnabled | NxaDistanceJointFlag::MaxDistanceEnabled))) return false;
-	if(!Spring.IsValid()) return false;
+	if(!Spring->IsValid()) return false;
 
 	return NxaJointDescription::IsValid();
 }
