@@ -3,323 +3,170 @@
 #include "NxaJointLimitSoftDescription.h"
 #include "NxaJointLimitSoftPairDescription.h"
 #include "NxaJointDriveDescription.h"
+#include "NxaJoint.h"
+#include "NxScene.h"
 #include "Nxap.h"
-
 #include "NxD6JointDesc.h"
 
-NxaD6JointDescription::NxaD6JointDescription(void)
+void NxaD6JointDescription::LoadFromNative(NxD6JointDesc& desc)
 {
-	nxJointDesc = new NxD6JointDesc();
+	NxaJointDescription::LoadFromNative(desc);
+
+	XMotion = (NxaD6JointMotion)desc.xMotion;
+	YMotion = (NxaD6JointMotion)desc.yMotion;
+	ZMotion = (NxaD6JointMotion)desc.zMotion;
+	Swing1Motion = (NxaD6JointMotion)desc.swing1Motion;
+	Swing2Motion = (NxaD6JointMotion)desc.swing2Motion;
+	TwistMotion = (NxaD6JointMotion)desc.twistMotion;
+
+	LinearLimit.LoadFromNative(desc.linearLimit);
+	Swing1Limit.LoadFromNative(desc.swing1Limit);
+	Swing2Limit.LoadFromNative(desc.swing2Limit);
+
+	TwistLimit.LoadFromNative(desc.twistLimit);
+
+	XDrive.LoadFromNative(desc.xDrive);
+	YDrive.LoadFromNative(desc.yDrive);
+	ZDrive.LoadFromNative(desc.zDrive);
+	SwingDrive.LoadFromNative(desc.swingDrive);
+	TwistDrive.LoadFromNative(desc.twistDrive);
+	SlerpDrive.LoadFromNative(desc.slerpDrive);
+
+	DrivePosition = NxaMath::Vector3PhysXToXNA(desc.drivePosition);
+	DriveOrientation = NxaMath::QuaternionPhysXToXNA(desc.driveOrientation);
+	DriveLinearVelocity = NxaMath::Vector3PhysXToXNA(desc.driveLinearVelocity);
+	DriveAngularVelocity = NxaMath::Vector3PhysXToXNA(desc.driveAngularVelocity);
+
+	ProjectionMode = (NxaJointProjectionMode)desc.projectionMode;
+	ProjectionDistance = desc.projectionDistance;
+	ProjectionAngle = desc.projectionAngle;
+
+	GearRatio = desc.gearRatio;
+	Flags = (NxaD6JointFlag)desc.flags;
+}
+
+NxD6JointDesc NxaD6JointDescription::ConvertToNative()
+{
+	NxD6JointDesc d6Desc;
+
+	NxaJointDescription::ConvertToNative(d6Desc);
+
+	// D6JointDesc Stuff
+	d6Desc.xMotion = (NxD6JointMotion)XMotion;
+	d6Desc.yMotion = (NxD6JointMotion)YMotion;
+	d6Desc.zMotion = (NxD6JointMotion)ZMotion;
+	d6Desc.swing1Motion= (NxD6JointMotion)Swing1Motion;
+	d6Desc.swing2Motion = (NxD6JointMotion)Swing2Motion;
+	d6Desc.twistMotion = (NxD6JointMotion)TwistMotion;
+
+	d6Desc.linearLimit = LinearLimit.ConvertToNative();
+	d6Desc.swing1Limit = Swing1Limit.ConvertToNative();
+	d6Desc.swing2Limit = Swing2Limit.ConvertToNative();
+	d6Desc.twistLimit = TwistLimit.ConvertToNative();
+
+	d6Desc.xDrive = XDrive.ConvertToNative();
+	d6Desc.yDrive = YDrive.ConvertToNative();
+	d6Desc.zDrive = ZDrive.ConvertToNative();
+	d6Desc.swingDrive = SwingDrive.ConvertToNative();
+	d6Desc.twistDrive = TwistDrive.ConvertToNative();
+	d6Desc.slerpDrive = SlerpDrive.ConvertToNative();
+
+	d6Desc.drivePosition = NxaMath::Vector3XNAToPhysX(DrivePosition);
+	d6Desc.driveOrientation = NxaMath::QuaternionXNAToPhysX(DriveOrientation);
+	d6Desc.driveLinearVelocity = NxaMath::Vector3XNAToPhysX(DriveLinearVelocity);
+	d6Desc.driveAngularVelocity = NxaMath::Vector3XNAToPhysX(DriveAngularVelocity);
+
+	d6Desc.projectionMode = (NxJointProjectionMode)ProjectionMode;
+	d6Desc.projectionDistance = ProjectionDistance;
+	d6Desc.projectionAngle = ProjectionAngle;
+	
+	d6Desc.gearRatio = GearRatio;
+
+	d6Desc.flags = (NxU32)Flags;
+
+	return d6Desc;
+}
+
+NxaJoint^ NxaD6JointDescription::CreateJoint(NxScene* scenePtr)
+{
+	NxD6JointDesc d6Desc = ConvertToNative();
+
+	NxJoint* jointPtr = scenePtr->createJoint(d6Desc);
+	return NxaJoint::CreateFromPointer(jointPtr);
+}
+
+NxaD6JointDescription::NxaD6JointDescription() : NxaJointDescription(NxaJointType::D6)
+{
+	SetToDefault();
 }
 
 void NxaD6JointDescription::SetToDefault()
 {
-	NxD6JointDesc* d6Ptr = (NxD6JointDesc*)nxJointDesc;
-	d6Ptr->setToDefault();
+	NxaJointDescription::SetToDefault();
+
+	XMotion = NxaD6JointMotion::Free;
+	YMotion = NxaD6JointMotion::Free;
+	ZMotion = NxaD6JointMotion::Free;
+	TwistMotion = NxaD6JointMotion::Free;
+	Swing1Motion = NxaD6JointMotion::Free;
+	Swing2Motion = NxaD6JointMotion::Free;
+
+	DrivePosition = Vector3::Zero;
+	DriveOrientation = Quaternion::Identity;
+
+	DriveLinearVelocity = Vector3::Zero;
+	DriveAngularVelocity = Vector3::Zero;
+
+	ProjectionMode = NxaJointProjectionMode::None;
+	ProjectionDistance = 0.1f;
+	ProjectionAngle = 0.0872f; //about 5 degrees in radians.
+
+	Flags = (NxaD6JointFlag)0;
+	GearRatio = 1.0f;
 }
 
 bool NxaD6JointDescription::IsValid()
 {
-	NxD6JointDesc* d6Ptr = (NxD6JointDesc*)nxJointDesc;
-	return d6Ptr->isValid();
-}
+	 // only possible with all angular DOF available
+	if((Flags & NxaD6JointFlag::SlerpDrive) == NxaD6JointFlag::SlerpDrive) 
+	{
+		if(Swing1Motion == NxaD6JointMotion::Locked ||
+			Swing2Motion == NxaD6JointMotion::Locked ||
+			TwistMotion == NxaD6JointMotion::Locked)
+		{
+			return false;
+		}
+	}
 
-NxaD6JointMotion NxaD6JointDescription::XMotion::get()
-{
-	NxD6JointDesc* d6Ptr = (NxD6JointDesc*)nxJointDesc;
-	return (NxaD6JointMotion)(d6Ptr->xMotion);
-}
+	// swing limits are symmetric, thus their range is 0..180 degrees
+	if(Swing1Motion == NxaD6JointMotion::Limited)
+	{
+		if(Swing1Limit.Value < 0.0f) return false;
+		if(Swing1Limit.Value > Math::PI) return false;
+	}
+	if(Swing2Motion == NxaD6JointMotion::Limited)
+	{
+		if(Swing2Limit.Value < 0.0f) return false;
+		if(Swing2Limit.Value > Math::PI) return false;
+	}
 
-void NxaD6JointDescription::XMotion::set(NxaD6JointMotion value)
-{
-	NxD6JointDesc* d6Ptr = (NxD6JointDesc*)nxJointDesc;
-	d6Ptr->xMotion = (NxD6JointMotion)value;
-}
+	// Twist limits are asymmetric with -180 <= low < high <= 180 degrees
+	if(TwistMotion == NxaD6JointMotion::Limited)
+	{
+		if(TwistLimit.Low.Value < -Math::PI) return false;
+		if(TwistLimit.High.Value > Math::PI) return false;
+		if(TwistLimit.Low.Value > TwistLimit.High.Value) return false;
+	}
 
-NxaD6JointMotion NxaD6JointDescription::YMotion::get()
-{
-	NxD6JointDesc* d6Ptr = (NxD6JointDesc*)nxJointDesc;
-	return (NxaD6JointMotion)(d6Ptr->yMotion);
-}
+	// In angular limited-free mode, only -90..90 swings are possible
+	if(Swing1Motion == NxaD6JointMotion::Limited && Swing2Motion == NxaD6JointMotion::Free)
+		if(Swing1Limit.Value > MathHelper::PiOver2) return false;
+	if(Swing2Motion == NxaD6JointMotion::Limited && Swing2Motion == NxaD6JointMotion::Free)
+		if(Swing2Limit.Value > MathHelper::PiOver2) return false;
 
-void NxaD6JointDescription::YMotion::set(NxaD6JointMotion value)
-{
-	NxD6JointDesc* d6Ptr = (NxD6JointDesc*)nxJointDesc;
-	d6Ptr->yMotion = (NxD6JointMotion)value;
-}
+	// gear only with twist motion enabled
+	if((Flags & NxaD6JointFlag::GearEnabled) == NxaD6JointFlag::GearEnabled)
+		if(TwistMotion == NxaD6JointMotion::Locked) return false;
 
-NxaD6JointMotion NxaD6JointDescription::ZMotion::get()
-{
-	NxD6JointDesc* d6Ptr = (NxD6JointDesc*)nxJointDesc;
-	return (NxaD6JointMotion)(d6Ptr->zMotion);
-}
-
-void NxaD6JointDescription::ZMotion::set(NxaD6JointMotion value)
-{
-	NxD6JointDesc* d6Ptr = (NxD6JointDesc*)nxJointDesc;
-	d6Ptr->zMotion = (NxD6JointMotion)value;
-}
-
-NxaD6JointMotion NxaD6JointDescription::Swing1Motion::get()
-{
-	NxD6JointDesc* d6Ptr = (NxD6JointDesc*)nxJointDesc;
-	return (NxaD6JointMotion)(d6Ptr->swing1Motion);
-}
-
-void NxaD6JointDescription::Swing1Motion::set(NxaD6JointMotion value)
-{
-	NxD6JointDesc* d6Ptr = (NxD6JointDesc*)nxJointDesc;
-	d6Ptr->swing1Motion = (NxD6JointMotion)value;
-}
-
-NxaD6JointMotion NxaD6JointDescription::Swing2Motion::get()
-{
-	NxD6JointDesc* d6Ptr = (NxD6JointDesc*)nxJointDesc;
-	return (NxaD6JointMotion)(d6Ptr->swing2Motion);
-}
-
-void NxaD6JointDescription::Swing2Motion::set(NxaD6JointMotion value)
-{
-	NxD6JointDesc* d6Ptr = (NxD6JointDesc*)nxJointDesc;
-	d6Ptr->swing2Motion = (NxD6JointMotion)value;
-}
-
-NxaD6JointMotion NxaD6JointDescription::TwistMotion::get()
-{
-	NxD6JointDesc* d6Ptr = (NxD6JointDesc*)nxJointDesc;
-	return (NxaD6JointMotion)(d6Ptr->twistMotion);
-}
-
-void NxaD6JointDescription::TwistMotion::set(NxaD6JointMotion value)
-{
-	NxD6JointDesc* d6Ptr = (NxD6JointDesc*)nxJointDesc;
-	d6Ptr->twistMotion = (NxD6JointMotion)value;
-}
-
-NxaJointLimitSoftDescription^ NxaD6JointDescription::LinearLimit::get()
-{
-	NxD6JointDesc* d6Ptr = (NxD6JointDesc*)nxJointDesc;
-	return gcnew NxaJointLimitSoftDescription(&(d6Ptr->linearLimit));
-}
-
-void NxaD6JointDescription::LinearLimit::set(NxaJointLimitSoftDescription^ value)
-{
-	NxD6JointDesc* d6Ptr = (NxD6JointDesc*)nxJointDesc;
-	d6Ptr->linearLimit = *(value->nxDesc);
-}
-
-NxaJointLimitSoftDescription^ NxaD6JointDescription::Swing1Limit::get()
-{
-	NxD6JointDesc* d6Ptr = (NxD6JointDesc*)nxJointDesc;
-	return gcnew NxaJointLimitSoftDescription(&(d6Ptr->swing1Limit));
-}
-
-void NxaD6JointDescription::Swing1Limit::set(NxaJointLimitSoftDescription^ value)
-{
-	NxD6JointDesc* d6Ptr = (NxD6JointDesc*)nxJointDesc;
-	d6Ptr->swing1Limit = *(value->nxDesc);
-}
-
-NxaJointLimitSoftDescription^ NxaD6JointDescription::Swing2Limit::get()
-{
-	NxD6JointDesc* d6Ptr = (NxD6JointDesc*)nxJointDesc;
-	return gcnew NxaJointLimitSoftDescription(&(d6Ptr->swing2Limit));
-}
-
-void NxaD6JointDescription::Swing2Limit::set(NxaJointLimitSoftDescription^ value)
-{
-	NxD6JointDesc* d6Ptr = (NxD6JointDesc*)nxJointDesc;
-	d6Ptr->swing2Limit = *(value->nxDesc);
-}
-
-NxaJointLimitSoftPairDescription^ NxaD6JointDescription::TwistLimit::get()
-{
-	NxD6JointDesc* d6Ptr = (NxD6JointDesc*)nxJointDesc;
-	return gcnew NxaJointLimitSoftPairDescription(&(d6Ptr->twistLimit));
-}
-
-void NxaD6JointDescription::TwistLimit::set(NxaJointLimitSoftPairDescription^ value)
-{
-	NxD6JointDesc* d6Ptr = (NxD6JointDesc*)nxJointDesc;
-	d6Ptr->twistLimit = *(value->nxDesc);
-}
-
-NxaJointDriveDescription^ NxaD6JointDescription::XDrive::get()
-{
-	NxD6JointDesc* d6Ptr = (NxD6JointDesc*)nxJointDesc;
-	return gcnew NxaJointDriveDescription(&(d6Ptr->xDrive));
-}
-
-void NxaD6JointDescription::XDrive::set(NxaJointDriveDescription^ value)
-{
-	NxD6JointDesc* d6Ptr = (NxD6JointDesc*)nxJointDesc;
-	d6Ptr->xDrive = *(value->nxDesc);
-}
-
-NxaJointDriveDescription^ NxaD6JointDescription::YDrive::get()
-{
-	NxD6JointDesc* d6Ptr = (NxD6JointDesc*)nxJointDesc;
-	return gcnew NxaJointDriveDescription(&(d6Ptr->yDrive));
-}
-
-void NxaD6JointDescription::YDrive::set(NxaJointDriveDescription^ value)
-{
-	NxD6JointDesc* d6Ptr = (NxD6JointDesc*)nxJointDesc;
-	d6Ptr->yDrive = *(value->nxDesc);
-}
-
-NxaJointDriveDescription^ NxaD6JointDescription::ZDrive::get()
-{
-	NxD6JointDesc* d6Ptr = (NxD6JointDesc*)nxJointDesc;
-	return gcnew NxaJointDriveDescription(&(d6Ptr->zDrive));
-}
-
-void NxaD6JointDescription::ZDrive::set(NxaJointDriveDescription^ value)
-{
-	NxD6JointDesc* d6Ptr = (NxD6JointDesc*)nxJointDesc;
-	d6Ptr->zDrive = *(value->nxDesc);
-}
-
-NxaJointDriveDescription^ NxaD6JointDescription::SwingDrive::get()
-{
-	NxD6JointDesc* d6Ptr = (NxD6JointDesc*)nxJointDesc;
-	return gcnew NxaJointDriveDescription(&(d6Ptr->swingDrive));
-}
-
-void NxaD6JointDescription::SwingDrive::set(NxaJointDriveDescription^ value)
-{
-	NxD6JointDesc* d6Ptr = (NxD6JointDesc*)nxJointDesc;
-	d6Ptr->swingDrive = *(value->nxDesc);
-}
-
-NxaJointDriveDescription^ NxaD6JointDescription::TwistDrive::get()
-{
-	NxD6JointDesc* d6Ptr = (NxD6JointDesc*)nxJointDesc;
-	return gcnew NxaJointDriveDescription(&(d6Ptr->twistDrive));
-}
-
-void NxaD6JointDescription::TwistDrive::set(NxaJointDriveDescription^ value)
-{
-	NxD6JointDesc* d6Ptr = (NxD6JointDesc*)nxJointDesc;
-	d6Ptr->twistDrive = *(value->nxDesc);
-}
-
-NxaJointDriveDescription^ NxaD6JointDescription::SlerpDrive::get()
-{
-	NxD6JointDesc* d6Ptr = (NxD6JointDesc*)nxJointDesc;
-	return gcnew NxaJointDriveDescription(&(d6Ptr->slerpDrive));
-}
-
-void NxaD6JointDescription::SlerpDrive::set(NxaJointDriveDescription^ value)
-{
-	NxD6JointDesc* d6Ptr = (NxD6JointDesc*)nxJointDesc;
-	d6Ptr->slerpDrive = *(value->nxDesc);
-}
-
-Vector3 NxaD6JointDescription::DrivePosition::get()
-{
-	NxD6JointDesc* d6Ptr = (NxD6JointDesc*)nxJointDesc;
-	return NxaMath::Vector3PhysXToXNA(d6Ptr->drivePosition);
-}
-
-void NxaD6JointDescription::DrivePosition::set(Vector3 value)
-{
-	NxD6JointDesc* d6Ptr = (NxD6JointDesc*)nxJointDesc;
-	d6Ptr->drivePosition = NxaMath::Vector3XNAToPhysX(value);
-}
-
-Quaternion NxaD6JointDescription::DriveOrientation::get()
-{
-	NxD6JointDesc* d6Ptr = (NxD6JointDesc*)nxJointDesc;
-	return NxaMath::QuaternionPhysXToXNA(d6Ptr->driveOrientation);
-}
-
-void NxaD6JointDescription::DriveOrientation::set(Quaternion value)
-{
-	NxD6JointDesc* d6Ptr = (NxD6JointDesc*)nxJointDesc;
-	d6Ptr->driveOrientation = NxaMath::QuaternionXNAToPhysX(value);
-}
-
-Vector3 NxaD6JointDescription::DriveLinearVelocity::get()
-{
-	NxD6JointDesc* d6Ptr = (NxD6JointDesc*)nxJointDesc;
-	return NxaMath::Vector3PhysXToXNA(d6Ptr->driveLinearVelocity);
-}
-
-void NxaD6JointDescription::DriveLinearVelocity::set(Vector3 value)
-{
-	NxD6JointDesc* d6Ptr = (NxD6JointDesc*)nxJointDesc;
-	d6Ptr->driveLinearVelocity = NxaMath::Vector3XNAToPhysX(value);
-}
-
-Vector3 NxaD6JointDescription::DriveAngularVelocity::get()
-{
-	NxD6JointDesc* d6Ptr = (NxD6JointDesc*)nxJointDesc;
-	return NxaMath::Vector3PhysXToXNA(d6Ptr->driveAngularVelocity);
-}
-
-void NxaD6JointDescription::DriveAngularVelocity::set(Vector3 value)
-{
-	NxD6JointDesc* d6Ptr = (NxD6JointDesc*)nxJointDesc;
-	d6Ptr->driveAngularVelocity = NxaMath::Vector3XNAToPhysX(value);
-}
-
-NxaJointProjectionMode NxaD6JointDescription::ProjectionMode::get()
-{
-	NxD6JointDesc* d6Ptr = (NxD6JointDesc*)nxJointDesc;
-	return (NxaJointProjectionMode) d6Ptr->projectionMode;
-}
-
-void NxaD6JointDescription::ProjectionMode::set(NxaJointProjectionMode value)
-{
-	NxD6JointDesc* d6Ptr = (NxD6JointDesc*)nxJointDesc;
-	d6Ptr->projectionMode = (NxJointProjectionMode)value;
-}
-
-float NxaD6JointDescription::ProjectionDistance::get()
-{
-	NxD6JointDesc* d6Ptr = (NxD6JointDesc*)nxJointDesc;
-	return d6Ptr->projectionDistance;
-}
-
-void NxaD6JointDescription::ProjectionDistance::set(float value)
-{
-	NxD6JointDesc* d6Ptr = (NxD6JointDesc*)nxJointDesc;
-	d6Ptr->projectionDistance = value;
-}
-
-float NxaD6JointDescription::ProjectionAngle::get()
-{
-	NxD6JointDesc* d6Ptr = (NxD6JointDesc*)nxJointDesc;
-	return d6Ptr->projectionAngle;
-}
-
-void NxaD6JointDescription::ProjectionAngle::set(float value)
-{
-	NxD6JointDesc* d6Ptr = (NxD6JointDesc*)nxJointDesc;
-	d6Ptr->projectionAngle = value;
-}
-
-float NxaD6JointDescription::GearRatio::get()
-{
-	NxD6JointDesc* d6Ptr = (NxD6JointDesc*)nxJointDesc;
-	return d6Ptr->gearRatio;
-}
-
-void NxaD6JointDescription::GearRatio::set(float value)
-{
-	NxD6JointDesc* d6Ptr = (NxD6JointDesc*)nxJointDesc;
-	d6Ptr->gearRatio = value;
-}
-
-NxaU32 NxaD6JointDescription::Flags::get()
-{
-	NxD6JointDesc* d6Ptr = (NxD6JointDesc*)nxJointDesc;
-	return d6Ptr->flags;
-}
-
-void NxaD6JointDescription::Flags::set(NxaU32 value)
-{
-	NxD6JointDesc* d6Ptr = (NxD6JointDesc*)nxJointDesc;
-	d6Ptr->flags = value;
+	return NxaJointDescription::IsValid();
 }

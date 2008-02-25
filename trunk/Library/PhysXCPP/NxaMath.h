@@ -7,7 +7,7 @@
 #include "NxQuat.h"
 #include "NxVec3.h"
 
-ref class NxaMath
+public ref class NxaMath
 {
 public:
 	static NxMat33 MatrixRotXNAToPhysX([In] Matrix% m);
@@ -27,4 +27,9 @@ public:
 
 	static Quaternion QuaternionPhysXToXNA(const NxQuat& q);
 	static void QuaternionPhysXToXNA(const NxQuat&q, [Out] Quaternion% out);
+	
+	static Vector3 TransformWorldPointToLocal([In] Matrix% m, [In] Vector3% point);
+	static Vector3 TransformWorldNormalToLocal([In] Matrix% m, [In] Vector3% normal);
+
+	static Vector3 GetPerpendicularVector([In] Vector3%);
 };

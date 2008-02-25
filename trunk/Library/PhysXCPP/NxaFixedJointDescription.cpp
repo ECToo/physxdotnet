@@ -1,21 +1,42 @@
 #include "StdAfx.h"
 #include "NxaFixedJointDescription.h"
-
+#include "NxaJoint.h"
 #include "NxFixedJointDesc.h"
+#include "NxScene.h"
 
-
-
-NxaFixedJointDescription::NxaFixedJointDescription(void)
+void NxaFixedJointDescription::LoadFromNative(NxFixedJointDesc& desc)
 {
-	nxJointDesc = new NxFixedJointDesc();
+	NxaJointDescription::LoadFromNative(desc);
 }
 
-NxaFixedJointDescription::~NxaFixedJointDescription(void)
+NxFixedJointDesc NxaFixedJointDescription::ConvertToNative()
 {
+	NxFixedJointDesc fixedDesc;
 
+	NxaJointDescription::ConvertToNative(fixedDesc);
+
+	return fixedDesc;
 }
 
-NxaFixedJointDescription::!NxaFixedJointDescription(void)
+NxaJoint^ NxaFixedJointDescription::CreateJoint(NxScene* scenePtr)
 {
+	NxFixedJointDesc fixedDesc = ConvertToNative();	
 
+	NxJoint* jointPtr = scenePtr->createJoint(fixedDesc);
+	return NxaJoint::CreateFromPointer(jointPtr);
+}
+
+NxaFixedJointDescription::NxaFixedJointDescription() : NxaJointDescription(NxaJointType::Fixed)
+{
+	SetToDefault();
+}
+
+void NxaFixedJointDescription::SetToDefault()
+{
+	NxaJointDescription::SetToDefault();
+}
+
+bool NxaFixedJointDescription::IsValid()
+{
+	return NxaJointDescription::IsValid();
 }

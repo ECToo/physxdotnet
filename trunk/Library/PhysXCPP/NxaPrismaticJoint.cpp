@@ -1,7 +1,9 @@
 #include "StdAfx.h"
 #include "NxaPrismaticJoint.h"
+#include "NxaPrismaticJointDescription.h"
 
 #include "NxPrismaticJoint.h"
+#include "NxPrismaticJointDesc.h"
 
 NxaPrismaticJoint::NxaPrismaticJoint(NxPrismaticJoint* ptr)
 {
@@ -10,13 +12,17 @@ NxaPrismaticJoint::NxaPrismaticJoint(NxPrismaticJoint* ptr)
 
 void NxaPrismaticJoint::LoadFromDescription(NxaPrismaticJointDescription ^desc)
 {
-	NxPrismaticJointDesc* nxDesc = (NxPrismaticJointDesc*)(desc->nxJointDesc);
-	((NxPrismaticJoint*)nxJoint)->loadFromDesc(*nxDesc);
+	NxPrismaticJoint* ptr = (NxPrismaticJoint*)nxJoint;
+	NxPrismaticJointDesc prismaticDesc = desc->ConvertToNative();
+	ptr->loadFromDesc(prismaticDesc);
 }
 
 void NxaPrismaticJoint::SaveToDescription([Out] NxaPrismaticJointDescription^% desc)
 {
-	NxPrismaticJointDesc nxDesc;
-	((NxPrismaticJoint*)nxJoint)->saveToDesc(nxDesc);
-	desc = gcnew NxaPrismaticJointDescription(&nxDesc);
+	NxPrismaticJoint* ptr = (NxPrismaticJoint*)nxJoint;
+
+	NxPrismaticJointDesc prismaticDesc;
+	ptr->saveToDesc(prismaticDesc);
+
+	desc->LoadFromNative(prismaticDesc);
 }

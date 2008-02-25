@@ -3,36 +3,25 @@
 #include "NxaJointDescription.h"
 #include "NxaSpringDescription.h"
 
-#include "NxDistanceJointDesc.h"
+class NxDistanceJointDesc;
 
 public ref class NxaDistanceJointDescription : public NxaJointDescription
 {
 internal:
-	NxaDistanceJointDescription(NxDistanceJointDesc* ptr);
+	virtual void LoadFromNative(NxDistanceJointDesc& desc);
+	virtual NxDistanceJointDesc ConvertToNative();
+	virtual NxaJoint^ CreateJoint(NxScene* scenePtr) override;
 
 public:
-	NxaDistanceJointDescription(void);
+	NxaDistanceJointDescription();
 
-	property float MaxDistance {
-		float get();
-		void set(float value);
-	}
+	virtual void SetToDefault() override;
+	virtual bool IsValid() override;
 
-	property float MinDistance {
-		float get();
-		void set(float value);
-	}
+	float MaxDistance;
+	float MinDistance;
 
-	property NxaSpringDescription^ Spring {
-		NxaSpringDescription^ get();
-		void set(NxaSpringDescription^ value);
-	}
+	NxaSpringDescription Spring;
 
-	property NxaDistanceJointFlag Flags {
-		NxaDistanceJointFlag get();
-		void set(NxaDistanceJointFlag value);
-	}
-
-	void SetToDefault();
-	bool IsValid();
+	NxaDistanceJointFlag Flags;	
 };

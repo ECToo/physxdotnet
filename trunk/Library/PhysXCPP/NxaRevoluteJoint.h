@@ -3,10 +3,11 @@
 #include "NxRevoluteJointDesc.h"
 
 #include "NxaJoint.h"
-#include "NxaRevoluteJointDescription.h"
-#include "NxaJointLimitPairDescription.h"
-#include "NxaMotorDescription.h"
-#include "NxaSpringDescription.h"
+
+ref class NxaRevoluteJointDescription;
+value class NxaJointLimitPairDescription;
+ref class NxaMotorDescription;
+ref class NxaSpringDescription;
 
 public ref class NxaRevoluteJoint : public NxaJoint
 {
@@ -14,6 +15,8 @@ internal:
 	NxaRevoluteJoint(NxRevoluteJoint* ptr);
 
 public:
+	NxaRevoluteJoint() { };
+
 	void LoadFromDescription(NxaRevoluteJointDescription^ desc);
 	void SaveToDescription([Out] NxaRevoluteJointDescription^% desc);
 

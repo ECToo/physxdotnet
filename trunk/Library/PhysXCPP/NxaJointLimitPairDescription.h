@@ -4,27 +4,18 @@
 
 class NxJointLimitPairDesc;
 
-public ref class NxaJointLimitPairDescription
+public value class NxaJointLimitPairDescription
 {
 internal:
-	NxJointLimitPairDesc* nxJointLimitPairDesc;
-	NxaJointLimitPairDescription(NxJointLimitPairDesc* ptr);
+	NxJointLimitPairDesc ConvertToNative();
 
 public:
-	NxaJointLimitPairDescription();
-	~NxaJointLimitPairDescription();
-	!NxaJointLimitPairDescription();
+	NxaJointLimitDescription Low;
+	NxaJointLimitDescription High;
 
-	property NxaJointLimitDescription^ Low
+	static property NxaJointLimitPairDescription Default
 	{
-		NxaJointLimitDescription^ get();
-		void set(NxaJointLimitDescription^ value);
-	}
-
-	property NxaJointLimitDescription^ High
-	{
-		NxaJointLimitDescription^ get();
-		void set(NxaJointLimitDescription^ value);
+		NxaJointLimitPairDescription get();
 	}
 
 	void SetToDefault();

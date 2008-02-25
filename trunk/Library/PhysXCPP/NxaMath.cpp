@@ -3,31 +3,32 @@
 
 NxMat33 NxaMath::MatrixRotXNAToPhysX([In] Matrix% m)
 {
-	return NxMat33(NxVec3(m.M11, m.M21, m.M31), NxVec3(m.M12, m.M22, m.M32), NxVec3(m.M13, m.M23, m.M33));
+	pin_ptr<float> ptr = &(m.M11);
+	NxMat33 mat;
+	mat.setColumnMajorStride4(ptr);
+	return mat;
 }
 
 NxMat34 NxaMath::MatrixRotPosXNAToPhysX([In] Matrix% m)
 {
-	return NxMat34(MatrixRotXNAToPhysX(m), Vector3XNAToPhysX(m));
+	pin_ptr<float> ptr = &(m.M11);
+	NxMat34 mat;
+	mat.setColumnMajor44(ptr);
+	return mat;
 }
 
 Matrix NxaMath::MatrixPhysXToXNA(const NxMat33& m)
 {
-	NxVec3 row1 = m.getColumn(0);
-	NxVec3 row2 = m.getColumn(1);
-	NxVec3 row3 = m.getColumn(2);
-
-	return Matrix(row1.x, row1.y, row1.z, 0, row2.x, row2.y, row2.z, 0, row3.x, row3.y, row3.z, 0, 0, 0, 0, 1);
+	Matrix val = Matrix::Identity;
+	m.getColumnMajorStride4(&val.M11);
+	return val;
 }
 
 Matrix NxaMath::MatrixPhysXToXNA(const NxMat34& m)
 {
-	NxVec3 row1 = m.M.getColumn(0);
-	NxVec3 row2 = m.M.getColumn(1);
-	NxVec3 row3 = m.M.getColumn(2);
-	NxVec3 pos = m.t;
-
-	return Matrix(row1.x, row1.y, row1.z, 0, row2.x, row2.y, row2.z, 0, row3.x, row3.y, row3.z, 0, pos.x, pos.y, pos.z, 1);
+	Matrix val = Matrix::Identity;
+	m.getColumnMajor44(&val.M11);
+	return val;
 }
 
 NxVec3 NxaMath::Vector3XNAToPhysX([In] Matrix% m)
@@ -65,4 +66,44 @@ Quaternion NxaMath::QuaternionPhysXToXNA(const NxQuat &q)
 void NxaMath::QuaternionPhysXToXNA(const NxQuat &q, [Out] Quaternion% out)
 {
 	out.X = q.x; out.Y = q.y; out.Z = q.z; out.W = q.w;
+}
+
+Vector3 NxaMath::TransformWorldPointToLocal([In] Matrix% m, [In] Vector3% point)
+{
+	float numX = point.X - m.Translation.X;
+	float numY = point.Y - m.Translation.Y;
+	float numZ = point.Z - m.Translation.Z;
+	float nX = (numX * m.M11) + (numY * m.M12) + (numZ * m.M13);
+	float nY = (numY * m.M21) + (numY * m.M22) + (numZ * m.M23);
+	float nZ = (numZ * m.M31) + (numY * m.M32) + (numZ * m.M33);
+	return Vector3(nX, nY, nZ);
+}
+
+Vector3 NxaMath::TransformWorldNormalToLocal([In] Matrix% m, [In] Vector3% normal)
+{
+	float nX = (normal.X * m.M11) + (normal.Y * m.M12) + (normal.Z * m.M13);
+	float nY = (normal.X * m.M21) + (normal.Y * m.M22) + (normal.Z * m.M23);
+	float nZ = (normal.X * m.M31) + (normal.Y * m.M32) + (normal.Z * m.M33);
+	return Vector3(nX, nY, nZ);
+}
+
+Vector3 NxaMath::GetPerpendicularVector([In] Vector3% v)
+{
+    Vector3 vec = Vector3(v.X * v.X, v.Y * v.Y, v.Z * v.Z);
+	Vector3 vec2 = Vector3::UnitZ;
+
+    if ((vec.X <= vec.Y) && (vec.X <= vec.Z))
+    {
+		vec2 = Vector3::UnitX;
+    }
+    else if ((vec.Y <= vec.X) && (vec.Y <= vec.Z))
+    {
+		vec2 = Vector3::UnitY;
+    }
+	Vector3 result;
+	Vector3::Cross(v, vec2, result);
+	result.Normalize();
+    
+	return result;
+
 }

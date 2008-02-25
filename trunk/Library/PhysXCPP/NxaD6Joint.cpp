@@ -3,6 +3,7 @@
 #include "NxaD6JointDescription.h"
 
 #include "NxD6Joint.h"
+#include "NxD6JointDesc.h"
 
 
 NxaD6Joint::NxaD6Joint(NxD6Joint* nxD6Joint)
@@ -12,14 +13,19 @@ NxaD6Joint::NxaD6Joint(NxD6Joint* nxD6Joint)
 
 void NxaD6Joint::LoadFromDescription(NxaD6JointDescription ^desc)
 {
-	NxD6JointDesc* nxDesc = (NxD6JointDesc*)(desc->nxJointDesc);
-	((NxD6Joint*)nxJoint)->loadFromDesc(*nxDesc);
+	NxD6Joint* ptr = (NxD6Joint*)nxJoint;
+	NxD6JointDesc d6Desc = desc->ConvertToNative();
+	ptr->loadFromDesc(d6Desc);
 }
 
 void NxaD6Joint::SaveToDescription([Out] NxaD6JointDescription^% desc)
 {
-	NxD6JointDesc* ptr = (NxD6JointDesc*)desc->nxJointDesc;
-	((NxD6Joint*)nxJoint)->saveToDesc(*ptr);
+	NxD6Joint* ptr = (NxD6Joint*)nxJoint;
+
+	NxD6JointDesc d6desc;
+	ptr->saveToDesc(d6desc);
+
+	desc->LoadFromNative(d6desc);
 }
 
 void NxaD6Joint::SetDrivePosition(Vector3 position)

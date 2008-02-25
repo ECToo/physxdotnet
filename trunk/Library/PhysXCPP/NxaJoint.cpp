@@ -1,9 +1,12 @@
 #include "StdAfx.h"
 #include "NxaJoint.h"
 
+#include "NxaDistanceJoint.h"
+#include "NxaFixedJoint.h"
 #include "NxaPrismaticJoint.h"
 #include "NxaPointOnLineJoint.h"
 #include "NxaRevoluteJoint.h"
+#include "NxaSphericalJoint.h"
 #include "NxaD6Joint.h"
 
 NxaJoint^ NxaJoint::CreateFromPointer(NxJoint* ptr)
@@ -17,22 +20,19 @@ NxaJoint^ NxaJoint::CreateFromPointer(NxJoint* ptr)
 		case NX_JOINT_REVOLUTE :
 			return gcnew NxaRevoluteJoint((NxRevoluteJoint*)ptr);
 		case NX_JOINT_SPHERICAL :
-			return nullptr;
-			//return gcnew NxaSphericalJoint(ptr); <-- Temporarily out of service
+			return gcnew NxaSphericalJoint((NxSphericalJoint*)ptr);
 		case NX_JOINT_POINT_ON_LINE :
 			return gcnew NxaPointOnLineJoint((NxPointOnLineJoint*)ptr);
 		case NX_JOINT_POINT_IN_PLANE :
 			throw gcnew Exception("NOT IMPLEMENTED PROPERLY!");
 			return nullptr;
 		case NX_JOINT_DISTANCE :
-			throw gcnew Exception("NOT IMPLEMENTED PROPERLY!");
-			return nullptr;
+			return gcnew NxaDistanceJoint((NxDistanceJoint*)ptr);
 		case NX_JOINT_PULLEY :
 			throw gcnew Exception("NOT IMPLEMENTED PROPERLY!");
 			return nullptr;
 		case NX_JOINT_FIXED :
-			return nullptr;
-			//return gcnew NxaFixedJoint(ptr); <-- Temporarily out of service
+			return gcnew NxaFixedJoint((NxFixedJoint*)ptr);
 		case NX_JOINT_D6 :
 			return gcnew NxaD6Joint((NxD6Joint*)ptr);
 		}
@@ -161,5 +161,5 @@ String^ NxaJoint::GetName()
 
 NxaScene^ NxaJoint::GetScene()
 {
-	return %NxaScene(&(nxJoint->getScene()));
+	return gcnew NxaScene(&(nxJoint->getScene()));
 }

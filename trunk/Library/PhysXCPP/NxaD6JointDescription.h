@@ -3,166 +3,58 @@
 #include "Nxap.h"
 #include "NxaJointDescription.h"
 
-ref class NxaJointLimitSoftDescription;
-ref class NxaJointLimitSoftPairDescription;
-ref class NxaJointDriveDescription;
+#include "NxaJointLimitSoftDescription.h"
+#include "NxaJointLimitSoftPairDescription.h"
+#include "NxaJointDriveDescription.h"
 
+class NxD6JointDesc;
 
 public ref class NxaD6JointDescription : NxaJointDescription
 {
+internal:
+	virtual void LoadFromNative(NxD6JointDesc& desc);
+	virtual NxD6JointDesc ConvertToNative();
+	virtual NxaJoint^ CreateJoint(NxScene* scenePtr) override;
+
 public:
 	NxaD6JointDescription();
 
-	virtual void SetToDefault();
-	virtual bool IsValid();
+	virtual void SetToDefault() override;
+	virtual bool IsValid() override;
 
-	property NxaD6JointMotion XMotion
-	{
-		NxaD6JointMotion get();
-		void set(NxaD6JointMotion value);
-	}
+	NxaD6JointMotion XMotion;
+	NxaD6JointMotion YMotion;
+	NxaD6JointMotion ZMotion;
 
-	property NxaD6JointMotion YMotion
-	{
-		NxaD6JointMotion get();
-		void set(NxaD6JointMotion value);
-	}
+	NxaD6JointMotion Swing1Motion;
+	NxaD6JointMotion Swing2Motion;
+	NxaD6JointMotion TwistMotion;
 
-	property NxaD6JointMotion ZMotion
-	{
-		NxaD6JointMotion get();
-		void set(NxaD6JointMotion value);
-	}
+	NxaJointLimitSoftDescription LinearLimit;
+	NxaJointLimitSoftDescription Swing1Limit;
+	NxaJointLimitSoftDescription Swing2Limit;
 
-	property NxaD6JointMotion Swing1Motion
-	{
-		NxaD6JointMotion get();
-		void set(NxaD6JointMotion value);
-	}
+	NxaJointLimitSoftPairDescription TwistLimit;
 
-	property NxaD6JointMotion Swing2Motion
-	{
-		NxaD6JointMotion get();
-		void set(NxaD6JointMotion value);
-	}
+	NxaJointDriveDescription XDrive;
+	NxaJointDriveDescription YDrive;
+	NxaJointDriveDescription ZDrive;
 
-	property NxaD6JointMotion TwistMotion
-	{
-		NxaD6JointMotion get();
-		void set(NxaD6JointMotion value);
-	}
+	NxaJointDriveDescription SwingDrive;
+	NxaJointDriveDescription TwistDrive;
+	NxaJointDriveDescription SlerpDrive;
+	
+	Vector3 DrivePosition;
+	Quaternion DriveOrientation;
 
-	property NxaJointLimitSoftDescription^ LinearLimit
-	{
-		NxaJointLimitSoftDescription^ get();
-		void set(NxaJointLimitSoftDescription^ value);
-	}
+	Vector3 DriveLinearVelocity;
+	Vector3 DriveAngularVelocity;
 
-	property NxaJointLimitSoftDescription^ Swing1Limit
-	{
-		NxaJointLimitSoftDescription^ get();
-		void set(NxaJointLimitSoftDescription^ value);
-	}
+	NxaJointProjectionMode ProjectionMode;
+	float ProjectionDistance;
+	float ProjectionAngle;
 
-	property NxaJointLimitSoftDescription^ Swing2Limit
-	{
-		NxaJointLimitSoftDescription^ get();
-		void set(NxaJointLimitSoftDescription^ value);
-	}
+	float GearRatio;
 
-	property NxaJointLimitSoftPairDescription^ TwistLimit
-	{
-		NxaJointLimitSoftPairDescription^ get();
-		void set(NxaJointLimitSoftPairDescription^ value);
-	}
-
-	property NxaJointDriveDescription^ XDrive
-	{
-		NxaJointDriveDescription^ get();
-		void set(NxaJointDriveDescription^ value);
-	}
-
-	property NxaJointDriveDescription^ YDrive
-	{
-		NxaJointDriveDescription^ get();
-		void set(NxaJointDriveDescription^ value);
-	}
-
-	property NxaJointDriveDescription^ ZDrive
-	{
-		NxaJointDriveDescription^ get();
-		void set(NxaJointDriveDescription^ value);
-	}
-
-	property NxaJointDriveDescription^ SwingDrive
-	{
-		NxaJointDriveDescription^ get();
-		void set(NxaJointDriveDescription^ value);
-	}
-
-	property NxaJointDriveDescription^ TwistDrive
-	{
-		NxaJointDriveDescription^ get();
-		void set(NxaJointDriveDescription^ value);
-	}
-
-	property NxaJointDriveDescription^ SlerpDrive
-	{
-		NxaJointDriveDescription^ get();
-		void set(NxaJointDriveDescription^ value);
-	}
-
-	property Vector3 DrivePosition
-	{
-		Vector3 get();
-		void set(Vector3 value);
-	}
-
-	property Quaternion DriveOrientation
-	{
-		Quaternion get();
-		void set(Quaternion value);
-	}
-
-	property Vector3 DriveLinearVelocity
-	{
-		Vector3 get();
-		void set(Vector3 value);
-	}
-
-	property Vector3 DriveAngularVelocity
-	{
-		Vector3 get();
-		void set(Vector3 value);
-	}
-
-	property NxaJointProjectionMode ProjectionMode
-	{
-		NxaJointProjectionMode get();
-		void set(NxaJointProjectionMode value);
-	}
-
-	property float ProjectionDistance
-	{
-		float get();
-		void set(float value);
-	}
-
-	property float ProjectionAngle
-	{
-		float get();
-		void set(float value);
-	}
-
-	property float GearRatio
-	{
-		float get();
-		void set(float value);
-	}
-
-	property NxaU32 Flags
-	{
-		NxaU32 get();
-		void set(NxaU32 value);
-	}
+	NxaD6JointFlag Flags;
 };

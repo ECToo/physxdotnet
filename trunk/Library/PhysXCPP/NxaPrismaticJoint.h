@@ -1,9 +1,9 @@
 #pragma once
 
 #include "NxaJoint.h"
-#include "NxaPrismaticJointDescription.h"
 
-#include "NxPrismaticJointDesc.h"
+ref class NxaPrismaticJointDescription;
+class NxPrismaticJointDesc;
 
 public ref class NxaPrismaticJoint : public NxaJoint
 {

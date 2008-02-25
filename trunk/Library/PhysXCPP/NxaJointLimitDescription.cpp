@@ -1,46 +1,34 @@
 #include "StdAfx.h"
-
-#include "Nxp.h" //Included because NxJointLimitDesc.h doesn't appear to do it itself.
+#include "NxaJointLimitDescription.h"
+#include "Nxp.h"
 #include "NxJointLimitDesc.h"
 
-#include "NxaJointLimitDescription.h"
-
-NxaJointLimitDescription::NxaJointLimitDescription(NxJointLimitDesc* ptr)
+NxJointLimitDesc NxaJointLimitDescription::ConvertToNative()
 {
-	nxJointLimitDesc = ptr;
+	NxJointLimitDesc desc;
+	desc.value = Value;
+	desc.restitution = Restitution;
+	desc.hardness = Hardness;
+	return desc;
 }
 
-NxaJointLimitDescription::NxaJointLimitDescription(void)
+void NxaJointLimitDescription::SetToDefault()
 {
-	nxJointLimitDesc = new NxJointLimitDesc();
+	Value = 0;
+	Restitution = 0;
+	Hardness = 1;
 }
 
-float NxaJointLimitDescription::Value::get()
+NxaJointLimitDescription NxaJointLimitDescription::Default::get()
 {
-	return nxJointLimitDesc->value;
+	NxaJointLimitDescription desc;
+	desc.SetToDefault();
+	return desc;
 }
 
-void NxaJointLimitDescription::Value::set(float value)
+bool NxaJointLimitDescription::IsValid()
 {
-	nxJointLimitDesc->value = value;
-}
-
-float NxaJointLimitDescription::Restitution::get()
-{
-	return nxJointLimitDesc->restitution;
-}
-
-void NxaJointLimitDescription::Restitution::set(float value)
-{
-	nxJointLimitDesc->restitution = value;
-}
-
-float NxaJointLimitDescription::Hardness::get()
-{
-	return nxJointLimitDesc->hardness;
-}
-
-void NxaJointLimitDescription::Hardness::set(float value)
-{
-	nxJointLimitDesc->hardness = value;
+	if(Restitution < 0  || Restitution > 1 || Hardness < 0 || Hardness > 1) 
+		return false; 
+	return true;
 }

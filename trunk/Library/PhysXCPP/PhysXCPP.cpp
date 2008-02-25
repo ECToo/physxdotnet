@@ -3,8 +3,6 @@
 #include "PhysXloader.h"
 #include "NxaScene.h"
 
-
-
 NxaScene^ PhysXEngine::CreateScene(NxaSceneDescription^ description)
 {
 	return gcnew NxaScene(description);

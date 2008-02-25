@@ -1,62 +1,34 @@
 #pragma once
 
+#include "Nxap.h"
 #include "NxaJointDescription.h"
 #include "NxaJointLimitPairDescription.h"
 #include "NxaSpringDescription.h"
 #include "NxaMotorDescription.h"
 
-#include "NxRevoluteJointDesc.h"
+class NxScene;
+class NxRevoluteJointDesc;
 
 public ref class NxaRevoluteJointDescription : public NxaJointDescription
 {
 internal:
-	NxaRevoluteJointDescription(NxRevoluteJointDesc* ptr);
+	virtual void LoadFromNative(NxRevoluteJointDesc& desc);
+	virtual NxRevoluteJointDesc ConvertToNative();
+	virtual NxaJoint^ CreateJoint(NxScene* scenePtr) override;
 
 public:
-	NxaRevoluteJointDescription(void);
+	NxaRevoluteJointDescription();
 
-	void SetToDefault();
-	bool IsValid();
+	virtual void SetToDefault() override;
+	virtual bool IsValid() override;
 
-	property NxaJointLimitPairDescription^ Limit
-	{
-		NxaJointLimitPairDescription^ get();
-		void set(NxaJointLimitPairDescription^ value);
-	}
+	NxaJointLimitPairDescription Limit;
+	NxaMotorDescription Motor;
+	NxaSpringDescription Spring;
 
-	property NxaMotorDescription^ Motor
-	{
-		NxaMotorDescription^ get();
-		void set(NxaMotorDescription^ value);
-	}
+	float ProjectionDistance;
+	float ProjectionAngle;
 
-	property NxaSpringDescription^ Spring
-	{
-		NxaSpringDescription^ get();
-		void set(NxaSpringDescription^ value);
-	}
-
-	property float ProjectionDistance
-	{
-		float get();
-		void set(float value);
-	}
-
-	property float ProjectionAngle
-	{
-		float get();
-		void set(float value);
-	}
-
-	property NxaRevoluteJointFlag Flags
-	{
-		NxaRevoluteJointFlag get();
-		void set(NxaRevoluteJointFlag value);
-	}
-
-	property NxaJointProjectionMode ProjectionMode
-	{
-		NxaJointProjectionMode get();
-		void set(NxaJointProjectionMode value);
-	}
+	NxaRevoluteJointFlag Flags;
+	NxaJointProjectionMode ProjectionMode;
 };

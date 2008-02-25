@@ -1,77 +1,52 @@
 #include "StdAfx.h"
 #include "NxaSpringDescription.h"
 
-NxaSpringDescription::NxaSpringDescription(NxSpringDesc *ptr)
+#include "NxSpringDesc.h"
+
+void NxaSpringDescription::LoadFromNative(NxSpringDesc& desc)
 {
-	nxSpringDesc = ptr;
+	Spring = desc.spring;
+	Damper = desc.damper;
+	TargetValue = desc.targetValue;
+}
+
+NxSpringDesc NxaSpringDescription::ConvertToNative()
+{
+	NxSpringDesc desc(Spring, Damper, TargetValue);
+	return desc;
 }
 
 NxaSpringDescription::NxaSpringDescription(float spring, float damper, float targetValue)
 {
-	nxSpringDesc = new NxSpringDesc(spring, damper, targetValue);
+	Spring = spring;
+	Damper = damper;
+	TargetValue = targetValue;
 }
 
 NxaSpringDescription::NxaSpringDescription(float spring, float damper)
 {
-	nxSpringDesc = new NxSpringDesc(spring, damper);
+	Spring = spring;
+	Damper = damper;
 }
 
 NxaSpringDescription::NxaSpringDescription(float spring)
 {
-	nxSpringDesc = new NxSpringDesc(spring);
+	Spring = spring;
 }
 
 NxaSpringDescription::NxaSpringDescription(void)
 {
-	nxSpringDesc = new NxSpringDesc();
-}
-
-NxaSpringDescription::~NxaSpringDescription(void)
-{
-	this->!NxaSpringDescription();
-}
-
-NxaSpringDescription::!NxaSpringDescription(void)
-{
-	delete nxSpringDesc;
-}
-
-float NxaSpringDescription::Spring::get()
-{
-	return nxSpringDesc->spring;
-}
-
-void NxaSpringDescription::Spring::set(float value)
-{
-	nxSpringDesc->spring = value;
-}
-
-float NxaSpringDescription::Damper::get()
-{
-	return nxSpringDesc->damper;
-}
-
-void NxaSpringDescription::Damper::set(float value)
-{
-	nxSpringDesc->damper = value;
-}
-
-float NxaSpringDescription::TargetValue::get()
-{
-	return nxSpringDesc->targetValue;
-}
-
-void NxaSpringDescription::TargetValue::set(float value)
-{
-	nxSpringDesc->targetValue = value;
+	SetToDefault();
 }
 
 void NxaSpringDescription::SetToDefault()
 {
-	nxSpringDesc->setToDefault();
+	Spring = 0;
+	Damper = 0;
+	TargetValue = 0;
 }
 
 bool NxaSpringDescription::IsValid()
 {
-	return nxSpringDesc->isValid();
+	return (Spring >= 0 && Damper >= 0);
 }

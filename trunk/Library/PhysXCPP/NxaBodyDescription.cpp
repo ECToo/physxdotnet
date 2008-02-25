@@ -14,5 +14,4 @@ NxaBodyDescription::~NxaBodyDescription()
 NxaBodyDescription::!NxaBodyDescription()
 {
 	delete nxBodyDesc;
-	nxBodyDesc = NULL;
 }

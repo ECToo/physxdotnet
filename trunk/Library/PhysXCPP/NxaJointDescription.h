@@ -1,70 +1,44 @@
 #pragma once
 
-#include "Stdafx.h"
 #include "Nxap.h"
-
-#include "NxActor.h"
-#include "NxJointDesc.h"
-
 #include "NxaActor.h"
-#include "NxaMath.h"
+
+ref class NxaJoint;
+
+class NxScene;
+class NxJointDesc;
+
 
 public ref class NxaJointDescription abstract
 {
 internal:
-	NxJointDesc* nxJointDesc;
-	NxaJointDescription();
-	NxaJointDescription(NxJointDesc* ptr);
+	virtual void LoadFromNative(NxJointDesc& desc);
+	virtual void ConvertToNative(NxJointDesc& desc);
+	virtual NxaJoint^ CreateJoint(NxScene* scenePtr) abstract;
+
+	void SetGlobalAnchor(int index, Vector3 worldAnchor);
+	void SetGlobalAxis(int index, Vector3 worldAxis);
+
+protected:
+	NxaJointDescription(NxaJointType jointType);
+	NxaJointType jointType;
 
 public:
-	~NxaJointDescription(void);
-	!NxaJointDescription(void);
 	
+	virtual void SetToDefault();
+	virtual bool IsValid();
+	NxaJointType GetType();
+
 	void SetGlobalAnchor(Vector3 anchor);
 	void SetGlobalAxis(Vector3 axis);
 
-	property NxaActor^ Actor[int]
-	{
-		NxaActor^ get(int x);
-		void set(int x, NxaActor^ value);
-	}
-
-	property Vector3 LocalAnchor[int]
-	{
-		Vector3 get(int x);
-		void set(int x, Vector3 value);
-	}
-
-	property Vector3 LocalAxis[int]
-	{
-		Vector3 get(int x);
-		void set(int x, Vector3 value);
-	}
-
-	property Vector3 LocalNormal[int]
-	{
-		Vector3 get(int x);
-		void set(int x, Vector3 value);
-	}
-
-	property float MaxForce
-	{
-		float get();
-		void set(float max);
-	}
-
-	property float MaxTorque
-	{
-		float get();
-		void set(float max);
-	}
-
-	property Object^ UserData;
-	property String^ Name;
-
-	property NxaJointFlag JointFlags
-	{
-		NxaJointFlag get();
-		void set(NxaJointFlag value);
-	}
+	array<NxaActor^>^ Actor;
+	array<Vector3>^ LocalAnchor;
+	array<Vector3>^ LocalAxis;
+	array<Vector3>^ LocalNormal;
+	float MaxForce;
+	float MaxTorque;
+	Object^ UserData;
+	String^ Name;
+	NxaJointFlag JointFlags;
 };

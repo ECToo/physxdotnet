@@ -1,31 +1,21 @@
 #pragma once
 
+#include "NxaJointLimitSoftDescription.h"
+
 class NxJointLimitSoftPairDesc;
-ref class NxaJointLimitSoftDescription;
 
 public ref class NxaJointLimitSoftPairDescription
 {
 internal:
-	NxJointLimitSoftPairDesc* nxDesc;
-	NxaJointLimitSoftPairDescription(NxJointLimitSoftPairDesc* ptr);
+	void LoadFromNative(NxJointLimitSoftPairDesc& desc);
+	NxJointLimitSoftPairDesc ConvertToNative();
 
 public:
 	NxaJointLimitSoftPairDescription();
-	~NxaJointLimitSoftPairDescription();
-	!NxaJointLimitSoftPairDescription();
 
 	void SetToDefault();
 	bool IsValid();
 
-	property NxaJointLimitSoftDescription^ Low
-	{
-		NxaJointLimitSoftDescription^ get();
-		void set(NxaJointLimitSoftDescription^ value);
-	}
-
-	property NxaJointLimitSoftDescription^ High
-	{
-		NxaJointLimitSoftDescription^ get();
-		void set(NxaJointLimitSoftDescription^ value);
-	}
+	NxaJointLimitSoftDescription Low;
+	NxaJointLimitSoftDescription High;
 };

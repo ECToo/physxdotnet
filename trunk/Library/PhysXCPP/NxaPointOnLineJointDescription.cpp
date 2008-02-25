@@ -1,24 +1,42 @@
 #include "StdAfx.h"
 #include "NxaPointOnLineJointDescription.h"
-
+#include "NxaJoint.h"
 #include "NxPointOnLineJointDesc.h"
+#include "NxScene.h"
 
-NxaPointOnLineJointDescription::NxaPointOnLineJointDescription(NxPointOnLineJointDesc *ptr)
+void NxaPointOnLineJointDescription::LoadFromNative(NxPointOnLineJointDesc& desc)
 {
-	nxJointDesc = ptr;
+	NxaJointDescription::LoadFromNative(desc);
 }
 
-NxaPointOnLineJointDescription::NxaPointOnLineJointDescription(void)
+NxPointOnLineJointDesc NxaPointOnLineJointDescription::ConvertToNative()
 {
-	nxJointDesc = new NxPointOnLineJointDesc();
+	NxPointOnLineJointDesc pointOnLineDesc;
+
+	NxaJointDescription::ConvertToNative(pointOnLineDesc);
+
+	return pointOnLineDesc;
+}
+
+NxaJoint^ NxaPointOnLineJointDescription::CreateJoint(NxScene* scenePtr)
+{
+	NxPointOnLineJointDesc pointOnLineDesc = ConvertToNative();	
+
+	NxJoint* jointPtr = scenePtr->createJoint(pointOnLineDesc);
+	return NxaJoint::CreateFromPointer(jointPtr);
+}
+
+NxaPointOnLineJointDescription::NxaPointOnLineJointDescription() : NxaJointDescription(NxaJointType::PointOnLine)
+{
+	SetToDefault();
 }
 
 void NxaPointOnLineJointDescription::SetToDefault()
 {
-	((NxPointOnLineJointDesc*)nxJointDesc)->setToDefault();
+	NxaJointDescription::SetToDefault();
 }
 
 bool NxaPointOnLineJointDescription::IsValid()
 {
-	return ((NxPointOnLineJointDesc*)nxJointDesc)->isValid();
+	return NxaJointDescription::IsValid();
 }

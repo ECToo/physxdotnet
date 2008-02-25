@@ -15,6 +15,26 @@ using Lesson202;
 
 namespace XNAPhysX
 {
+    public class MyObject
+    {
+        public MyObject()
+        {
+            x = 10;
+        }
+
+        public int x;
+    }
+
+    public class MyClass
+    {
+        public MyClass()
+        {
+            obj = new MyObject();
+        }
+
+        public MyObject obj;    
+    }
+
     public class PhysXGame : Microsoft.Xna.Framework.Game
     {
         private static ContentManager manager;
@@ -35,6 +55,16 @@ namespace XNAPhysX
 
         public PhysXGame()
         {
+            MyClass a = new MyClass();
+            a.obj.x = 15;
+
+            MyObject ob = a.obj;
+            ob.x = 12;
+
+            MyObject ob2 = new MyObject();
+            ob2.x = 100;
+            a.obj = ob2;
+
             Window.Title = "Lesson 202: Joint Limit Values";
 
             manager = Content;

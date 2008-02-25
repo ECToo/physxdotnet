@@ -5,8 +5,6 @@
 #include "NxaPlaneShape.h"
 #include "NxaSphereShape.h"
 
-
-
 NxaShape::NxaShape(NxShape *ptr)
 {
 	nxShape = ptr;
