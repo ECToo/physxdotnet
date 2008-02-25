@@ -22,6 +22,11 @@ NxJointDriveDesc NxaJointDriveDescription::ConvertToNative()
 
 NxaJointDriveDescription::NxaJointDriveDescription()
 {
+	SetToDefault();
+}
+
+void NxaJointDriveDescription::SetToDefault()
+{
 	Spring = 0;
 	Damping = 0;
 	ForceLimit = float::MaxValue;

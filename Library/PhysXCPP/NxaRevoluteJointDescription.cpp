@@ -7,6 +7,8 @@
 void NxaRevoluteJointDescription::LoadFromNative(NxRevoluteJointDesc& desc)
 {
 	NxaJointDescription::LoadFromNative(desc);
+
+	//TODO HERE
 }
 
 NxRevoluteJointDesc NxaRevoluteJointDescription::ConvertToNative()
@@ -17,8 +19,8 @@ NxRevoluteJointDesc NxaRevoluteJointDescription::ConvertToNative()
 
 	//RevoluteJointDescription Stuff
 	revoluteDesc.limit = Limit.ConvertToNative();
-	revoluteDesc.motor = Motor.ConvertToNative();
-	revoluteDesc.spring = Spring.ConvertToNative();
+	revoluteDesc.motor = Motor->ConvertToNative();
+	revoluteDesc.spring = Spring->ConvertToNative();
 	revoluteDesc.projectionDistance = ProjectionDistance;
 	revoluteDesc.projectionAngle = ProjectionAngle;
 	revoluteDesc.flags = (NxU32)Flags;
@@ -37,6 +39,9 @@ NxaJoint^ NxaRevoluteJointDescription::CreateJoint(NxScene* scenePtr)
 
 NxaRevoluteJointDescription::NxaRevoluteJointDescription() : NxaJointDescription(NxaJointType::Revolute)
 {
+	Spring = gcnew NxaSpringDescription();
+	Motor = gcnew NxaMotorDescription();
+
 	SetToDefault();
 }
 
@@ -48,8 +53,8 @@ void NxaRevoluteJointDescription::SetToDefault()
 	ProjectionAngle = 0.0872f; //about 5 degrees in radians.
 
 	Limit.SetToDefault();
-	Motor.SetToDefault();
-	Spring.SetToDefault();
+	Motor->SetToDefault();
+	Spring->SetToDefault();
 
 	Flags = (NxaRevoluteJointFlag)0;
 	ProjectionMode = NxaJointProjectionMode::None;
@@ -61,8 +66,8 @@ bool NxaRevoluteJointDescription::IsValid()
 	if(ProjectionAngle < 0.02f) return false;
 
 	if(!Limit.IsValid()) return false;
-	if(!Motor.IsValid()) return false;
-	if(!Spring.IsValid()) return false;
+	if(!Motor->IsValid()) return false;
+	if(!Spring->IsValid()) return false;
 
 	return NxaJointDescription::IsValid();
 }

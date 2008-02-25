@@ -13,6 +13,8 @@ internal:
 public:
 	NxaJointDriveDescription();
 
+	void SetToDefault();
+
 	NxaD6JointDriveType DriveType;
 	float Spring;
 	float Damping;

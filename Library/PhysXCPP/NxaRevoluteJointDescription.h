@@ -23,8 +23,8 @@ public:
 	virtual bool IsValid() override;
 
 	NxaJointLimitPairDescription Limit;
-	NxaMotorDescription Motor;
-	NxaSpringDescription Spring;
+	NxaMotorDescription^ Motor;
+	NxaSpringDescription^ Spring;
 
 	float ProjectionDistance;
 	float ProjectionAngle;

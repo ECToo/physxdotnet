@@ -17,10 +17,10 @@ NxJointLimitSoftPairDesc NxaJointLimitSoftPairDescription::ConvertToNative()
 	return desc;
 }
 
-NxaJointLimitSoftPairDescription::NxaJointLimitSoftPairDescription()
-{
-	SetToDefault();
-}
+//NxaJointLimitSoftPairDescription::NxaJointLimitSoftPairDescription()
+//{
+//	SetToDefault();
+//}
 
 void NxaJointLimitSoftPairDescription::SetToDefault()
 {

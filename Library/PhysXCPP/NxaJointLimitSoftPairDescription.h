@@ -4,14 +4,14 @@
 
 class NxJointLimitSoftPairDesc;
 
-public ref class NxaJointLimitSoftPairDescription
+public value class NxaJointLimitSoftPairDescription
 {
 internal:
 	void LoadFromNative(NxJointLimitSoftPairDesc& desc);
 	NxJointLimitSoftPairDesc ConvertToNative();
 
 public:
-	NxaJointLimitSoftPairDescription();
+	//NxaJointLimitSoftPairDescription();
 
 	void SetToDefault();
 	bool IsValid();

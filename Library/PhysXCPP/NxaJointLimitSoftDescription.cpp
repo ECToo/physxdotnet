@@ -20,10 +20,10 @@ NxJointLimitSoftDesc NxaJointLimitSoftDescription::ConvertToNative()
 	return desc;
 }
 
-NxaJointLimitSoftDescription::NxaJointLimitSoftDescription()
-{
-	SetToDefault();
-}
+//NxaJointLimitSoftDescription::NxaJointLimitSoftDescription()
+//{
+//	SetToDefault();
+//}
 
 void NxaJointLimitSoftDescription::SetToDefault()
 {
