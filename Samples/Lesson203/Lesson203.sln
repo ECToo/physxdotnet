@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual C# Express 2005
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lesson203", "Lesson203\Lesson203.csproj", "{595541BE-F9B8-4B86-A131-018EBF436BC7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhysXLibraries", "..\..\PhysXLibraries\PhysXLibraries.csproj", "{71A3DFC5-EA0D-4269-B412-4A2B11EFEE16}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{595541BE-F9B8-4B86-A131-018EBF436BC7}.Debug|x86.ActiveCfg = Debug|x86
+		{595541BE-F9B8-4B86-A131-018EBF436BC7}.Debug|x86.Build.0 = Debug|x86
+		{595541BE-F9B8-4B86-A131-018EBF436BC7}.Release|x86.ActiveCfg = Release|x86
+		{595541BE-F9B8-4B86-A131-018EBF436BC7}.Release|x86.Build.0 = Release|x86
+		{8A00B0D9-8FE7-42F5-849F-AD450A1B7E9E}.Debug|x86.ActiveCfg = Debug|x86
+		{8A00B0D9-8FE7-42F5-849F-AD450A1B7E9E}.Release|x86.ActiveCfg = Release|x86
+		{71A3DFC5-EA0D-4269-B412-4A2B11EFEE16}.Debug|x86.ActiveCfg = Debug|x86
+		{71A3DFC5-EA0D-4269-B412-4A2B11EFEE16}.Debug|x86.Build.0 = Debug|x86
+		{71A3DFC5-EA0D-4269-B412-4A2B11EFEE16}.Release|x86.ActiveCfg = Release|x86
+		{71A3DFC5-EA0D-4269-B412-4A2B11EFEE16}.Release|x86.Build.0 = Release|x86
+		{6E0C4997-BB13-4592-8BC8-81FB4ACB93BE}.Debug|x86.ActiveCfg = Debug|x86
+		{6E0C4997-BB13-4592-8BC8-81FB4ACB93BE}.Release|x86.ActiveCfg = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

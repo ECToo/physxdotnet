@@ -11,7 +11,7 @@ using Microsoft.Xna.Framework.Storage;
 using XNAPhysX.Physics;
 using XNAPhysX.Input;
 using XNAPhysX.Graphics.DebugRenderer;
-using Lesson202;
+using Lesson203;
 
 namespace XNAPhysX
 {
@@ -23,7 +23,7 @@ namespace XNAPhysX
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        Lesson202Scene scene;
+        Lesson203Scene scene;
 
         PhysXInput input;
         DebugCamera camera;
@@ -35,7 +35,7 @@ namespace XNAPhysX
 
         public PhysXGame()
         {
-            Window.Title = "Lesson 202: Joint Limit Values";
+            Window.Title = "Lesson 203: Joint Limit Planes";
 
             manager = Content;
             graphics = new GraphicsDeviceManager(this);
@@ -44,7 +44,7 @@ namespace XNAPhysX
 
             Content.RootDirectory = "Content";
 
-            scene = new Lesson202Scene();
+            scene = new Lesson203Scene();
         }
 
         protected override void Initialize()
