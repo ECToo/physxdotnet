@@ -21,7 +21,7 @@ public:
 	float MaxDistance;
 	float MinDistance;
 
-	NxaSpringDescription Spring;
+	NxaSpringDescription^ Spring;
 
 	NxaDistanceJointFlag Flags;	
 };
