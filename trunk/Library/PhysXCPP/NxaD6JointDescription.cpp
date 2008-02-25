@@ -25,12 +25,12 @@ void NxaD6JointDescription::LoadFromNative(NxD6JointDesc& desc)
 
 	TwistLimit.LoadFromNative(desc.twistLimit);
 
-	XDrive.LoadFromNative(desc.xDrive);
-	YDrive.LoadFromNative(desc.yDrive);
-	ZDrive.LoadFromNative(desc.zDrive);
-	SwingDrive.LoadFromNative(desc.swingDrive);
-	TwistDrive.LoadFromNative(desc.twistDrive);
-	SlerpDrive.LoadFromNative(desc.slerpDrive);
+	XDrive->LoadFromNative(desc.xDrive);
+	YDrive->LoadFromNative(desc.yDrive);
+	ZDrive->LoadFromNative(desc.zDrive);
+	SwingDrive->LoadFromNative(desc.swingDrive);
+	TwistDrive->LoadFromNative(desc.twistDrive);
+	SlerpDrive->LoadFromNative(desc.slerpDrive);
 
 	DrivePosition = NxaMath::Vector3PhysXToXNA(desc.drivePosition);
 	DriveOrientation = NxaMath::QuaternionPhysXToXNA(desc.driveOrientation);
@@ -64,12 +64,12 @@ NxD6JointDesc NxaD6JointDescription::ConvertToNative()
 	d6Desc.swing2Limit = Swing2Limit.ConvertToNative();
 	d6Desc.twistLimit = TwistLimit.ConvertToNative();
 
-	d6Desc.xDrive = XDrive.ConvertToNative();
-	d6Desc.yDrive = YDrive.ConvertToNative();
-	d6Desc.zDrive = ZDrive.ConvertToNative();
-	d6Desc.swingDrive = SwingDrive.ConvertToNative();
-	d6Desc.twistDrive = TwistDrive.ConvertToNative();
-	d6Desc.slerpDrive = SlerpDrive.ConvertToNative();
+	d6Desc.xDrive = XDrive->ConvertToNative();
+	d6Desc.yDrive = YDrive->ConvertToNative();
+	d6Desc.zDrive = ZDrive->ConvertToNative();
+	d6Desc.swingDrive = SwingDrive->ConvertToNative();
+	d6Desc.twistDrive = TwistDrive->ConvertToNative();
+	d6Desc.slerpDrive = SlerpDrive->ConvertToNative();
 
 	d6Desc.drivePosition = NxaMath::Vector3XNAToPhysX(DrivePosition);
 	d6Desc.driveOrientation = NxaMath::QuaternionXNAToPhysX(DriveOrientation);
@@ -97,6 +97,13 @@ NxaJoint^ NxaD6JointDescription::CreateJoint(NxScene* scenePtr)
 
 NxaD6JointDescription::NxaD6JointDescription() : NxaJointDescription(NxaJointType::D6)
 {
+	XDrive = gcnew NxaJointDriveDescription();
+	YDrive = gcnew NxaJointDriveDescription();
+	ZDrive = gcnew NxaJointDriveDescription();
+	SwingDrive = gcnew NxaJointDriveDescription();
+	TwistDrive = gcnew NxaJointDriveDescription();
+	SlerpDrive = gcnew NxaJointDriveDescription();
+
 	SetToDefault();
 }
 
@@ -110,6 +117,13 @@ void NxaD6JointDescription::SetToDefault()
 	TwistMotion = NxaD6JointMotion::Free;
 	Swing1Motion = NxaD6JointMotion::Free;
 	Swing2Motion = NxaD6JointMotion::Free;
+
+	XDrive->SetToDefault();
+	YDrive->SetToDefault();
+	ZDrive->SetToDefault();
+	SwingDrive->SetToDefault();
+	TwistDrive->SetToDefault();
+	SlerpDrive->SetToDefault();
 
 	DrivePosition = Vector3::Zero;
 	DriveOrientation = Quaternion::Identity;

@@ -29,9 +29,9 @@ public:
 	NxaJointLimitPairDescription TwistLimit;
 	NxaJointLimitDescription SwingLimit;
 
-	NxaSpringDescription TwistSpring;
-	NxaSpringDescription SwingSpring;
-	NxaSpringDescription JointSpring;
+	NxaSpringDescription^ TwistSpring;
+	NxaSpringDescription^ SwingSpring;
+	NxaSpringDescription^ JointSpring;
 
 	NxaSphericalJointFlag Flags;
 

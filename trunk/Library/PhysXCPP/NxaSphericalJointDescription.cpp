@@ -21,9 +21,9 @@ NxSphericalJointDesc NxaSphericalJointDescription::ConvertToNative()
 	sphericalDesc.projectionDistance = ProjectionDistance;
 	sphericalDesc.twistLimit = TwistLimit.ConvertToNative();
 	sphericalDesc.swingLimit = SwingLimit.ConvertToNative();
-	sphericalDesc.twistSpring = TwistSpring.ConvertToNative();
-	sphericalDesc.swingSpring = SwingSpring.ConvertToNative();
-	sphericalDesc.jointSpring = JointSpring.ConvertToNative();
+	sphericalDesc.twistSpring = TwistSpring->ConvertToNative();
+	sphericalDesc.swingSpring = SwingSpring->ConvertToNative();
+	sphericalDesc.jointSpring = JointSpring->ConvertToNative();
 	sphericalDesc.flags = (NxU32)Flags;
 	sphericalDesc.projectionMode = (NxJointProjectionMode)ProjectionMode;
 
@@ -40,6 +40,10 @@ NxaJoint^ NxaSphericalJointDescription::CreateJoint(NxScene* scenePtr)
 
 NxaSphericalJointDescription::NxaSphericalJointDescription() : NxaJointDescription(NxaJointType::Spherical)
 {
+	TwistSpring = gcnew NxaSpringDescription();
+	SwingSpring = gcnew NxaSpringDescription();
+	JointSpring = gcnew NxaSpringDescription();
+
 	SetToDefault();
 }
 
@@ -50,9 +54,9 @@ void NxaSphericalJointDescription::SetToDefault()
 	SwingAxis = Vector3::UnitZ;
 	TwistLimit.SetToDefault();
 	SwingLimit.SetToDefault();
-	TwistSpring.SetToDefault();
-	SwingSpring.SetToDefault();
-	JointSpring.SetToDefault();
+	TwistSpring->SetToDefault();
+	SwingSpring->SetToDefault();
+	JointSpring->SetToDefault();
 
 	ProjectionDistance = 1.0f;
 
@@ -67,9 +71,9 @@ bool NxaSphericalJointDescription::IsValid()
 
 	if(!TwistLimit.IsValid()) return false;
 	if(!SwingLimit.IsValid()) return false;
-	if(!SwingSpring.IsValid()) return false;
-	if(!TwistSpring.IsValid()) return false;
-	if(!JointSpring.IsValid()) return false;
+	if(!SwingSpring->IsValid()) return false;
+	if(!TwistSpring->IsValid()) return false;
+	if(!JointSpring->IsValid()) return false;
 
 	return true;
 }

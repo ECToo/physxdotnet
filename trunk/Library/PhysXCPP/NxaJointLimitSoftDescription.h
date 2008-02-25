@@ -2,14 +2,14 @@
 
 class NxJointLimitSoftDesc;
 
-public ref class NxaJointLimitSoftDescription
+public value class NxaJointLimitSoftDescription
 {
 internal:
 	void LoadFromNative(NxJointLimitSoftDesc& desc);
 	NxJointLimitSoftDesc ConvertToNative();
 
 public:
-	NxaJointLimitSoftDescription();
+	//NxaJointLimitSoftDescription();
 
 	void SetToDefault();
 	bool IsValid();

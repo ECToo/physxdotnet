@@ -40,6 +40,7 @@ NxaJoint^ NxaDistanceJointDescription::CreateJoint(NxScene* scenePtr)
 NxaDistanceJointDescription::NxaDistanceJointDescription() : NxaJointDescription(NxaJointType::Distance)
 {
 	Spring = gcnew NxaSpringDescription();
+
 	SetToDefault();
 }
 

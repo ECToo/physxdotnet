@@ -36,13 +36,13 @@ public:
 
 	NxaJointLimitSoftPairDescription TwistLimit;
 
-	NxaJointDriveDescription XDrive;
-	NxaJointDriveDescription YDrive;
-	NxaJointDriveDescription ZDrive;
+	NxaJointDriveDescription^ XDrive;
+	NxaJointDriveDescription^ YDrive;
+	NxaJointDriveDescription^ ZDrive;
 
-	NxaJointDriveDescription SwingDrive;
-	NxaJointDriveDescription TwistDrive;
-	NxaJointDriveDescription SlerpDrive;
+	NxaJointDriveDescription^ SwingDrive;
+	NxaJointDriveDescription^ TwistDrive;
+	NxaJointDriveDescription^ SlerpDrive;
 	
 	Vector3 DrivePosition;
 	Quaternion DriveOrientation;
