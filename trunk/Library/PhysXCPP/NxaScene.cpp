@@ -1,32 +1,27 @@
 #include "StdAfx.h"
 
 #include "PhysXCPP.h"
-
+#include "NxFoundationSDK.h"
 #include "NxaScene.h"
 #include "NxaActor.h"
 #include "NxaFixedJoint.h"
 #include "NxaActorDescription.h"
 #include "NxaJointDescription.h"
 #include "NxaMaterial.h"
-
-#include "NxMaterial.h"
+#include "NxaUserContactReport.h"
+#include "NxaUserTriggerReport.h"
 #include "NxSceneDesc.h"
-#include "NxScene.h"
 #include "NxRemoteDebugger.h"
 
 NxaScene::NxaScene(NxScene* ptr)
 {
-	userContactReport = 0;
-	userTriggerReport = 0;
-
 	nxScene = ptr;
+
+	InitialiseReporters();
 }
 
 NxaScene::NxaScene(NxaSceneDescription^ desc)
 {
-	userContactReport = 0;
-	userTriggerReport = 0;
-
 	nxScene = PhysXEngine::sdk->createScene(*(desc->nxSceneDesc));
 
 	if(!nxScene)
@@ -35,9 +30,7 @@ NxaScene::NxaScene(NxaSceneDescription^ desc)
 		nxScene = PhysXEngine::sdk->createScene(*(desc->nxSceneDesc));
 
 		if(!nxScene)
-		{
 			return;
-		}
 	}
 
 	if(desc->EnableRemoteDebugger)
@@ -47,6 +40,8 @@ NxaScene::NxaScene(NxaSceneDescription^ desc)
 	defaultMaterial->setRestitution(0.5);
 	defaultMaterial->setStaticFriction(0.5);
 	defaultMaterial->setDynamicFriction(0.5);
+
+	InitialiseReporters();
 }
 
 NxaScene::~NxaScene()
@@ -113,26 +108,13 @@ NxaMaterial^ NxaScene::GetMaterialFromIndex(NxaMaterialIndex matIndex)
 	return NxaMaterial::CreateFromPointer(ptr);
 }
 
-void NxaScene::SetUserContactReport(NxaUserContactDelegate ^ callback)
+void NxaScene::InitialiseReporters()
 {
-	if(userContactReport == 0)
-	{
-		userContactReport = new NxDerivedUserContactReport();
-		nxScene->setUserContactReport(userContactReport);
-	}
+	userContactReport = new NxDerivedUserContactReport(this);
+	userTriggerReport = new NxDerivedUserTriggerReport(this);
 
-	userContactReport->SetContactDelegate(callback);
-}
-
-void NxaScene::SetUserTriggerReport(NxaUserTriggerDelegate ^ callback)
-{
-	if(userTriggerReport == 0)
-	{
-		userTriggerReport = new NxDerivedUserTriggerReport();
-		nxScene->setUserTriggerReport(userTriggerReport);
-	}
-
-	userTriggerReport->SetTriggerDelegate(callback);
+	nxScene->setUserContactReport(userContactReport);
+	nxScene->setUserTriggerReport(userTriggerReport);
 }
 
 void NxaScene::SetActorPairFlags(NxaActor ^ actorA, NxaActor ^actorB, NxaU32 contactPairFlag)
@@ -153,4 +135,16 @@ void NxaScene::SetActorGroupPairFlags(NxActorGroup group1, NxActorGroup group2, 
 NxaU32 NxaScene::GetActorGroupPairFlags(NxActorGroup group1, NxActorGroup group2)
 {
 	return nxScene->getActorGroupPairFlags(group1, group2);
+}
+
+void NxaScene::FireUserContactReporter(NxaContactPair ^pair, NxaU32 events)
+{
+	if(userContactReporter != nullptr)
+		userContactReporter(pair, events);
+}
+
+void NxaScene::FireUserTriggerReporter(NxaShape ^triggerShape, NxaShape ^otherShape, NxaTriggerFlag status)
+{
+	if(userTriggerReporter != nullptr)
+		userTriggerReporter(triggerShape, otherShape, status);
 }
