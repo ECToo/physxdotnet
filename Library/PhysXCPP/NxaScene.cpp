@@ -16,11 +16,17 @@
 
 NxaScene::NxaScene(NxScene* ptr)
 {
+	userContactReport = 0;
+	userTriggerReport = 0;
+
 	nxScene = ptr;
 }
 
 NxaScene::NxaScene(NxaSceneDescription^ desc)
 {
+	userContactReport = 0;
+	userTriggerReport = 0;
+
 	nxScene = PhysXEngine::sdk->createScene(*(desc->nxSceneDesc));
 
 	if(!nxScene)
@@ -42,6 +48,27 @@ NxaScene::NxaScene(NxaSceneDescription^ desc)
 	defaultMaterial->setStaticFriction(0.5);
 	defaultMaterial->setDynamicFriction(0.5);
 }
+
+NxaScene::~NxaScene()
+{
+	this->!NxaScene();
+}
+
+NxaScene::!NxaScene()
+{
+	if(userContactReport != 0)
+	{
+		delete userContactReport;
+		userContactReport = 0;
+	}
+
+	if(userTriggerReport != 0)
+	{
+		delete userTriggerReport;
+		userTriggerReport = 0;
+	}
+}
+
 
 NxaActor^ NxaScene::CreateActor(NxaActorDescription^ actorDescription)
 {
@@ -84,4 +111,46 @@ NxaMaterial^ NxaScene::GetMaterialFromIndex(NxaMaterialIndex matIndex)
 {
 	NxMaterial* ptr = nxScene->getMaterialFromIndex(matIndex);
 	return NxaMaterial::CreateFromPointer(ptr);
+}
+
+void NxaScene::SetUserContactReport(NxaUserContactDelegate ^ callback)
+{
+	if(userContactReport == 0)
+	{
+		userContactReport = new NxDerivedUserContactReport();
+		nxScene->setUserContactReport(userContactReport);
+	}
+
+	userContactReport->SetContactDelegate(callback);
+}
+
+void NxaScene::SetUserTriggerReport(NxaUserTriggerDelegate ^ callback)
+{
+	if(userTriggerReport == 0)
+	{
+		userTriggerReport = new NxDerivedUserTriggerReport();
+		nxScene->setUserTriggerReport(userTriggerReport);
+	}
+
+	userTriggerReport->SetTriggerDelegate(callback);
+}
+
+void NxaScene::SetActorPairFlags(NxaActor ^ actorA, NxaActor ^actorB, NxaU32 contactPairFlag)
+{
+	nxScene->setActorPairFlags(*(actorA->nxActor), *(actorB->nxActor), contactPairFlag);
+}
+
+NxaU32 NxaScene::GetActorPairFlags(NxaActor ^actorA, NxaActor ^actorB)
+{
+	 return nxScene->getActorPairFlags(*(actorA->nxActor), *(actorB->nxActor));
+}
+
+void NxaScene::SetActorGroupPairFlags(NxActorGroup group1, NxActorGroup group2, NxU32 flags)
+{
+	nxScene->setActorGroupPairFlags(group1, group2, flags);
+}
+
+NxaU32 NxaScene::GetActorGroupPairFlags(NxActorGroup group1, NxActorGroup group2)
+{
+	return nxScene->getActorGroupPairFlags(group1, group2);
 }

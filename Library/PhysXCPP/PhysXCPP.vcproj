@@ -245,6 +245,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\NxaContactPair.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\NxaConvexMesh.cpp"
 				>
 			</File>
@@ -290,6 +294,22 @@
 			</File>
 			<File
 				RelativePath=".\NxaForceFieldShape.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\NxaHeightField.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\NxaHeightFieldDescription.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\NxaHeightFieldShape.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\NxaHeightFieldShapeDescription.cpp"
 				>
 			</File>
 			<File
@@ -495,6 +515,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\NxaContactPair.h"
+				>
+			</File>
+			<File
 				RelativePath=".\NxaConvexMesh.h"
 				>
 			</File>
@@ -540,6 +564,26 @@
 			</File>
 			<File
 				RelativePath=".\NxaForceFieldShape.h"
+				>
+			</File>
+			<File
+				RelativePath=".\NxaHeightField.h"
+				>
+			</File>
+			<File
+				RelativePath=".\NxaHeightFieldDescription.h"
+				>
+			</File>
+			<File
+				RelativePath=".\NxaHeightFieldSample.h"
+				>
+			</File>
+			<File
+				RelativePath=".\NxaHeightFieldShape.h"
+				>
+			</File>
+			<File
+				RelativePath=".\NxaHeightFieldShapeDescription.h"
 				>
 			</File>
 			<File
@@ -668,6 +712,14 @@
 			</File>
 			<File
 				RelativePath=".\NxaSpringDescription.h"
+				>
+			</File>
+			<File
+				RelativePath=".\NxaUserContactReport.h"
+				>
+			</File>
+			<File
+				RelativePath=".\NxaUserTriggerReport.h"
 				>
 			</File>
 			<File

@@ -4,6 +4,7 @@ typedef unsigned short NxaActorGroup;
 typedef unsigned short NxaCollisionGroup;
 typedef unsigned short NxaDominanceGroup;
 typedef unsigned short NxaMaterialIndex;
+typedef unsigned short NxaActorGroup;
 typedef unsigned int NxaSubmeshIndex;
 typedef unsigned char NxaU8;
 typedef unsigned short NxaU16;
@@ -11,6 +12,7 @@ typedef unsigned int NxaU32;
 typedef unsigned __int64 NxaU64;
 typedef float NxaF32;
 typedef double NxaF64;
+
 
 public enum class NxaActorFlag : NxaU32 
 { 
@@ -221,3 +223,22 @@ public enum class NxaThreadPriority
 	BelowNormal = 3, 
 	Low = 4 
 };
+
+public enum class NxaContactPairFlag : NxaU32
+{
+	IgnorePair					= (1<<0),
+
+	NotifyOnStartTouch			= (1<<1),
+	NotifyOnEndTouch			= (1<<2),
+	NotityOnTouch				= (1<<3),	// Not yet implemented
+	NotifyOnImpact				= (1<<4),	// Not yet implemented
+	NotifyOnRoll				= (1<<5),	// Not yet implemented
+	NotifyOnSlide				= (1<<6),	// Not yet implemented
+	NotifyForces				= (1<<7),
+
+	NotifyContactModification	= (1<<16),
+
+	NotifyAll					= (NotifyOnStartTouch | NotifyOnEndTouch | NotityOnTouch | NotifyOnImpact | NotifyOnRoll | NotifyOnSlide | NotifyForces),
+};
+
+typedef NxaShapeFlag	NxaTriggerFlag;
