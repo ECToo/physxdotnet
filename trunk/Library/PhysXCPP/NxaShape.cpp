@@ -4,6 +4,7 @@
 #include "NxaCapsuleShape.h"
 #include "NxaPlaneShape.h"
 #include "NxaSphereShape.h"
+#include "NxaHeightFieldShape.h"
 
 NxaShape::NxaShape(NxShape *ptr)
 {
@@ -24,6 +25,8 @@ NxaShape^ NxaShape::CreateFromPointer(NxShape *ptr)
 			return gcnew NxaPlaneShape(ptr);
 		case NX_SHAPE_CAPSULE :
 			return gcnew NxaCapsuleShape(ptr);
+		case NX_SHAPE_HEIGHTFIELD:
+			return gcnew NxaHeightFieldShape(ptr);
 		}
 	}
 
