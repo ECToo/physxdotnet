@@ -7,11 +7,18 @@ ref class NxaActorDescription;
 ref class NxaJoint;
 ref class NxaJointDescription;
 ref class NxaMaterial;
+ref class NxaContactPair;
+ref class NxaShape;
 
 #include "Nxap.h"
 #include "NxaSceneDescription.h"
-#include "NxaUserContactReport.h"
-#include "NxaUserTriggerReport.h"
+#include "NxScene.h"
+
+public delegate void NxaUserContactDelegate(NxaContactPair ^pair, NxaU32 events);
+public delegate void NxaUserTriggerDelegate(NxaShape ^ triggerShape, NxaShape ^ otherShape, NxaTriggerFlag status);
+
+class NxDerivedUserContactReport;
+class NxDerivedUserTriggerReport;
 
 public ref class NxaScene
 {
@@ -19,10 +26,16 @@ private:
 	NxDerivedUserContactReport * userContactReport;
 	NxDerivedUserTriggerReport * userTriggerReport;
 
+	void InitialiseReporters();
+
+	
 internal:
 	NxScene* nxScene;
 	NxaScene(NxScene* ptr);
 	NxaScene(NxaSceneDescription^ description);
+
+	void FireUserContactReporter(NxaContactPair ^ pair, NxU32 events);
+	void FireUserTriggerReporter(NxaShape ^ triggerShape, NxaShape ^ otherShape, NxaTriggerFlag status);
 
 public:
 	~NxaScene();
@@ -49,10 +62,10 @@ public:
 	NxaMaterial^ GetMaterialFromIndex(NxaMaterialIndex matIndex);
 
 	//----------
-	// Callbacks
+	// Delegates
 	//----------
-	void SetUserContactReport(NxaUserContactDelegate ^ callback);
-	void SetUserTriggerReport(NxaUserTriggerDelegate ^ callback);
+	NxaUserContactDelegate ^ userContactReporter;
+	NxaUserTriggerDelegate ^ userTriggerReporter;
 
 	//---------------------------------
 	// Collision Filtering and Grouping

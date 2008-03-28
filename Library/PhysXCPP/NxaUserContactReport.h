@@ -2,48 +2,24 @@
 
 #include "NxUserContactReport.h"
 #include "NxaContactPair.h"
-
-
-typedef void (__stdcall *NxUserContact_Callback)(NxaContactPair ^ pair, unsigned int events);
-public delegate void NxaUserContactDelegate(NxaContactPair ^pair, unsigned int events);
+#include "NxaScene.h"
+#include "Nxap.h"
+#include <vcclr.h>
 
 class NxDerivedUserContactReport : public NxUserContactReport
 {
 private:
-	GCHandle gch;
-	NxUserContact_Callback fptr;
+	gcroot<NxaScene ^> myScene;
 
 public:
-	NxDerivedUserContactReport()
+	NxDerivedUserContactReport(NxaScene ^ scene)
 	{
-		fptr = 0;
-	};
-
-	~NxDerivedUserContactReport()
-	{
-		if(fptr != 0)
-		{
-			gch.Free();
-			fptr = 0;
-		}
-	};
-
-	void SetContactDelegate(NxaUserContactDelegate ^ contactNotifier)
-	{
-		if(fptr != 0)
-		{
-			gch.Free();
-			fptr = 0;
-		}
-
-		gch = GCHandle::Alloc(contactNotifier);
-		fptr = static_cast<NxUserContact_Callback>(Marshal::GetFunctionPointerForDelegate(contactNotifier).ToPointer());
+		myScene = scene;
 	};
 
 	void onContactNotify(NxContactPair &pair, NxU32 events)
 	{
-		if(fptr != 0)
-			fptr(gcnew NxaContactPair(&pair), events);
+		myScene->FireUserContactReporter(gcnew NxaContactPair(&pair), events);
 	};
 };
 
