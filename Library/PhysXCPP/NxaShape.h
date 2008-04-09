@@ -3,18 +3,21 @@
 #include "Nxap.h"
 
 #include "NxShape.h"
-//class NxaActor;
+ref class NxaActor;
 
 public ref class NxaShape abstract
 {
 internal:
+
 	NxShape* nxShape;
 	NxaShape(NxShape* ptr);
 
 	static NxaShape^ CreateFromPointer(NxShape* ptr);
 
 public:
-	//NxaActor^ GetActor();
+	!NxaShape();
+	~NxaShape();
+	NxaActor^ GetActor();
 	//void SetGroup(NxaCollisionGroup collisionGroup) { nxShape->setGroup(collisionGroup); }
 	//NxaCollisionGroup GetGroup();
 	
@@ -33,6 +36,15 @@ public:
 	bool IsWheel() { return (nxShape->isWheel() != NULL); }
 	
 	Vector3 GetGlobalPosition();
+	void SetGlobalPosition(Vector3 position);
 	Matrix GetGlobalPose();
+	void SetGlobalPose(Matrix pose);
 	Matrix GetGlobalOrientation();
+	void SetGlobalOrientation(Matrix orientation);
+
+	property Object^ UserData
+	{
+		Object^ get();
+		void set(Object ^);
+	}
 };

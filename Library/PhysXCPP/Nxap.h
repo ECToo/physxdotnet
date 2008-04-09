@@ -241,4 +241,17 @@ public enum class NxaContactPairFlag : NxaU32
 	NotifyAll					= (NotifyOnStartTouch | NotifyOnEndTouch | NotityOnTouch | NotifyOnImpact | NotifyOnRoll | NotifyOnSlide | NotifyForces),
 };
 
+public enum class NxaCapsuleClimbingMode : NxaU32
+{
+	ClimbEasy				= 0,
+	ClimbConstrained		= 1,
+	ClimbLast				= 2,
+};
+
+public enum class NxaControllerType : NxaU32
+{
+	ControllerBox			= 0,
+	ControllerCapsule		= 1,
+};
+
 typedef NxaShapeFlag	NxaTriggerFlag;

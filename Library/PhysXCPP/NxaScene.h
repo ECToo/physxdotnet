@@ -9,6 +9,7 @@ ref class NxaJointDescription;
 ref class NxaMaterial;
 ref class NxaContactPair;
 ref class NxaShape;
+ref class NxaMaterialDescription;
 
 #include "Nxap.h"
 #include "NxaSceneDescription.h"
@@ -31,7 +32,6 @@ private:
 	
 internal:
 	NxScene* nxScene;
-	NxaScene(NxScene* ptr);
 	NxaScene(NxaSceneDescription^ description);
 
 	void FireUserContactReporter(NxaContactPair ^ pair, NxU32 events);
@@ -48,6 +48,12 @@ public:
 	NxaJoint^ CreateJoint(NxaJointDescription^ jointDescription);
 	void ReleaseActor(NxaActor^ nxaActor);
 
+	//-------------
+	// Enumerations
+	//-------------
+	NxaU32 GetNbActors();
+	array<NxaActor^>^ GetActors();
+
 	//-------
 	// Update
 	//-------
@@ -60,6 +66,8 @@ public:
 	// Materials
 	//----------
 	NxaMaterial^ GetMaterialFromIndex(NxaMaterialIndex matIndex);
+	NxaMaterial^ CreateMaterial(NxaMaterialDescription^ materialDescription);
+	void ReleaseMaterial(NxaMaterial^ material);
 
 	//----------
 	// Delegates
@@ -75,5 +83,11 @@ public:
 	void SetActorGroupPairFlags(NxaActorGroup group1, NxaActorGroup group2, NxU32 contactPairFlag);
 	NxaU32 GetActorGroupPairFlags(NxaActorGroup group1, NxaActorGroup group2);
 	
+	
+	property Object ^ UserData
+	{
+		Object ^ get();
+		void set(Object ^);
+	};
 	
 };

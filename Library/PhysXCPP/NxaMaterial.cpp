@@ -3,6 +3,7 @@
 #include "NxaMaterial.h"
 #include "NxaMath.h"
 #include "NxaScene.h"
+#include "NxContainer.h"
 
 NxaMaterial^ NxaMaterial::CreateFromPointer(NxMaterial *ptr)
 {
@@ -47,7 +48,7 @@ void NxaMaterial::SaveToDescription([Out] NxaMaterialDescription ^%description)
 NxaScene^ NxaMaterial::GetScene()
 {
 	NxScene& sceneRef = nxMaterial->getScene();
-	return gcnew NxaScene(&sceneRef);
+	return NxSceneContainer::GetInstance()->Find(IntPtr(&sceneRef));
 }
 
 void NxaMaterial::SetDynamicFriction(float coefficient)

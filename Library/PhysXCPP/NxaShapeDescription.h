@@ -8,7 +8,7 @@ class NxShapeDesc;
 public ref class NxaShapeDescription abstract
 {
 internal:
-	static NxaShapeDescription^ CreateFromPointer(NxShapeDesc* ptr);
+	//static NxaShapeDescription^ CreateFromPointer(NxShapeDesc* ptr);
 	NxShapeDesc* nxShapeDesc;
 
 public:
@@ -30,5 +30,33 @@ public:
 		void set(NxaU32 value);
 	}
 
-	property Object^ UserData;
+	property float Density
+	{
+		float get();
+		void set(float value);
+	}
+
+	property float Mass
+	{
+		float get();
+		void set(float value);
+	}
+
+	property NxaCollisionGroup Group
+	{
+		NxaCollisionGroup get();
+		void set(NxaCollisionGroup value);
+	}
+
+	property NxaMaterialIndex MaterialIndex
+	{
+		NxaMaterialIndex get();
+		void set(NxaMaterialIndex value);
+	}
+
+	property Object^ UserData
+	{
+		Object^ get();
+		void set(Object ^ value);
+	}
 };

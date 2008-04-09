@@ -16,8 +16,11 @@ internal:
 	NxActor* nxActor;
 	String^ actorName;
 
+	NxaActor(NxActor * actor);
+
 public:
-	NxaActor(NxActor* ptr);
+	~NxaActor();
+	!NxaActor();
 
 	//-----------------------
 	//Public Member Functions
@@ -202,5 +205,9 @@ public:
 	// Public Attributes
 	//------------------
 
-	property Object^ UserData;
+	property Object^ UserData
+	{
+		Object^ get();
+		void set(Object ^);
+	};
 };

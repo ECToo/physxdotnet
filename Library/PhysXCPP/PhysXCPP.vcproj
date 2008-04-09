@@ -217,6 +217,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\NxaBoxController.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\NxaBoxControllerDescription.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\NxaBoxForceFieldShape.cpp"
 				>
 			</File>
@@ -233,6 +241,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\NxaCapsuleController.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\NxaCapsuleForceFieldShape.cpp"
 				>
 			</File>
@@ -246,6 +258,18 @@
 			</File>
 			<File
 				RelativePath=".\NxaContactPair.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\NxaController.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\NxaControllerDescription.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\NxaControllerManager.cpp"
 				>
 			</File>
 			<File
@@ -487,6 +511,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\NxaBoxController.h"
+				>
+			</File>
+			<File
+				RelativePath=".\NxaBoxControllerDescription.h"
+				>
+			</File>
+			<File
 				RelativePath=".\NxaBoxForceFieldShape.h"
 				>
 			</File>
@@ -503,6 +535,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\NxaCapsuleController.h"
+				>
+			</File>
+			<File
 				RelativePath=".\NxaCapsuleForceFieldShape.h"
 				>
 			</File>
@@ -516,6 +552,18 @@
 			</File>
 			<File
 				RelativePath=".\NxaContactPair.h"
+				>
+			</File>
+			<File
+				RelativePath=".\NxaController.h"
+				>
+			</File>
+			<File
+				RelativePath=".\NxaControllerDescription.h"
+				>
+			</File>
+			<File
+				RelativePath=".\NxaControllerManager.h"
 				>
 			</File>
 			<File
@@ -720,6 +768,10 @@
 			</File>
 			<File
 				RelativePath=".\NxaUserTriggerReport.h"
+				>
+			</File>
+			<File
+				RelativePath=".\NxContainer.h"
 				>
 			</File>
 			<File

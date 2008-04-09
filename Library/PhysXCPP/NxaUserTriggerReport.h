@@ -5,6 +5,7 @@
 #include "NxaShape.h"
 #include "Nxap.h"
 #include <vcclr.h>
+#include "NxContainer.h"
 
 
 class NxDerivedUserTriggerReport : public NxUserTriggerReport
@@ -20,6 +21,7 @@ public:
 
 	void onTrigger(NxShape & triggerShape, NxShape & otherShape, NxTriggerFlag status)
 	{
-		myScene->FireUserTriggerReporter(NxaShape::CreateFromPointer(&triggerShape), NxaShape::CreateFromPointer(&otherShape), (NxaTriggerFlag)status);
+		
+		myScene->FireUserTriggerReporter(NxShapeContainer::GetInstance()->Find(IntPtr(&triggerShape)), NxShapeContainer::GetInstance()->Find(IntPtr(&otherShape)), (NxaTriggerFlag)status);
 	};
 };
