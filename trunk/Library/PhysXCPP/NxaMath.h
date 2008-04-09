@@ -6,6 +6,7 @@
 #include "NxMat34.h"
 #include "NxQuat.h"
 #include "NxVec3.h"
+#include "NxExtended.h"
 
 public ref class NxaMath
 {
@@ -17,7 +18,6 @@ public:
 	static Matrix MatrixPhysXToXNA(const NxMat34& m);
 
 	static NxVec3 Vector3XNAToPhysX([In] Matrix% m);
-
 	static NxVec3 Vector3XNAToPhysX([In] Vector3% v);
 
 	static Vector3 Vector3PhysXToXNA(const NxVec3& v);
@@ -32,4 +32,7 @@ public:
 	static Vector3 TransformWorldNormalToLocal([In] Matrix% m, [In] Vector3% normal);
 
 	static Vector3 GetPerpendicularVector([In] Vector3%);
+
+	static NxExtendedVec3 Vector3XNAToExtendedPhysX([In] Vector3% v);
+	static Vector3 Vector3ExtendedPhysXToXNA(const NxExtendedVec3& v);
 };

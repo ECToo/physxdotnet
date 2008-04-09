@@ -9,15 +9,44 @@
 #include "NxActor.h"
 #include "NxShape.h"
 #include "NxMat33.h"
+#include "NxContainer.h"
 
-NxaActor::NxaActor(NxActor* ptr)
+NxaActor::NxaActor(NxActor * actor)
 {
-	nxActor = ptr;
+	nxActor = actor;
+
+	NxActorContainer::GetInstance()->Add(IntPtr(actor), this);
+
+	// create the NxaShape objects from the create NxShape objects
+	NxaU32 numShapes = nxActor->getNbShapes();
+	NxShape* const* ptr = nxActor->getShapes();
+
+	for(NxU32 p = 0; p < numShapes; p++)
+		NxaShape::CreateFromPointer(ptr[p]);
+}
+
+NxaActor::~NxaActor()
+{
+	this->!NxaActor();
+}
+
+NxaActor::!NxaActor()
+{
+	// remove the actor from the list
+	if(nxActor != 0)
+		NxActorContainer::GetInstance()->Remove(IntPtr(nxActor));
+
+	// destroy the shapes
+	array<NxaShape ^> ^ arShapes = GetShapes();
+	int length = arShapes->Length;
+	
+	for(int i = 0; i < length; i++)
+		delete arShapes[i];
 }
 
 NxaScene^ NxaActor::GetScene()
 {
-	return gcnew NxaScene(&(nxActor->getScene()));
+	return NxSceneContainer::GetInstance()->Find(IntPtr(&(nxActor->getScene())));
 }
 
 void NxaActor::SetName(String^ name)
@@ -178,7 +207,9 @@ void NxaActor::MoveGlobalOrientationQuaternion(Quaternion orientation)
 NxaShape^ NxaActor::CreateShape(NxaShapeDescription^ shapeDesc)
 {
 	NxShape* shapePtr = nxActor->createShape(*(shapeDesc->nxShapeDesc));
-	return NxaShape::CreateFromPointer(shapePtr);
+	NxaShape ^ shape = NxaShape::CreateFromPointer(shapePtr);
+	
+	return shape;
 }
 
 void NxaActor::ReleaseShape(NxaShape^ shape)
@@ -199,7 +230,7 @@ array<NxaShape^>^ NxaActor::GetShapes()
 	NxShape* const* ptr = nxActor->getShapes();
 
 	for(NxU32 p = 0; p < numShapes; p++)
-		shapeArray[p] = NxaShape::CreateFromPointer(ptr[p]);
+		shapeArray[p] = NxShapeContainer::GetInstance()->Find(IntPtr(ptr[p]));
 
 	return shapeArray;
 }
@@ -492,4 +523,33 @@ void NxaActor::WakeUp(float timeout)
 void NxaActor::PutToSleep()
 {
 	nxActor->putToSleep();
+}
+
+Object^ NxaActor::UserData::get()
+{
+	if(nxActor->userData != 0)
+	{
+		GCHandle gch = GCHandle::FromIntPtr((System::IntPtr)(nxActor->userData));
+		Object^ obj = (Object^)(gch.Target);
+		return obj;
+	}
+	else
+	{
+		return nullptr;
+	}
+}
+
+void NxaActor::UserData::set(Object ^ value)
+{
+	if(nxActor->userData != 0)
+	{
+		GCHandle gch = GCHandle::FromIntPtr(IntPtr(nxActor->userData));
+		gch.Free();
+		nxActor->userData = 0;
+	}
+	if( value != nullptr)
+	{
+		GCHandle gch = GCHandle::Alloc(value);
+		nxActor->userData = (void*)(GCHandle::ToIntPtr(gch));
+	}
 }

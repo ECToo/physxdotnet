@@ -107,3 +107,25 @@ Vector3 NxaMath::GetPerpendicularVector([In] Vector3% v)
 	return result;
 
 }
+
+NxExtendedVec3 NxaMath::Vector3XNAToExtendedPhysX([In] Vector3% v)
+{
+	float x = v.X;
+	float y = v.Y;
+	float z = v.Z;
+	NxExtendedVec3 vec;
+
+	if(float::IsPositiveInfinity(x) || float::IsPositiveInfinity(y) || float::IsPositiveInfinity(z))
+		vec.setPlusInfinity();
+	else if(float::IsNegativeInfinity(x) || float::IsNegativeInfinity(y) || float::IsNegativeInfinity(z))
+		vec.setMinusInfinity();
+	else
+		vec.set(v.X, v.Y, v.Z);
+
+	return vec;
+}
+
+Vector3 NxaMath::Vector3ExtendedPhysXToXNA(const NxExtendedVec3& v)
+{
+	return Vector3(v.x, v.y, v.z);	
+}

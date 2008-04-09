@@ -8,6 +8,7 @@
 #include "NxaRevoluteJoint.h"
 #include "NxaSphericalJoint.h"
 #include "NxaD6Joint.h"
+#include "NxContainer.h"
 
 NxaJoint^ NxaJoint::CreateFromPointer(NxJoint* ptr)
 {
@@ -46,8 +47,8 @@ void NxaJoint::GetActors([Out] NxaActor^% actor1, [Out] NxaActor^% actor2)
 	NxActor* a1;
 	NxActor* a2;
 	nxJoint->getActors(&a1, &a2);
-	actor1 = gcnew NxaActor(a1);
-	actor2 = gcnew NxaActor(a2);
+	actor1 = NxActorContainer::GetInstance()->Find(IntPtr(a1));
+	actor2 = NxActorContainer::GetInstance()->Find(IntPtr(a2));
 }
 
 void NxaJoint::SetGlobalAnchor(Vector3 vec)
@@ -161,5 +162,5 @@ String^ NxaJoint::GetName()
 
 NxaScene^ NxaJoint::GetScene()
 {
-	return gcnew NxaScene(&(nxJoint->getScene()));
+	return NxSceneContainer::GetInstance()->Find(IntPtr(&(nxJoint->getScene())));
 }

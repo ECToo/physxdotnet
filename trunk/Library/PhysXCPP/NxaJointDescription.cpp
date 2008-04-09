@@ -1,12 +1,13 @@
 #include "StdAfx.h"
 #include "NxaJointDescription.h"
 #include "NxJointDesc.h"
+#include "NxContainer.h"
 
 void NxaJointDescription::LoadFromNative(NxJointDesc& desc)
 {
 	for(int i = 0; i < 2; i++)
 	{
-		Actor[i] = gcnew NxaActor(desc.actor[i]);
+		Actor[i] = NxActorContainer::GetInstance()->Find(IntPtr(desc.actor[i]));
 		LocalAnchor[i] = NxaMath::Vector3PhysXToXNA(desc.localAnchor[i]);
 		LocalAxis[i] = NxaMath::Vector3PhysXToXNA(desc.localAxis[i]);
 		LocalNormal[i] = NxaMath::Vector3PhysXToXNA(desc.localNormal[i]);

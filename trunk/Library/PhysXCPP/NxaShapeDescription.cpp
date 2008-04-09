@@ -26,7 +26,7 @@ bool NxaShapeDescription::IsValid()
 	return nxShapeDesc->isValid();
 }
 
-NxaShapeDescription^ NxaShapeDescription::CreateFromPointer(NxShapeDesc *ptr)
+/*NxaShapeDescription^ NxaShapeDescription::CreateFromPointer(NxShapeDesc *ptr)
 {
 	switch(ptr->getType())
 	{
@@ -39,7 +39,7 @@ NxaShapeDescription^ NxaShapeDescription::CreateFromPointer(NxShapeDesc *ptr)
 	}
 
 	return nullptr;
-}
+}*/
 
 Matrix NxaShapeDescription::LocalPose::get()
 {
@@ -71,4 +71,73 @@ NxaU32 NxaShapeDescription::ShapeFlags::get()
 void NxaShapeDescription::ShapeFlags::set(NxaU32 value)
 {
 	nxShapeDesc->shapeFlags = value;
+}
+
+float NxaShapeDescription::Density::get()
+{
+	return nxShapeDesc->density;
+}
+
+void NxaShapeDescription::Density::set(float value)
+{
+	nxShapeDesc->density = value;
+}
+
+float NxaShapeDescription::Mass::get()
+{
+	return nxShapeDesc->mass;
+}
+
+void NxaShapeDescription::Mass::set(float value)
+{
+	nxShapeDesc->mass = value;
+}
+
+NxaCollisionGroup NxaShapeDescription::Group::get()
+{
+	return nxShapeDesc->group;
+}
+
+void NxaShapeDescription::Group::set(NxaCollisionGroup value)
+{
+	nxShapeDesc->group = value;
+}
+
+NxaMaterialIndex NxaShapeDescription::MaterialIndex::get()
+{
+	return nxShapeDesc->materialIndex;
+}
+
+void NxaShapeDescription::MaterialIndex::set(NxaMaterialIndex value)
+{
+	nxShapeDesc->materialIndex = value;
+}
+
+Object^ NxaShapeDescription::UserData::get()
+{
+	if(nxShapeDesc->userData != 0)
+	{
+		GCHandle gch = GCHandle::FromIntPtr((System::IntPtr)(nxShapeDesc->userData));
+		Object^ obj = (Object^)(gch.Target);
+		return obj;
+	}
+	else
+	{
+		return nullptr;
+	}
+}
+
+void NxaShapeDescription::UserData::set(Object ^ value)
+{
+	if(nxShapeDesc->userData != 0)
+	{
+		GCHandle gch = GCHandle::FromIntPtr(IntPtr(nxShapeDesc->userData));
+		gch.Free();
+		nxShapeDesc->userData = 0;
+	}
+	if( value != nullptr)
+	{
+		GCHandle gch = GCHandle::Alloc(value);
+		nxShapeDesc->userData = (void*)(GCHandle::ToIntPtr(gch));
+	}
 }

@@ -8,6 +8,9 @@
 NxaActorDescription::NxaActorDescription(void)
 {
 	nxActorDesc = new NxActorDesc();
+
+	arShapeDescriptions = gcnew List<NxaShapeDescription ^>();
+	nxaBodyDescription = nullptr;
 }
 
 NxaActorDescription::~NxaActorDescription(void)
@@ -18,17 +21,36 @@ NxaActorDescription::~NxaActorDescription(void)
 NxaActorDescription::!NxaActorDescription(void)
 {
 	delete nxActorDesc;
+	arShapeDescriptions->Clear();
+}
+
+void NxaActorDescription::SetToDefault()
+{
+	nxActorDesc->setToDefault();
+}
+
+bool NxaActorDescription::IsValid()
+{
+	return nxActorDesc->isValid();
 }
 
 void NxaActorDescription::AddShape(NxaShapeDescription^ description)
 {
+	arShapeDescriptions->Add(description);
+
 	NxShapeDesc* ptr = description->nxShapeDesc;
 	nxActorDesc->shapes.pushBack(ptr);	
 }
 
 void NxaActorDescription::Body::set(NxaBodyDescription^ body)
 {
+	nxaBodyDescription = body;
 	nxActorDesc->body = body->nxBodyDesc;
+}
+
+NxaBodyDescription ^ NxaActorDescription::Body::get()
+{
+	return nxaBodyDescription;
 }
 
 void NxaActorDescription::GlobalPose::set(Matrix m)
@@ -51,14 +73,15 @@ void NxaActorDescription::Density::set(float density)
 
 array<NxaShapeDescription^>^ NxaActorDescription::Shapes::get()
 {
-	NxArray<NxShapeDesc*, NxAllocatorDefault> ptrs = nxActorDesc->shapes;
-	int size = ptrs.size();
-	array<NxaShapeDescription^>^ shapeDescs = gcnew array<NxaShapeDescription^>(size);
+	return arShapeDescriptions->ToArray();
+}
 
-	for(int p = 0; p < size; p++)
-	{
-		shapeDescs[p] = NxaShapeDescription::CreateFromPointer(ptrs[p]);
-	}
+NxaActorGroup NxaActorDescription::Group::get()
+{
+	return nxActorDesc->group;
+}
 
-	return shapeDescs;
+void NxaActorDescription::Group::set(NxaActorGroup value)
+{
+	nxActorDesc->group = value;
 }
