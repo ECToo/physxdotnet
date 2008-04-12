@@ -321,6 +321,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\NxaGroupsMask.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\NxaHeightField.cpp"
 				>
 			</File>
@@ -612,6 +616,10 @@
 			</File>
 			<File
 				RelativePath=".\NxaForceFieldShape.h"
+				>
+			</File>
+			<File
+				RelativePath=".\NxaGroupsMask.h"
 				>
 			</File>
 			<File

@@ -139,10 +139,10 @@ NxaU32 NxaActor::GetSolverIterationCount()
 	return nxActor->getSolverIterationCount();
 }
 
-void NxaActor::RecomputeAdaptiveForceCounters()
-{
-	nxActor->recomputeAdaptiveForceCounters();
-}
+//void NxaActor::RecomputeAdaptiveForceCounters()
+//{
+//	nxActor->recomputeAdaptiveForceCounters();
+//}
 
 void NxaActor::SetGlobalPose(Matrix m)
 {

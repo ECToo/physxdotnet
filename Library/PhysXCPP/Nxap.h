@@ -194,6 +194,13 @@ public enum class NxaShapeFlag : NxaU32
 	SoftBodyTwoWay = (1<<20)
 };
 
+public enum class NxaShapesType : NxaU32
+{
+	StaticShapes = (1<<0),
+	DynamicShapes = (1<<1),
+	AllShapes = StaticShapes | DynamicShapes
+};
+
 public enum class NxaShapeType : NxaU32 
 { 
 	Plane, 
