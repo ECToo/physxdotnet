@@ -58,7 +58,7 @@ public:
 	void SetSolverIterationCount(NxaU32 count);
 	NxaU32 GetSolverIterationCount();
 
-	void RecomputeAdaptiveForceCounters();
+	//void RecomputeAdaptiveForceCounters(); //doesn't work in 2.8.0
 
 	//TODO Add LinearSweep.
 	//TODO Add GetCompartment.
