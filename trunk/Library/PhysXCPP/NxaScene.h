@@ -14,6 +14,9 @@ ref class NxaMaterialDescription;
 #include "Nxap.h"
 #include "NxaSceneDescription.h"
 #include "NxScene.h"
+#include "NxaGroupsMask.h"
+#include "NxaRaycastHit.h"
+#include "NxaRay.h"
 
 public delegate void NxaUserContactDelegate(NxaContactPair ^pair, NxaU32 events);
 public delegate void NxaUserTriggerDelegate(NxaShape ^ triggerShape, NxaShape ^ otherShape, NxaTriggerFlag status);
@@ -83,7 +86,16 @@ public:
 	void SetActorGroupPairFlags(NxaActorGroup group1, NxaActorGroup group2, NxU32 contactPairFlag);
 	NxaU32 GetActorGroupPairFlags(NxaActorGroup group1, NxaActorGroup group2);
 	
-	
+	//-----------
+	// Raycasting
+	//-----------
+	NxaRaycastHit RaycastClosestShape(NxaRay^ worldRay, NxaShapesType shapeType, NxaU32 groups, float maxDist, NxaGroupsMask^ groupsMask);
+	NxaRaycastHit RaycastClosestShape(NxaRay^ worldRay, NxaShapesType shapeType);
+	bool RaycastAnyShape(NxaRay^ worldRay, NxaShapesType shapeType, NxaU32 groups, float maxDist, NxaGroupsMask^ groupsMask);
+	bool RaycastAnyShape(NxaRay^ worldRay, NxaShapesType shapeType);
+	//TODO: NxaUserRaycastReport (create), then RaycastAllShapes
+
+
 	property Object ^ UserData
 	{
 		Object ^ get();
