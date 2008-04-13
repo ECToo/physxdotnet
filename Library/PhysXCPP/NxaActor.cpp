@@ -447,6 +447,10 @@ void NxaActor::AddLocalForceAtLocalPosition(Vector3 force, Vector3 position, Nxa
 
 void NxaActor::AddForce(Vector3 force, NxaForceMode forceMode, bool wakeup)
 {
+	//Fix issue 11:
+	if ((Single::IsNaN(force.X) == true) || (Single::IsNaN(force.Y) == true) || (Single::IsNaN(force.Z) == true))
+		return;
+
 	nxActor->addForce(NxaMath::Vector3XNAToPhysX(force), (NxForceMode)forceMode, wakeup);
 }
 
