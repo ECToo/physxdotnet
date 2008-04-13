@@ -229,3 +229,30 @@ void NxaScene::ReleaseMaterial(NxaMaterial^ material)
 		material->nxMaterial = nullptr;
 	}
 }
+
+NxaRaycastHit NxaScene::RaycastClosestShape(NxaRay^ worldRay, NxaShapesType shapeType, NxaU32 groups, float maxDist, NxaGroupsMask^ groupsMask)
+{
+	//Note: this is slightly modified, it returns the hitreport which includes the shape hit. This is everything we need
+	//as opposed to returning the shape twice.
+
+	NxaRaycastHit rh;
+	nxScene->raycastClosestShape( *(worldRay->nxRay), (NxShapesType)shapeType, *(rh.nxRaycastHit), groups, maxDist, -1, groupsMask->nxGroupsMask, 0);
+	return rh;
+}
+
+NxaRaycastHit NxaScene::RaycastClosestShape(NxaRay ^worldRay, NxaShapesType shapeType)
+{
+	NxaRaycastHit rh;
+	nxScene->raycastClosestShape( *(worldRay->nxRay), (NxShapesType)shapeType, *(rh.nxRaycastHit));
+	return rh;
+}
+
+bool NxaScene::RaycastAnyShape(NxaRay ^worldRay, NxaShapesType shapeType, NxaU32 groups, float maxDist, NxaGroupsMask ^groupsMask)
+{
+	return nxScene->raycastAnyShape( *(worldRay->nxRay), (NxShapesType)shapeType, groups, maxDist, groupsMask->nxGroupsMask);
+}
+
+bool NxaScene::RaycastAnyShape(NxaRay ^worldRay, NxaShapesType shapeType)
+{
+	return nxScene->raycastAnyShape( *(worldRay->nxRay), (NxShapesType)shapeType);
+}

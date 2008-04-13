@@ -413,6 +413,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\NxaRay.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\NxaRevoluteJoint.cpp"
 				>
 			</File>
@@ -712,6 +716,14 @@
 			</File>
 			<File
 				RelativePath=".\NxaPrismaticJointDescription.h"
+				>
+			</File>
+			<File
+				RelativePath=".\NxaRay.h"
+				>
+			</File>
+			<File
+				RelativePath=".\NxaRaycastHit.h"
 				>
 			</File>
 			<File
